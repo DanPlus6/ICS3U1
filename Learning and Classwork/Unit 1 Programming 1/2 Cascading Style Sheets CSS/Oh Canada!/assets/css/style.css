@@ -12,6 +12,12 @@
     margin-left: 30px;
 }
 
+.oh-canada {
+    color: darkred;
+    font-weight: bold;
+    display: inline;
+}
+
 img {
     float: right;
     width: 600;
