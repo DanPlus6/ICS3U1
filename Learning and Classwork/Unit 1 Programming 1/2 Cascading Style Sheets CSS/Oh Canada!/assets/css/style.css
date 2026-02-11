@@ -1,15 +1,11 @@
-.parent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .lyrics {
     text-align: center;
     font-family: Cambria, Cochin, Georgia, serif;
     font-size: large;
     width: 400px;
-    margin-left: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .oh-canada {
@@ -19,8 +15,7 @@
 }
 
 img {
-    float: right;
-    width: 600;
-    margin-left: 50px;
-    margin-right: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
