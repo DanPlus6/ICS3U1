@@ -8,7 +8,7 @@
     align-items: center;
 
     background-image: url("../img/innovations-in-computer-science.jpg");
-    background-size: /*60%*/ cover; 
+    background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -36,48 +36,62 @@
 
 .nav-container {
     padding: 40px 20px;
-    max-width: 1200px;
     margin: 0 auto;
+    max-width: 1200px;
 }
 
-.nav-menu h2 {
-    text-align: center;
+.nav-section {
+    padding: 20px 24px;
     margin-bottom: 20px;
 
-    color: /*rgba(255, 255, 255, 1)*/ rgba(51, 51, 51, 1);
-    font-size: 0.3in;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-section h2 {
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+
+    border-bottom: 2px solid rgba(34, 37, 44, 1);
+    color: rgb(35, 35, 43);
+
+    font-size: 0.15in;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.013in;
+    text-align: center;
 }
 
 .nav-list-row1, .nav-list-row2 {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 40px;
+    margin: 0;
+    padding: 0;
 
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
     list-style: none;
+    gap: 6px;
 }
 
 .nav-link {
     display: inline-block;
-    padding: 12px 24px;
-    border-radius: 25px;
+    padding: 8px 14px;
+    border-radius: 4px;
 
-    background-color: rgba(0, 123, 255, 1);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    color: white;
+    background-color: rgb(223, 227, 231);
+    color: rgb(35, 35, 43);
 
-    text-decoration: none;
     font-size: 0.175in;
-    font-weight: 500;
-    transition: all 0.3s ease;
+    font-weight: 600;
+    text-decoration: none;
+
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .nav-link:hover {
-    background-color: rgba(0, 86, 179, 1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-    transform: translateY(-2px);
+    background-color: rgba(34, 37, 44, 1);
+    color: white;
     text-decoration: underline;
 }
 
