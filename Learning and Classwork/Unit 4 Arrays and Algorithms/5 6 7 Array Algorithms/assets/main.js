@@ -202,6 +202,24 @@ function calculateMeanOfPositives(arr) {
     return sum/posNums;
 }
 
+/**
+ * Are we serious -- returns a copy of a provided array -_-
+ * @param {Array} arr Input array
+ * @returns a copy of provided array
+ */
+function copyArray(arr) {
+    // return arr;
+    
+    /** variable to store copy of the array */
+    let copiedArr = new Array(arr.length);
+    // loop through input array to copy elements
+    for (let i = 0; i < arr.length; i++) {
+        copiedArr[i] = arr[i];
+    }
+
+    return arr;
+}
+
 
 // Test button callbacks
 /**
@@ -296,4 +314,12 @@ function calculateMeanOfPositivesTest() {
     clear();
 
     P_DISPLAY1.innerHTML = calculateMeanOfPositives(numbersArray);
+}
+
+/** test the copyArray function by printing the strings array and its copy inside of the paragraphs */
+function copyArrayTest() {
+    clear();
+
+    P_DISPLAY1.innerHTML = printArray(stringArray);
+    P_DISPLAY2.innerHTML = printArray(copyArray(stringArray));
 }
