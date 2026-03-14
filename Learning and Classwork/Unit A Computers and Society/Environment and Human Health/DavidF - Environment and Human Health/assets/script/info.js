@@ -26,18 +26,17 @@ let topic = 0, section = 0;
  * Fetches the .txt file for the current topic/section and renders it.
  */
 async function loadSection() {
-    /** Declare const path to current section's info text file */
-    const path = `../info/topic${topic}_section${section}.txt`;
-    
     try {
+        /** Declare const path to current section's info text file */
+        const path = `../info/topic${topic}_section${section}.txt`;
         const response = await fetch(path);
-        if (!response.ok) throw new Error(`File not found: ${path}`);
+        if (!response.ok) console.log('txt not found 😭');
 
         // Load text from file onto section body
         const text = await response.text();
         SECT_BODY.textContent = text;
     } catch (err) {
-        SECT_BODY.textContent = `Could not load content. (${err.message})`;
+        console.log(`couldn't load for some reason 💔 (${err.message})`);
     }
  
     // Update section heading
