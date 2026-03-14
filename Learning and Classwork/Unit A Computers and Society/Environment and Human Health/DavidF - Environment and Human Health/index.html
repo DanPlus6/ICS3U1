@@ -21,39 +21,44 @@
         <div class="nav-item">
             <button class="nav-parent">Negative Effects of Computer Tech</button>
             <div class="nav-dropdown">
-                <a href="#" class="nav-child">Negative Environmental Effects</a>
-                <a href="#" class="nav-child">Negative Human Health Effects</a>
+                <button class="nav-child" id="1" onclick="display(this);">Negative Environmental Effects of Computer Technologies</button>
+                <button class="nav-child" id="2" onclick="display(this);">Negative Human Health Effects of Computer Technologies</button>
             </div>
         </div>
  
         <div class="nav-item">
             <button class="nav-parent">Mitigation of Computer Tech Impacts</button>
             <div class="nav-dropdown">
-                <a href="#" class="nav-child">Policy: Environment</a>
-                <a href="#" class="nav-child">Policy: Human Health</a>
-                <a href="#" class="nav-child">External Resources</a>
+                <button class="nav-child" id="3" onclick="display(this);">Computer Use Policies Mitigating Environmental Impact</button>
+                <button class="nav-child" id="4" onclick="display(this);">Computer Use Policies Mitigating Human Health Impact</button>
+                <button class="nav-child" id="5" onclick="display(this);">External Resources Mitigating Computer Technologies Impacts</button>
             </div>
         </div>
  
         <div class="nav-item">
             <button class="nav-parent">Positive Effects of Computer Tech</button>
             <div class="nav-dropdown">
-                <a href="#" class="nav-child">Reducing Resource Usage</a>
+                <button class="nav-child" id="6" onclick="display(this);">Negative Environmental Effects of Computer Technologies</button>
             </div>
         </div>
     </nav>
  
     <!-- Info nothing burger -->
     <div class="info-container">
-
+        <h2 id="info-heading"></h2>
+        <div class="info-section">
+            <h3 id="section-heading"></h3>
+            <p id="info-body"></p>
+        </div>
     </div>
     
     <p class="source">
         This project's code is licensed under the <a href="https://github.com/DanPlus6/ICS3U1/blob/main/LICENSE">GNU General Public License v3.0</a>
     </p>
 
-    <!-- Script -->
+    <!-- Scripts -->
     <!-- ALWAYS KEEP AT BOTTOM -->
     <script src="assets/script/dropdown.js"></script>
+    <script src="assets/script/info.js"></script>
 </body>
 </html>
