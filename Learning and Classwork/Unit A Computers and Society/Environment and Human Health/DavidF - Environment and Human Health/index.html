@@ -211,7 +211,22 @@
                 </div>
             </div>
         </div>
- 
+        
+        <!-- Gambling 🤣 -->
+        <div id="gamble-section">
+            <h3 id="gamble-title">Feeling lucky? 🎲</h3>
+            <p id="gamble-subtitle">Use your score as chips. Bet on the dice roll — High (4~6) or Low (1~3).</p>
+            <p id="chip-count">Chips: 0</p>
+            <div id="gamble-controls">
+                <label for="bet-input">Bet:</label>
+                <input type="number" id="bet-input" min="1" value="1">
+                <button id="btn-high" class="gamble-btn" onclick="gamble('high');">High (4~6)</button>
+                <button id="btn-low"  class="gamble-btn" onclick="gamble('low');">Low (1~3)</button>
+                <button id="btn-cashout" class="gamble-btn gamble-cashout" onclick="cashOut();">Cash Out</button>
+            </div>
+            <p id="gamble-result"></p>
+        </div>
+
         <div id="quiz-score">
             <p id="score-text"></p>
             <button id="quiz-close" onclick="closeQuiz();">Back to Site</button>
