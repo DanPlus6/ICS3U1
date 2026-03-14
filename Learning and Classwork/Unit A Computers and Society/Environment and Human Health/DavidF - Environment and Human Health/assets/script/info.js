@@ -3,7 +3,7 @@
 // Declare const targets to html elements
 const INFO_HEAD = document.getElementById('info-heading');
 const SECT_HEAD = document.getElementById('section-heading');
-const INFO_BODY = document.getElementById('info-body');
+const INFO_BODY = document.getElementById('section-body');
 
 // Declare dynamic variables used for section tracking
 let topic = 0, section = 0;
