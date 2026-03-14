@@ -40,7 +40,7 @@ function resetQuiz() {
         btn.disabled = false;
     });
 
-    // Re-attach option click listeners
+    /** Re-attach option clicking listeners */
     document.querySelectorAll('.quiz-question-block').forEach(block => {
         const options = block.querySelectorAll('.quiz-option');
         options.forEach((btn, idx) => {
@@ -49,6 +49,7 @@ function resetQuiz() {
         delete block.dataset.selected;
     });
 
+    // close and hide the quiz
     QUIZ_SCORE.classList.remove('active');
     QUIZ_CLOSE.style.display = 'none';
     QUIZ_SUBMIT.style.display = '';
@@ -63,7 +64,7 @@ function selectOption(block, selectedIdx) {
     /** Clear previous selection styling for this question */
     options.forEach(btn => btn.classList.remove('correct', 'wrong'));
 
-    // Mark selection (highlight in dark to show it's chosen)
+    // Mark selection
     options[selectedIdx].style.outline = '';
     block.dataset.selected = selectedIdx;
 
@@ -93,8 +94,9 @@ function submitQuiz() {
             btn.disabled = true;
         });
 
+        // grade answer
         if (selected === null) {
-            // No answer selected — just reveal correct
+            // edge case: no answer selected --> just reveal correct
             options[correct].classList.add('correct');
         } else if (selected === correct) {
             options[correct].classList.add('correct');
@@ -105,11 +107,11 @@ function submitQuiz() {
         }
     });
 
-    // Show final score
+    // Show final score and close quiz button
     const total = blocks.length;
     SCORE_TEXT.textContent = `You scored ${score} / ${total}`;
     QUIZ_SUBMIT.style.display = 'none';
     QUIZ_SCORE.classList.add('active');
-    QUIZ_CLOSE.style.display = '';
+    QUIZ_CLOSE.style.display = 'block';
 }
 
