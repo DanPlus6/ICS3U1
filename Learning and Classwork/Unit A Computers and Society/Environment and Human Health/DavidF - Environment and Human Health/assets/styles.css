@@ -79,7 +79,7 @@ body {
     padding: 16px 20px;
  
     background-color: white;
-    color: rgb(35, 35, 43);
+    color: rgba(35, 35, 43, 1);
     border: none;
     border-right: 1px solid rgba(223, 227, 231, 0.8);
  
@@ -126,7 +126,7 @@ body {
  
     background-color: white;
     border: none;
-    color: rgb(35, 35, 43);
+    color: rgba(35, 35, 43, 1);
  
     font-size: 0.155in;
     font-weight: 600;
@@ -145,11 +145,11 @@ body {
 }
 
 .nav-child.active {
-    background-color: rgb(94, 95, 100);
+    background-color: rgba(94, 95, 100, 1);
     color: white;
 }
 
-/* ----------------- Info Body ------------------ */
+/* ----------------- Info Display ------------------ */
 .info-container {
     max-width: 1600px;
     min-height: 400px;
@@ -175,6 +175,31 @@ body {
     font-size: 0.5in;
 }
 
-#info-body {
+.section-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    gap: 10px;
+}
+ 
+.section-nav-btn {
+    padding: 10px 24px;
+ 
+    background-color: rgba(223, 227, 231,1);
+    color: rgba(35, 35, 43, 1);
+    border: none;
+    border-radius: 4px;
+ 
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.155in;
+    font-weight: 600;
+ 
+    cursor: pointer;
+    visibility: hidden;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
 
+.section-nav-btn:hover {
+    background-color: rgba(34, 37, 44, 1);
+    color: white;
 }
