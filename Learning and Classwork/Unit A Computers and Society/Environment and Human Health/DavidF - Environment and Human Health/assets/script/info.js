@@ -9,7 +9,7 @@ const BTN_NEXT  = document.getElementById('btn-next');
 
 
 // Declare const variables/info for displaying topics information
-const SECT_CTS = { 1: 3, 2: 3, 3: 1, 4: 1, 5: 3, 6: 3 };
+const SECT_CT = { 1: 3, 2: 3, 3: 1, 4: 1, 5: 3, 6: 3 };
 const SECTION_HEADINGS = {
     1: ['High Electricity Usage of AI and Data Centres', 'Excessive Use of Paper from Printing', 'Creation of E-Waste'],
     2: ['Reduced Hhysical Activity due to Excessive Computer Technology Use', 'Eye Strain from Screens', 'Mental Hhealth Issues Resulting from Cyberbullying'],
@@ -28,7 +28,7 @@ let topic = 0, section = 0;
 async function loadSection() {
     try {
         /** Declare const path to current section's info text file */
-        const path = `../info/topic${topic}_section${section}.txt`;
+        const path = `assets/info/topic${topic}_section${section}.txt`;
         const response = await fetch(path);
         if (!response.ok) console.log('txt not found 😭');
 
@@ -43,7 +43,7 @@ async function loadSection() {
     SECT_HEAD.textContent = SECTION_HEADINGS[topic][section - 1];
  
     // Update prev/next button visibility
-    const total = SECTION_COUNTS[topic];
+    const total = SECT_CT[topic];
     BTN_PREV.style.visibility = ((total > 1) ? 'visible' : 'hidden');
     BTN_NEXT.style.visibility = ((total > 1) ? 'visible' : 'hidden');
 }
@@ -74,7 +74,7 @@ function prevSection() {
     /** If somehow navigating while section is 0, do nothing */
     if (topic === 0) return;
 
-    const total = SECTION_COUNTS[topic];
+    const total = SECT_CT[topic];
     section = ((section === 1) ? total : section - 1);
 
     loadSection();
@@ -88,8 +88,8 @@ function nextSection() {
     if (topic === 0) return;
 
     // Wrap around logic
-    const total = SECTION_COUNTS[topic];
-    section = section === total ? 1 : section + 1;
+    const total = SECT_CT[topic];
+    section = ((section === total) ? 1 : section + 1);
 
     loadSection();
 }
