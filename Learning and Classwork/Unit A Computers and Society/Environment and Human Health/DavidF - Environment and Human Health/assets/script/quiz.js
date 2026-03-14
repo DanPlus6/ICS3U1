@@ -2,7 +2,7 @@
 
 // Declare const html targets
 const NAV_BAR = document.querySelector('.nav-bar');
-const INFO_CONT = document.getElementById('info-container');
+const INFO_CONT = document.querySelector('.info-container');
 const QUIZ_CONT = document.getElementById('quiz-container');
 const QUIZ_FAB = document.getElementById('quiz-fab');
 const QUIZ_SUBMIT = document.getElementById('quiz-submit');
