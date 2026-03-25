@@ -2,6 +2,9 @@
 
 /** define canvas/screen object */
 export class Screen {
+    /**
+     * @param {string} canvasId  id for the canvas html element  
+     */
     constructor(canvasId) {
         /** ref to the canvas */
         this.CANVAS = document.getElementById(canvasId);
