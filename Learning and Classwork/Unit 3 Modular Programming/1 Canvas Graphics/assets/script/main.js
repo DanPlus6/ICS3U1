@@ -1,9 +1,9 @@
 'use strict';
-import { Player } from './player.js'
-import { Screen } from './canvas.js'
+import { Player } from './player.js';
+import { Screen } from './canvas.js';
 
 /** Object containing game canvas */
-const SCREEN = new Screen('game-id');
+const SCREEN = new Screen('game-canvas');
 /** Object containing player */
 let player = new Player();
 
