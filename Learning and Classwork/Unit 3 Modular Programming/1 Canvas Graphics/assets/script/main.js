@@ -10,7 +10,7 @@ let player = new Player();
 
 /** load attributes of graphics to display */
 function loadImages() {
-    player.src = "assets/img/trollge.png";
+    player.avatar.src = "assets/img/trollge.png";
 }
 
 /** draw graphics onto the canvas */
