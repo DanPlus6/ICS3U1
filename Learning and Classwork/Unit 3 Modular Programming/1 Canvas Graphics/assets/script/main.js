@@ -18,7 +18,8 @@ function draw() {
     SCREEN.BRUSH.drawImage(player.avatar, player.x, player.y, player.w, player.h);
 }
 
-function start() {
+/** start() but for multiple javascripts being imported */
+window.addEventListener('load', function() {
     loadImages();
     draw();
-}
+});
