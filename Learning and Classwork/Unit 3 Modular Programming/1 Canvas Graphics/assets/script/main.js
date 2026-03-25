@@ -1,4 +1,5 @@
 'use strict';
+import { Player } from './player.js'
 
 // Const values for the canvas
 /** Const refs to the canvas */
@@ -9,22 +10,12 @@ const BRUSH = CANVAS.getContext('2d');
 const CV_WIDTH = CANVAS.width;
 const CV_HEIGHT = CANVAS.height;
 
+
+
 // vals for controlling player avatar
-class Player {
-    constructor(avatarPath, w, h, x, y) {
-        this.avatar = new Image();
-        this.avatar.src = avatarPath;
+let player = new Player();
 
-        this.w = w;
-        this.h = h;
 
-        this.x = x;
-        this.y = y;
-    }
-
-}
-
-let player;
 /** load attributes of graphics to display */
 function loadImages() {
     player = new Player();
