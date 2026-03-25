@@ -10,7 +10,7 @@ export class Screen {
         this.CANVAS = document.getElementById(canvasId);
 
         /** ref to the canvas graphics context */
-        this.BRUSH = CANVAS.getContext('2d');
+        this.BRUSH = this.CANVAS.getContext('2d');
 
         // redundant values for storing canvas width and height
         this.CV_WIDTH = CANVAS.width;
