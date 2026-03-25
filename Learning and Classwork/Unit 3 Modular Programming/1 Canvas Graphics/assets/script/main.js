@@ -17,3 +17,8 @@ function loadImages() {
 function draw() {
     SCREEN.BRUSH.drawImage(player.avatar, player.x, player.y, player.w, player.h);
 }
+
+function start() {
+    loadImages();
+    draw();
+}
