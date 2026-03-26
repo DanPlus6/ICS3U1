@@ -3,16 +3,18 @@
 /** define player object */
 export class Player {
     /**
-     * @param {string} avatarPath path to the image for player's avatar
+     * @param {string} path path to the image for player's avatar
+     * @param {number} width width for avatar
+     * @param {number} height height for avatar
      */
-    constructor(avatarPath) {
+    constructor(path, width, height) {
         // player avatar's image object
         this.avatar = new Image();
-        this.avatar.src = avatarPath;
+        this.avatar.src = path;
 
         // player avatar's width and height
-        this.w = 572;
-        this.h = 572;
+        this.w = width;
+        this.h = height;
 
         // player avatar's top-left x and y coordinates
         this.x = 0;
