@@ -11,6 +11,7 @@ const AVT_PATH = 'assets/img/trollge.png';
 const AVT_W = 32;
 const AVT_H = 32;
 let p_gain = 1;
+const SPD_CAP = 10;
 
 
 // ----------------- Canvas init and drawing ------------------
@@ -54,13 +55,13 @@ function controls(keydownEvent) {
             else player.x = CV.CV_WIDTH - AVT_W;
             break;
         case '-':
-            p_gain--;
+            if (p_gain >= 2) p_gain--;
             break;
-        case '+':
-            p_gain++;
+        case '=':
+            if (p_gain < SPD_CAP) p_gain++;
             break;
     }
-
+    
     draw();
 }
 
