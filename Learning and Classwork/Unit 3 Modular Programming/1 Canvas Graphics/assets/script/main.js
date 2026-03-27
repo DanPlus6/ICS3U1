@@ -1,6 +1,6 @@
 'use strict';
-import { Player } from './player.js';
-import { Screen } from './canvas.js';
+import { Player } from './modules/player.js';
+import { Screen } from './modules/canvas.js';
 
 // ----------------- Init variables ------------------
 // variables for canvas
