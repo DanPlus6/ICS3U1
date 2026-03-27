@@ -10,7 +10,7 @@ let player;
 const AVT_PATH = 'assets/img/trollge.png';
 const AVT_W = 32;
 const AVT_H = 32;
-let kP = 1;
+let p_gain = 1;
 
 
 // ----------------- Canvas init and drawing ------------------
@@ -34,30 +34,30 @@ function controls(keydownEvent) {
     let new_x;
     switch (keyPressed) {
         case 'ArrowUp':
-            new_y = player.y - kP;
+            new_y = player.y - p_gain;
             if (new_y >= 0) player.y = new_y;
             else player.y = 0;
             break;
         case 'ArrowDown':
-            new_y = player.y + kP;
+            new_y = player.y + p_gain;
             if (new_y + AVT_H <= CV.CV_HEIGHT) player.y = new_y;
             else player.y = CV.CV_HEIGHT - AVT_H;
             break;
         case 'ArrowLeft':
-            new_x = player.x - kP;
+            new_x = player.x - p_gain;
             if (new_x >= 0) player.x = new_x;
             else player.x = 0;
             break;
         case 'ArrowRight':
-            new_x = player.x + kP;
+            new_x = player.x + p_gain;
             if (new_x + AVT_W <= CV.CV_WIDTH) player.x = new_x;
             else player.x = CV.CV_WIDTH - AVT_W;
             break;
         case '-':
-            kP--;
+            p_gain--;
             break;
         case '+':
-            kP++;
+            p_gain++;
             break;
     }
 
