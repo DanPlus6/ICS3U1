@@ -18,4 +18,9 @@ export class Screen {
 
         Object.freeze(this);
     }
+
+    /** clears entire screen */
+    clearAll() {
+        this.BRUSH.clearRect(0,0,this.CV_WIDTH,this.CV_HEIGHT);
+    }
 }

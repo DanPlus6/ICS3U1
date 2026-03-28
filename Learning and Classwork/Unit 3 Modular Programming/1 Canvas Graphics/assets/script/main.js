@@ -12,7 +12,7 @@ let PL = new Player('assets/img/trollge.png', 32, 32);
 // ----------------- Canvas init and drawing ------------------
 /** callback draw graphics onto the canvas */
 function draw() {
-    CV.BRUSH.clearRect(0, 0, CV.CV_WIDTH, CV.CV_HEIGHT);
+    CV.clearAll();
     CV.BRUSH.drawImage(PL.avatar, PL.x, PL.y, PL.w, PL.h);
 }
 
