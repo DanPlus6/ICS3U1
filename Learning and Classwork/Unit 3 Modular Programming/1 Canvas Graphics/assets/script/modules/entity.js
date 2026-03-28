@@ -1,16 +1,16 @@
 'use strict';
 
-/** define player object */
-export class Player {
+/** object representing an entity */
+export class Entity {
     /**
-     * @param {string} path path to the image for player's avatar
+     * @param {string} path path to the image for entities sprite
      * @param {number} width width for avatar
      * @param {number} height height for avatar
      */
     constructor(path, width, height, spdCap=10) {
         // player avatar's image object
-        this.avatar = new Image();
-        this.avatar.src = path;
+        this.sprite = new Image();
+        this.sprite.src = path;
 
         // player avatar's width and height
         this.w = width;
