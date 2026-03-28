@@ -1,20 +1,15 @@
 'use strict';
-import { Player } from './modules/player.js';
-import { Screen } from './modules/canvas.js';
+import { Entity } from './modules/entity.js';
+import { Canvas } from './modules/canvas.js';
 
 // ----------------- Init variables ------------------
-/* canvas object */
-const CV = new Screen('game-canvas');
-/* PL object */
-let PL = new Player('assets/img/trollge.png', 32, 32);
+// canvas
+const CV = new Canvas('game-canvas');
 
-
-// ----------------- Canvas init and drawing ------------------
-/** callback draw graphics onto the canvas */
-function draw() {
-    CV.clearAll();
-    CV.BRUSH.drawImage(PL.avatar, PL.x, PL.y, PL.w, PL.h);
-}
+// starter entities (main player)
+let entities = [];
+let PL = new Entity('assets/img/trollge.png', 32, 32);
+entities.push(PL);
 
 
 // ----------------- Player controls ------------------
@@ -52,7 +47,7 @@ function controls(keydownEvent) {
             break;
     }
     
-    draw();
+    CV.clearAndDraw(entities);
 }
 
 /** add event listeners except onload listener */
@@ -65,6 +60,6 @@ function addListeners() {
 /** onload callback */
 function start() {
     addListeners();
-    draw();
+    CV.clearAndDraw(entities);
 }
 window.addEventListener('load', start);

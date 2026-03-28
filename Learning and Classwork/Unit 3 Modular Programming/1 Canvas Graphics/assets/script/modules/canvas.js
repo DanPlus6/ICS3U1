@@ -1,7 +1,9 @@
 'use strict';
 
+import { Entity } from './entity.js'
+
 /** define canvas/screen object */
-export class Screen {
+export class Canvas {
     /**
      * @param {string} canvasId  id for the canvas html element  
      */
@@ -19,8 +21,14 @@ export class Screen {
         Object.freeze(this);
     }
 
-    /** clears entire screen */
-    clearAll() {
+    /**
+     * draws provided entities onto screen
+     * @param {Entity[]} entities array containing entity objects to be drawn
+     */
+    clearAndDraw(entities) {
         this.BRUSH.clearRect(0,0,this.CV_WIDTH,this.CV_HEIGHT);
+        for (const ent of entities) {
+            this.BRUSH.drawImage(ent.sprite, ent.x, ent.y, ent.w, ent.h);
+        }
     }
 }
