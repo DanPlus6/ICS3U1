@@ -1,12 +1,22 @@
 html, body {
+    height: 100vh;
     margin: 0;
-    height: 100%;
     overflow: hidden;
     text-align: center;
 }
 
+.gameclock {
+    margin-bottom: 8px;
+}
+
+.gameclock h2 {
+    margin: 0;
+    padding: 0;
+    line-height: 1.75;
+}
+
 canvas {
-    width: 99.5%;
-    height: 91.5%;
+    width: 99.5vw;
+    height: 91vh;
     border: 5px solid #2768F5;
 }
