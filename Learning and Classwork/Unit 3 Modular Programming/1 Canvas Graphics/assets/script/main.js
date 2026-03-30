@@ -25,8 +25,6 @@ const H_GAME_CLOCK = document.getElementById('h-gameclock');
 let gameTime = 0;
 /** initialized empty variable to store game's timer loop */
 let gameClock = null;
-/** boolean variable to store state of game's clock */
-let clockActive = false;
 
 
 // ----------------- Player controls -------------------
@@ -69,12 +67,25 @@ function controls(keydownEvent) {
 
 
 // ---------------------- Game Clock -----------------------
+function incrementClock() {
+    gameTime++;
+    H_GAME_CLOCK.textContent = gameTime - '0' + 's';
+}
+
 function toggleClock() {
-    
+    if (gameClock != null) {
+        BTN_TOGGLE_CLOCK.textContent = 'Start';
+        clearInterval(gameClock);
+        gameClock = null;
+    } else {
+        BTN_TOGGLE_CLOCK.textContent = 'Pause';
+        gameClock = setInterval(incrementClock, 1000);
+    }
 }
 
 function resetClock() {
-
+    gameTime = 0;
+    H_GAME_CLOCK.textContent = '0s';
 }
 
 
