@@ -2,17 +2,34 @@
 import { Entity } from './modules/entity.js';
 import { Canvas } from './modules/canvas.js';
 
-// ----------------- Init variables ------------------
-// canvas
+// ----------------- Init variables --------------------
+// Canvas
+/** game canvas */
 const CV = new Canvas('game-canvas');
 
-// starter entities (main player)
+// Entities
+/** dynamic array for storing entities*/
 let entities = [];
+/** main player entity */
 let PL = new Entity('assets/img/trollge.png', 32, 32);
 entities.push(PL);
 
+// Game clock
+/** html target for game clock toggle button */
+const BTN_TOGGLE_CLOCK = document.getElementById('btn-toggle-clock');
+/** html target for game clock reset button */
+const BTN_RESET_CLOCK = document.getElementById('btn-reset-clock');
+/** html target for game clock */
+const H_GAME_CLOCK = document.getElementById('h-gameclock');
+/** variable to store game's clock time  */
+let gameTime = 0;
+/** initialized empty variable to store game's timer loop */
+let gameClock = null;
+/** boolean variable to store state of game's clock */
+let clockActive = false;
 
-// ----------------- Player controls ------------------
+
+// ----------------- Player controls -------------------
 /** handle PL controls */
 function controls(keydownEvent) {
     let keyPressed = keydownEvent.key;
@@ -50,13 +67,26 @@ function controls(keydownEvent) {
     CV.clearAndDraw(entities);
 }
 
-/** add event listeners except onload listener */
-function addListeners() {
-    document.addEventListener('keydown',controls);
+
+// ---------------------- Game Clock -----------------------
+function toggleClock() {
+    
+}
+
+function resetClock() {
+
 }
 
 
-// ----------------- Initialization ------------------
+// -------------------- Initialization ---------------------
+/** add event listeners except onload listener */
+function addListeners() {
+    document.addEventListener('keydown',controls);
+    BTN_TOGGLE_CLOCK.addEventListener("click", toggleClock);
+    BTN_RESET_CLOCK.addEventListener('click',resetClock);
+}
+
+
 /** onload callback */
 function start() {
     addListeners();
