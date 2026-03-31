@@ -2,19 +2,19 @@
 import { Entity } from './modules/entity.js';
 import { Canvas } from './modules/canvas.js';
 
-// ----------------- Init variables --------------------
-// -------------------- Canvas
+// +++++++++++++++++ Init variables ++++++++++++++++++++
+// ------------ Canvas -----------
 /** game canvas */
 const CV = new Canvas('game-canvas');
 
-// ------------------- Entities
+// ----------- Entities ------------
 /** dynamic array for storing entities*/
 let entities = [];
 /** main player entity */
 let PL = new Entity('assets/img/trollge.png', 32, 32);
 entities.push(PL);
 
-// ------------------- Game clock
+// ---------- Game clock -----------
 /** html target for game clock toggle button */
 const BTN_TOGGLE_CLOCK = document.getElementById('btn-toggle-clock');
 /** html target for game clock reset button */
@@ -26,7 +26,7 @@ let gameTime = 0;
 /** initialized empty variable to store game's timer loop */
 let gameClock = null;
 
-// ------------------- Movement
+// ----------- Movement -------------
 // movement states for the directions
 let mvUp = false;
 let mvDown = false;
@@ -34,7 +34,7 @@ let mvLeft = false;
 let mvRight = false;
 
 
-// ----------------- Player controls -------------------
+// +++++++++++++++++ Player controls +++++++++++++++++++
 /** handle PL controls */
 function controls(keydownEvent) {
     let keyPressed = keydownEvent.key;
@@ -73,10 +73,10 @@ function controls(keydownEvent) {
 }
 
 
-// ---------------------- Game Clock -----------------------
+// ++++++++++++++++++++++ Game Clock +++++++++++++++++++++++
 function incrementClock() {
     gameTime++;
-    H_GAME_CLOCK.textContent = gameTime - '0' + 's';
+    H_GAME_CLOCK.textContent = gameTime.toString() + 's';
 }
 
 function toggleClock() {
@@ -96,7 +96,7 @@ function resetClock() {
 }
 
 
-// -------------------- Initialization ---------------------
+// ++++++++++++++++++++ Initialization +++++++++++++++++++++
 /** add event listeners except onload listener */
 function addListeners() {
     document.addEventListener('keydown',controls);
