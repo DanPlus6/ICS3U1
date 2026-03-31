@@ -26,7 +26,7 @@ let gameTime = 0;
 /** initialized empty variable to store game's timer loop */
 let gameClock = null;
 
-// ----------- Movement -------------
+// ------- Player Movement ---------
 // movement states for the directions
 let mvUp = false;
 let mvDown = false;
@@ -34,43 +34,53 @@ let mvLeft = false;
 let mvRight = false;
 
 
-// +++++++++++++++++ Player controls +++++++++++++++++++
-/** handle PL controls */
-function controls(keydownEvent) {
-    let keyPressed = keydownEvent.key;
-    let new_y;
-    let new_x;
-    switch (keyPressed) {
-        case 'ArrowUp':
-            new_y = PL.y - PL.kp;
-            if (new_y >= 0) PL.y = new_y;
-            else PL.y = 0;
-            break;
-        case 'ArrowDown':
-            new_y = PL.y + PL.kp;
-            if (new_y + PL.h <= CV.CV_HEIGHT) PL.y = new_y;
-            else PL.y = CV.CV_HEIGHT - PL.h;
-            break;
-        case 'ArrowLeft':
-            new_x = PL.x - PL.kp;
-            if (new_x >= 0) PL.x = new_x;
-            else PL.x = 0;
-            break;
-        case 'ArrowRight':
-            new_x = PL.x + PL.kp;
-            if (new_x + PL.w <= CV.CV_WIDTH) PL.x = new_x;
-            else PL.x = CV.CV_WIDTH - PL.w;
-            break;
-        case '-':
-            if (PL.kp > 1) PL.kp--;
-            break;
-        case '=':
-            if (PL.kp < PL.KP_CAP) PL.kp++;
-            break;
-    }
-    
-    CV.clearAndDraw(entities);
+// +++++++++++++++++ Player Movement +++++++++++++++++++
+/** handle keydown events */
+function handleKeydown(keydownEvent) {
+    let k = keydownEvent.key;
+    if (k == 'ArrowUp' || k == 'W') mvUp = true;
+    if (k == 'ArrowDown' || k == 'S') mvDown = true;
+    if (k == 'ArrowLeft' || k == 'A') mvLeft = true;
+    if (k == 'ArrowRight' || k == 'D') mvRight = true;
+    if (k == '-') PL.kp--;
+    if (k == '=') PL.kp++;
 }
+
+/** handle keyup events */
+function handleKeyup(keyupEvent) {
+    let k = keyupEvent.key;
+    if (k == 'ArrowUp' || k == 'W') mvUp = false;
+    if (k == 'ArrowDown' || k == 'S') mvDown = false;
+    if (k == 'ArrowLeft' || k == 'A') mvLeft = false;
+    if (k == 'ArrowRight' || k == 'D') mvRight = false;
+    // if (k == '-') PL.kp--;
+    // if (k == '=') PL.kp++;
+}
+
+/** check movement states to move player */
+function movePlayer() {
+    if (mvUp) {
+        let new_y = PL.y - PL.kp;
+        if (new_y >= 0) PL.y = new_y;
+        else PL.y = 0;
+    }
+    if (mvDown) {
+        let new_y = PL.y + PL.kp;
+        if (new_y + PL.h <= CV.CV_HEIGHT) PL.y = new_y;
+        else PL.y = CV.CV_HEIGHT - PL.h;
+    }
+    if (mvLeft) {
+        new_x = PL.x - PL.kp;
+        if (new_x >= 0) PL.x = new_x;
+        else PL.x = 0;
+    }
+    if (mvRight) {
+        new_x = PL.x + PL.kp;
+        if (new_x + PL.w <= CV.CV_WIDTH) PL.x = new_x;
+        else PL.x = CV.CV_WIDTH - PL.w;
+    }
+}
+
 
 
 // ++++++++++++++++++++++ Game Clock +++++++++++++++++++++++
@@ -99,7 +109,7 @@ function resetClock() {
 // ++++++++++++++++++++ Initialization +++++++++++++++++++++
 /** add event listeners except onload listener */
 function addListeners() {
-    document.addEventListener('keydown',controls);
+    document.addEventListener('keydown',handleKeydown);
     BTN_TOGGLE_CLOCK.addEventListener("click", toggleClock);
     BTN_RESET_CLOCK.addEventListener('click',resetClock);
 }
