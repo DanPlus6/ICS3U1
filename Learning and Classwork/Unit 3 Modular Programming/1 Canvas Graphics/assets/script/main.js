@@ -113,8 +113,8 @@ function resetClock() {
     gameTime = 0;
     H_GAME_CLOCK.textContent = '0s';
     BTN_TOGGLE_CLOCK.textContent = 'Start';
-    clearInterval(gameClock);
-    gameClock = null;
+    clearInterval(gameClock); gameClock = null;
+    clearInterval(gameRefresher); gameRefresher = null;
 
     // clear entities
     entities = [];
