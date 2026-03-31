@@ -139,7 +139,6 @@ function resetClock() {
 /** refresh game */
 function refreshGame() {
     handleControls();
-
     CV.clearAndDraw(entities);
 }
 
