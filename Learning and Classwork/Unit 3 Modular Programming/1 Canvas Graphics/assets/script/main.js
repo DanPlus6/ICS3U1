@@ -27,11 +27,13 @@ let gameTime = 0;
 let gameClock = null;
 
 // ------- Player Movement ---------
-// movement states for the directions
+// states for directional movement and increasing and decreasing player speed
 let mvUp = false;
 let mvDown = false;
 let mvLeft = false;
 let mvRight = false;
+let incKp = false;
+let decKp = false;
 /** intialized empty variable to store game refresher */
 let gameRefresher = null;
 
@@ -44,8 +46,8 @@ function handleKeydown(keydownEvent) {
     if (k == 'ArrowDown' || k == 'S' || k == 's') mvDown = true;
     if (k == 'ArrowLeft' || k == 'A' || k == 'a') mvLeft = true;
     if (k == 'ArrowRight' || k == 'D' || k == 'd') mvRight = true;
-    if (k == '-') PL.kp--;
-    if (k == '=') PL.kp++;
+    if (k == '-') decKp = true;
+    if (k == '=') incKp = true;
 }
 
 /** handle keyup events */
@@ -55,12 +57,12 @@ function handleKeyup(keyupEvent) {
     if (k == 'ArrowDown' || k == 'S' || k == 's') mvDown = false;
     if (k == 'ArrowLeft' || k == 'A' || k == 'a') mvLeft = false;
     if (k == 'ArrowRight' || k == 'D' || k == 'd') mvRight = false;
-    // if (k == '-') PL.kp--;
-    // if (k == '=') PL.kp++;
+    if (k == '-') decKp = false;
+    if (k == '=') incKp = false;
 }
 
-/** check movement states to move player */
-function movePlayer() {
+/** check states for player control */
+function handleControls() {
     if (mvUp) {
         let new_y = PL.y - PL.kp;
         if (new_y >= 0) PL.y = new_y;
@@ -80,6 +82,12 @@ function movePlayer() {
         let new_x = PL.x + PL.kp;
         if (new_x + PL.w <= CV.CV_WIDTH) PL.x = new_x;
         else PL.x = CV.CV_WIDTH - PL.w;
+    }
+    if (incKp) {
+        if (PL.kp < PL.KP_MAX) PL.kp++;
+    }
+    if (decKp) {
+        if (PL.kp > PL.KP_MIN) PL.kp--;
     }
 }
 
@@ -103,7 +111,7 @@ function toggleClock() {
     } else {
         BTN_TOGGLE_CLOCK.textContent = 'Pause';
 
-        gameRefresher = setInterval(refreshGame,25);
+        gameRefresher = setInterval(refreshGame,20);
         gameClock = setInterval(incrementClock, 1000);
     }
 }
@@ -130,7 +138,7 @@ function resetClock() {
 // ++++++++++++++++++++ Callbacks for Init +++++++++++++++++++++
 /** refresh game */
 function refreshGame() {
-    movePlayer();
+    handleControls();
 
     CV.clearAndDraw(entities);
 }
