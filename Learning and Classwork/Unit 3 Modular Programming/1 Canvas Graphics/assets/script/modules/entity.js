@@ -22,6 +22,7 @@ export class Entity {
 
         // player movement
         this.kp = 1;
-        this.KP_CAP = spdCap;
+        this.KP_MIN = 1;
+        this.KP_MAX = 10;
     } 
 }
