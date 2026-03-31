@@ -1,5 +1,7 @@
 'use strict';
+
 import { Entity } from './modules/entity.js';
+import { Player } from './modules/player.js';
 import { Canvas } from './modules/canvas.js';
 
 // +++++++++++++++++ Init variables ++++++++++++++++++++
@@ -11,7 +13,7 @@ const CV = new Canvas('game-canvas');
 /** dynamic array for storing entities*/
 let entities = [];
 /** main player entity */
-let PL = new Entity('assets/img/trollge.png', 32, 32);
+let PL = new Player('assets/img/trollge.png', 32, 32);
 entities.push(PL);
 
 // ---------- Game clock -----------

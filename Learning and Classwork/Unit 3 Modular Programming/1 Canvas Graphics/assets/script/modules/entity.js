@@ -7,7 +7,7 @@ export class Entity {
      * @param {number} width width for avatar
      * @param {number} height height for avatar
      */
-    constructor(path, width, height, kpMin = 1, kpMax=10) {
+    constructor(path, width, height) {
         // entity avatar's image object
         this.sprite = new Image();
         this.sprite.src = path;
@@ -19,10 +19,5 @@ export class Entity {
         // entity avatar's top-left x and y coordinates
         this.x = 0;
         this.y = 0;
-
-        // entity movement
-        this.kp = 1;
-        this.KP_MIN = kpMin;
-        this.KP_MAX = kpMax;
     } 
 }
