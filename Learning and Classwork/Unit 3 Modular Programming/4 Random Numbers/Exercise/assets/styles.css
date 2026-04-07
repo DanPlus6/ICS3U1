@@ -1,0 +1,16 @@
+.coin-flip {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.coin-flip button {
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.coin-flip button:active {
+    transform: scale(0.9);
+    background-color: #9c9c9c;
+}
