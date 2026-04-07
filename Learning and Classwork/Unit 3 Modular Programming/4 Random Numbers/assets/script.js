@@ -18,7 +18,7 @@ function printRandom1To6() {
 
 function printRandomMinus50To50() {
     //                                      (50 - (-50) + 1)
-    OUTPUT.textContent = Math.floor(Math.random() * 100) - 50
+    OUTPUT.textContent = Math.floor(Math.random() * 101) - 50
 }
 
 function printRandomGreeting() {
