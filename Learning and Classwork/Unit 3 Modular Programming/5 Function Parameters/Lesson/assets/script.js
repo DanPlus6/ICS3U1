@@ -13,6 +13,18 @@ function sayHello(name_ipt) {
     name_ipt.value = "";
 }
 
+function makeRandomInt(minimum, maximum) {
+    console.log(Math.floor(Math.random() * (maximum - minimum + 1)) + minimum);
+}
+
+function roundp(x, places) {
+    console.log(Math.round(x * (10**places)) / (10**places));
+}
+
+function calcHypotenuse(a,b) {
+    alert(roundp(Math.sqrt(a**2 + b**2), 2));
+}
+
 function start() {
     makeCar("blue");
     makeCar("yellow");
