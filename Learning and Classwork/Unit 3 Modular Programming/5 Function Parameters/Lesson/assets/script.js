@@ -7,6 +7,12 @@ function makeCar(colour) {
     console.log(`Making a ${colour} car!`);
 }
 
+function sayHello(name_ipt) {
+    console.log(`Hello ${name_ipt.value}.`);
+    alert(`Hello ${name_ipt.value}.`);
+    name_ipt.value = "";
+}
+
 function start() {
     makeCar("blue");
     makeCar("yellow");
