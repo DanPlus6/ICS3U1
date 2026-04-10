@@ -10,11 +10,9 @@ import { Canvas } from './modules/canvas.js';
 const CV = new Canvas('game-canvas');
 
 // ----------- Entities ------------
-/** dynamic array for storing entities*/
-let entities = [];
 /** main player entity */
 let PL = new Player('assets/img/trollge.png', 32, 32);
-entities.push(PL);
+CV.addEntity(PL);
 
 // ---------- Game clock -----------
 /** html target for game clock toggle button */

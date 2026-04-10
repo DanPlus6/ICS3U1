@@ -18,7 +18,18 @@ export class Canvas {
         this.CV_WIDTH = this.CANVAS.width;
         this.CV_HEIGHT = this.CANVAS.height;
 
+        /** array to store active entities on the page */
+        this.entities = [];
+
         Object.freeze(this);
+    }
+
+    /**
+     * Append an entity to array storing entities on the page
+     * @param {Entity} entity a valid entity object
+     */
+    addEntity(entity) {
+        this.entities.push(entity);
     }
 
     /**
