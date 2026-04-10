@@ -11,7 +11,7 @@ const CV = new Canvas('game-canvas');
 
 // ----------- Entities ------------
 /** main player entity */
-let PL = new Player('assets/img/trollge.png', 32, 32);
+let PL = new Player('assets/img/trollge.png');
 CV.addEntity(PL);
 
 // ---------- Game clock -----------

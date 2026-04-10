@@ -7,14 +7,14 @@ export class Entity {
      * @param {number} width width for avatar
      * @param {number} height height for avatar
      */
-    constructor(path, width, height) {
+    constructor(path, width = 0, height = 0) {
         // entity avatar's image object
         this.sprite = new Image();
         this.sprite.src = path;
 
         // entity avatar's width and height
-        this.w = width;
-        this.h = height;
+        this.w = (width>0 ? width : this.sprite.naturalWidth);
+        this.h = (height>0 ? height : this.sprite.naturalHeight);
 
         // entity avatar's top-left x and y coordinates
         this.x = 0;
