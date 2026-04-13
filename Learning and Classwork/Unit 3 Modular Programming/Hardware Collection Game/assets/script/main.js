@@ -70,8 +70,8 @@ function handleControls() {
     }
     if (mvDown) {
         let new_y = PL.y + PL.kp;
-        if (new_y + PL.h <= CV.CV_HEIGHT) PL.y = new_y;
-        else PL.y = CV.CV_HEIGHT - PL.h;
+        if (new_y + PL.h <= CV.HEIGHT) PL.y = new_y;
+        else PL.y = CV.HEIGHT - PL.h;
     }
     if (mvLeft) {
         let new_x = PL.x - PL.kp;
@@ -80,8 +80,8 @@ function handleControls() {
     }
     if (mvRight) {
         let new_x = PL.x + PL.kp;
-        if (new_x + PL.w <= CV.CV_WIDTH) PL.x = new_x;
-        else PL.x = CV.CV_WIDTH - PL.w;
+        if (new_x + PL.w <= CV.WIDTH) PL.x = new_x;
+        else PL.x = CV.WIDTH - PL.w;
     }
     if (incKp) {
         if (PL.kp < PL.KP_MAX) PL.kp++;
