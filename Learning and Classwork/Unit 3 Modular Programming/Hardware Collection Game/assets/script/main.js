@@ -1,8 +1,8 @@
 'use strict';
 
-import { Entity } from './modules/entity.js';
-import { Player } from './modules/player.js';
-import { Canvas } from './modules/canvas.js';
+import { Entity } from './modules/Entity.js';
+import { Player } from './modules/Player.js';
+import { Canvas } from './modules/Canvas.js';
 
 // +++++++++++++++++ Init variables ++++++++++++++++++++
 // ------------ Canvas -----------

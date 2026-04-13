@@ -1,6 +1,6 @@
 'use strict';
 
-import { Entity } from './entity.js';
+import { Entity } from './Entity.js';
 
 /** Object representing a player */
 export class Player extends Entity {

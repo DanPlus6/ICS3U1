@@ -1,6 +1,6 @@
 'use strict';
 
-import { Entity } from './entity.js'
+import { Entity } from './Entity.js'
 
 /** define canvas/screen object */
 export class Canvas {
