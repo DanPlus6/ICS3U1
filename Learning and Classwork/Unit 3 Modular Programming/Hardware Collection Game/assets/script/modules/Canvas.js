@@ -33,6 +33,11 @@ export class Canvas {
         this.grid.add(entity);
     }
 
+    /** clear visual canvas */
+    clearCanvas() {
+        this.BRUSH.clearRect(0,0,this.WIDTH,this.HEIGHT);
+    }
+
     /** draws provided entities onto screen */
     clearAndDraw() {
         this.BRUSH.clearRect(0,0,this.WIDTH,this.HEIGHT);
