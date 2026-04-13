@@ -1,6 +1,7 @@
 'use strict';
 
 import { Entity } from './Entity.js';
+import { SpatialGrid } from './SpatialGrid.js'
 
 /** canvas/screen class for the game, replaces basic HTML5 canvas */
 export class Canvas {
@@ -18,8 +19,8 @@ export class Canvas {
         /** height of HTML5 canvas */
         this.HEIGHT = this.CANVAS.height;
 
-        /** array to store active entities on the page */
-        this.entities = [];
+        /** spatial grid to store active entities on the page */
+        this.grid = new SpatialGrid();
 
         Object.freeze(this);
     }
@@ -29,16 +30,13 @@ export class Canvas {
      * @param {Entity} entity a valid entity object
      */
     addEntity(entity) {
-        this.entities.push(entity);
+        this.grid.add(entity);
     }
 
-    /**
-     * draws provided entities onto screen
-     * @param {Entity[]} entities array containing entity objects to be drawn
-     */
-    clearAndDraw(entities) {
+    /** draws provided entities onto screen */
+    clearAndDraw() {
         this.BRUSH.clearRect(0,0,this.WIDTH,this.HEIGHT);
-        for (const e of entities) {
+        for (const e of this.grid.grid.values()) {
             this.BRUSH.drawImage(e.sprite, e.x, e.y, e.w, e.h);
         }
     }
