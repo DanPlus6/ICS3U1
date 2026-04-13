@@ -20,7 +20,7 @@ export class Canvas {
         this.HEIGHT = this.CANVAS.height;
 
         /** spatial grid to store active entities on the page */
-        this.grid = new SpatialGrid();
+        this.spatGrid = new SpatialGrid();
 
         Object.freeze(this);
     }
@@ -38,10 +38,15 @@ export class Canvas {
         this.BRUSH.clearRect(0,0,this.WIDTH,this.HEIGHT);
     }
 
+    /** clear entities/empty spatial grid */
+    clearEntities() {
+        this.spatGrid.grid.clear();
+    }
+
     /** draws provided entities onto screen */
     clearAndDraw() {
         this.BRUSH.clearRect(0,0,this.WIDTH,this.HEIGHT);
-        for (const e of this.grid.grid.values()) {
+        for (const e of this.spatGrid.grid.values()) {
             this.BRUSH.drawImage(e.sprite, e.x, e.y, e.w, e.h);
         }
     }
