@@ -2,7 +2,7 @@
 
 import { Entity } from './Entity.js';
 
-/** canvas/screen object for the game, replaces basic HTML5 canvas */
+/** canvas/screen class for the game, replaces basic HTML5 canvas */
 export class Canvas {
     /**
      * @param {string} canvasId  id for the canvas html element  
