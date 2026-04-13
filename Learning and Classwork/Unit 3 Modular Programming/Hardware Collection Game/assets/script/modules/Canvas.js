@@ -1,6 +1,6 @@
 'use strict';
 
-import { Entity } from './Entity.js'
+import { Entity } from './Entity.js';
 
 /** canvas/screen object for the game, replaces basic HTML5 canvas */
 export class Canvas {
