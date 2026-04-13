@@ -2,7 +2,7 @@
 
 /**
  * Converts temperature from Celsius to Fahrenheit 
- * @param {Number} celsius the temperature in celsius
+ * @param {number} celsius the temperature in celsius
  */
 function convertCToF(celsius) {
     return celsius * 9/5 + 32;
@@ -10,8 +10,8 @@ function convertCToF(celsius) {
 
 /**
  * This function does what you think it does
- * @param {Number} number1 the first number
- * @param {Number} number2 the second number
+ * @param {number} number1 the first number
+ * @param {number} number2 the second number
  */
 function sum(number1, number2) {
     return number1 + number2;
@@ -19,8 +19,8 @@ function sum(number1, number2) {
 
 /**
  * Calculate the hypotenuse of a triangle using Pythagorean theorem
- * @param {Number} a the length of side A
- * @param {Number} b the length of side B
+ * @param {number} a the length of side A
+ * @param {number} b the length of side B
  */
 function calculateHypotenuse(a, b) {
     return Math.sqrt(a**2 + b**2);
