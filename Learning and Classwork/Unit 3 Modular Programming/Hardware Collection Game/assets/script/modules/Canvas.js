@@ -2,21 +2,21 @@
 
 import { Entity } from './Entity.js'
 
-/** define canvas/screen object */
+/** canvas/screen object for the game, replaces basic HTML5 canvas */
 export class Canvas {
     /**
      * @param {string} canvasId  id for the canvas html element  
      */
     constructor(canvasId) {
-        /** ref to the canvas */
+        /** target to the HTML5 canvas */
         this.CANVAS = document.getElementById(canvasId);
-
-        /** ref to the canvas graphics context */
+        /** target to the HTML5 canvas' 2d graphics context */
         this.BRUSH = this.CANVAS.getContext('2d');
 
-        // redundant values for storing canvas width and height
-        this.CV_WIDTH = this.CANVAS.width;
-        this.CV_HEIGHT = this.CANVAS.height;
+        /** width of HTML5 canvas */
+        this.WIDTH = this.CANVAS.width;
+        /** height of HTML5 canvas */
+        this.HEIGHT = this.CANVAS.height;
 
         /** array to store active entities on the page */
         this.entities = [];
@@ -37,9 +37,9 @@ export class Canvas {
      * @param {Entity[]} entities array containing entity objects to be drawn
      */
     clearAndDraw(entities) {
-        this.BRUSH.clearRect(0,0,this.CV_WIDTH,this.CV_HEIGHT);
-        for (const ent of entities) {
-            this.BRUSH.drawImage(ent.sprite, ent.x, ent.y, ent.w, ent.h);
+        this.BRUSH.clearRect(0,0,this.WIDTH,this.HEIGHT);
+        for (const e of entities) {
+            this.BRUSH.drawImage(e.sprite, e.x, e.y, e.w, e.h);
         }
     }
 }
