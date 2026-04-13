@@ -2,6 +2,7 @@
 
 import { Entity } from './Entity.js';
 
+/** spatial grid class for the game screen for efficient 2d collision detection */
 class SpatialGrid {
 	/**
 	 * @param {number} cellSize size of each square cell in spatial grid as an integer
