@@ -6,7 +6,7 @@ import { Canvas } from './modules/Canvas.js';
 
 // +++++++++++++++++ Init variables ++++++++++++++++++++
 // ------------ Canvas -----------
-/** game canvas */
+/** game screen/canvas */
 const CV = new Canvas('game-canvas');
 
 // ----------- Entities ------------
