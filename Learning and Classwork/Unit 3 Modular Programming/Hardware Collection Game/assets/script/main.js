@@ -10,8 +10,9 @@ import { Canvas } from './Classes/GameScreen/Canvas.js';
 let CV = new Canvas('game-canvas', 24);
 
 // ----------- Player ------------
-/** main player entity */
-let PL = new Player('assets/img/trollge.png');
+/** const path to player sprite for game resetting */
+const PL_SPRITE_SRC = 'assets/img/big_rock.png';
+let PL = new Player(PL_SPRITE_SRC);
 CV.addEntity(PL);
 
 // ---------- Game clock -----------
@@ -129,7 +130,7 @@ function resetClock() {
     CV.clearEntities();
 
     // reset player
-    PL = new Entity('assets/img/trollge.png', 32, 32);
+    PL = new Entity(PL_SPRITE_SRC);
     CV.addEntity(PL);
     refreshGame();
 }
