@@ -125,8 +125,8 @@ function resetClock() {
     clearInterval(gameRefresher); gameRefresher = null;
 
     // clear entities
-    entities = [];
-    refreshGame();
+    CV.clearCanvas();
+    CV.clearEntities();
 
     // reset player
     PL = new Entity('assets/img/trollge.png', 32, 32);
