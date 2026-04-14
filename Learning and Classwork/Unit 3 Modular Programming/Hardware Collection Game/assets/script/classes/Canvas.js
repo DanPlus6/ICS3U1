@@ -1,7 +1,8 @@
 'use strict';
 
 import { Entity } from './Entity.js';
-import { SpatialGrid } from './SpatialGrid.js'
+import { SpatialGrid } from './SpatialGrid.js';
+import { MakeConst } from '../functions/MakeConst.js';
 
 /** canvas/screen class for the game, replaces basic HTML5 canvas */
 export class Canvas {
@@ -9,20 +10,16 @@ export class Canvas {
      * @param {string} canvasId  id for the canvas html element  
      */
     constructor(canvasId) {
-        /** target to the HTML5 canvas */
-        this.CANVAS = document.getElementById(canvasId);
-        /** target to the HTML5 canvas' 2d graphics context */
-        this.BRUSH = this.CANVAS.getContext('2d');
+        // HTML5 canvas
+        MakeConst(this, 'CANVAS', document.getElementById(canvasId));
+        MakeConst(this, 'BRUSH', this.CANVAS.getContext('2d'));
 
-        /** width of HTML5 canvas */
-        this.WIDTH = this.CANVAS.width;
-        /** height of HTML5 canvas */
-        this.HEIGHT = this.CANVAS.height;
+        // dimensions of canvas
+        MakeConst(this, 'WIDTH', this.CANVAS.width);
+        MakeConst(this, 'HEIGHT', this.CANVAS.height);
 
         /** spatial grid to store active entities on the page */
         this.spatGrid = new SpatialGrid();
-
-        Object.freeze(this);
     }
 
     /**
