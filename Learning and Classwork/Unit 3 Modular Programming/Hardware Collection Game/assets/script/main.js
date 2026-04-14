@@ -130,7 +130,7 @@ function resetClock() {
     CV.clearEntities();
 
     // reset player
-    PL = new Entity(PL_SPRITE_SRC);
+    PL = new Player(PL_SPRITE_SRC);
     CV.addEntity(PL);
     refreshGame();
 }
