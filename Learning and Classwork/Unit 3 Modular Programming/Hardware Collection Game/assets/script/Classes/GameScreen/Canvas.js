@@ -44,7 +44,8 @@ export class Canvas {
     /** draws provided entities onto screen */
     clearAndDraw() {
         this.clearCanvas();
-        for (const e of this.spatGrid.grid.values()) {
+        for (const v of this.spatGrid.grid.values()) {
+            const e = v[0];
             this.BRUSH.drawImage(e.sprite, e.x, e.y, e.w, e.h);
         }
     }
