@@ -1,6 +1,6 @@
 'use strict';
 
-import { Entity } from './Entity.js';
+import { Entity } from '../Entities/Entity.js';
 
 /** spatial grid class for the game screen for efficient 2d collision detection */
 export class SpatialGrid {

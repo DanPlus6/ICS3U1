@@ -1,8 +1,8 @@
 'use strict';
 
-import { Entity } from './Entity.js';
+import { Entity } from '../Entities/Entity.js';
 import { SpatialGrid } from './SpatialGrid.js';
-import { MakeConst } from '../functions/MakeConst.js';
+import { MakeConst } from '../../functions/MakeConst.js';
 
 /** canvas/screen class for the game, replaces basic HTML5 canvas */
 export class Canvas {
