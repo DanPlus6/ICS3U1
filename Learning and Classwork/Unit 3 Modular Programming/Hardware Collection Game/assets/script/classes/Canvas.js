@@ -27,7 +27,7 @@ export class Canvas {
      * @param {Entity} entity a valid entity object
      */
     addEntity(entity) {
-        this.grid.add(entity);
+        this.spatGrid.add(entity);
     }
 
     /** clear visual canvas */
