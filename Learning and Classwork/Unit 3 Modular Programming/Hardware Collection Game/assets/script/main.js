@@ -130,7 +130,7 @@ function resetClock() {
 
     // reset player
     PL = new Entity('assets/img/trollge.png', 32, 32);
-    entities.push(PL);
+    CV.addEntity(PL);
     refreshGame();
 }
 
@@ -139,7 +139,7 @@ function resetClock() {
 /** refresh game */
 function refreshGame() {
     handleControls();
-    CV.clearAndDraw(entities);
+    CV.clearAndDraw();
 }
 
 /** add event listeners except onload listener */
@@ -158,6 +158,6 @@ function addListeners() {
 /** onload callback */
 function start() {
     addListeners();
-    CV.clearAndDraw(entities);
+    CV.clearAndDraw();
 }
 window.addEventListener('load', start);
