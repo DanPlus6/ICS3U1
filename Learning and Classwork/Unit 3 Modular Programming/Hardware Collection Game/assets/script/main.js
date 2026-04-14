@@ -11,7 +11,7 @@ let CV = new Canvas('game-canvas', 24);
 
 // ----------- Player ------------
 /** const path to player sprite for game resetting */
-const PL_SPRITE_SRC = 'assets/img/big_rock.png';
+const PL_SPRITE_SRC = 'assets/img/PlayerAvatar/big_rock.png';
 let PL = new Player(PL_SPRITE_SRC);
 CV.addEntity(PL);
 
