@@ -9,7 +9,7 @@ import { Canvas } from './modules/Canvas.js';
 /** game screen/canvas */
 const CV = new Canvas('game-canvas');
 
-// ----------- Entities ------------
+// ----------- Player ------------
 /** main player entity */
 let PL = new Player('assets/img/trollge.png');
 CV.addEntity(PL);
