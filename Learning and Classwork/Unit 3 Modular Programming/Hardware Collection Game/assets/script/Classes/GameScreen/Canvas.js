@@ -7,9 +7,10 @@ import { MakeConst } from '../../functions/MakeConst.js';
 /** canvas/screen class for the game, replaces basic HTML5 canvas */
 export class Canvas {
     /**
-     * @param {string} canvasId  id for the canvas html element  
+     * @param {string} canvasId id for the canvas html element  
+     * @param {number} cellSize size for each spatial grid cell as an integer
      */
-    constructor(canvasId) {
+    constructor(canvasId, cellSize=24) {
         // HTML5 canvas
         MakeConst(this, 'CANVAS', document.getElementById(canvasId));
         MakeConst(this, 'BRUSH', this.CANVAS.getContext('2d'));
@@ -19,7 +20,7 @@ export class Canvas {
         MakeConst(this, 'HEIGHT', this.CANVAS.height);
 
         /** spatial grid to store active entities on the page */
-        this.spatGrid = new SpatialGrid();
+        this.spatGrid = new SpatialGrid(cellSize);
     }
 
     /**

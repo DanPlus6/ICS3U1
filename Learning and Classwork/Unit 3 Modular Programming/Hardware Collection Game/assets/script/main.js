@@ -7,7 +7,7 @@ import { Canvas } from './Classes/GameScreen/Canvas.js';
 // +++++++++++++++++ Init variables ++++++++++++++++++++
 // ------------ Canvas -----------
 /** game screen/canvas */
-const CV = new Canvas('game-canvas');
+let CV = new Canvas('game-canvas', 24);
 
 // ----------- Player ------------
 /** main player entity */
