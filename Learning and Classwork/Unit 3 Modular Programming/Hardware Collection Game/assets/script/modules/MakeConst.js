@@ -3,9 +3,9 @@
 /**
  * Sets an object's property to constant
  * @param {Object} obj the object being accessed
- * @param {*} attrib the property of the object
+ * @param {string} attrib the property of the object
  * @param {*} val the const value to set property of the object to
  */
 export function MakeConst(obj, attrib, val) {
-    Object.defineProperty(obj, attrib, {value: val, writabl: false});
+    Object.defineProperty(obj, attrib, {value: val, writable: false});
 }
