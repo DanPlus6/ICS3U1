@@ -13,7 +13,7 @@ export class Player extends Entity {
      */
     constructor(path, width = 32, height = 32, kpMin = 1, kpMax=10) {
         // inherit properties from Entity class
-        super(path,width,height);
+        super((path ? path : 'assets/img/PlayerAvatar/trollge.png'),width,height);
         
         // player movement
         this.kp = 1;
