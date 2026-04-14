@@ -7,7 +7,7 @@ export class Entity {
      * @param {number} width width for avatar
      * @param {number} height height for avatar
      */
-    constructor(path, width = 0, height = 0) {
+    constructor(path, width = 32, height = 32) {
         // entity avatar's image object
         this.sprite = new Image();
         this.sprite.src = path;

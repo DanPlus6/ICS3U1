@@ -11,7 +11,7 @@ export class Player extends Entity {
      * @param {number} kpMin minimum movement speed for player
      * @param {number} kpMax maximum movement speed for player
      */
-    constructor(path, width = 0, height = 0, kpMin = 1, kpMax=10) {
+    constructor(path, width = 32, height = 32, kpMin = 1, kpMax=10) {
         // inherit properties from Entity class
         super(path,width,height);
         
