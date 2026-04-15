@@ -40,7 +40,10 @@ let gameRefresher = null;
 
 
 // +++++++++++++++++ Player Movement +++++++++++++++++++
-/** handle keydown events */
+/**
+ * Toggle on movement states when respective key is pressed down
+ * @param {KeyboardEvent} keydownEvent keydown event
+ */
 function handleKeydown(keydownEvent) {
     let k = keydownEvent.key;
     if (k == 'ArrowUp' || k == 'W' || k == 'w') mvUp = true;
@@ -51,7 +54,10 @@ function handleKeydown(keydownEvent) {
     if (k == '=') incKp = true;
 }
 
-/** handle keyup events */
+/**
+ * Toggle off movement states when respective key is lifted
+ * @param {KeyboardEvent} keyupEvent keyup event
+ */
 function handleKeyup(keyupEvent) {
     let k = keyupEvent.key;
     if (k == 'ArrowUp' || k == 'W' || k == 'w') mvUp = false;
@@ -62,7 +68,7 @@ function handleKeyup(keyupEvent) {
     if (k == '=') incKp = false;
 }
 
-/** check states for player control */
+/** check momvement states to move the player */
 function handleControls() {
     if (mvUp) {
         let new_y = PL.y - PL.kp;
@@ -95,11 +101,13 @@ function handleControls() {
 
 
 // ++++++++++++++++++++++ Game Clock +++++++++++++++++++++++
+/** increment the game clock */
 function incrementClock() {
     gameTime++;
     H_GAME_CLOCK.textContent = gameTime.toString() + 's';
 }
 
+/** toggles the game clock and pauses/unpauses the game */
 function toggleClock() {
     if (gameClock != null) {
         BTN_TOGGLE_CLOCK.textContent = 'Start';
@@ -117,6 +125,7 @@ function toggleClock() {
     }
 }
 
+/** reset the game clock and reset the game */
 function resetClock() {
     // reset and turn off clock
     gameTime = 0;
@@ -157,8 +166,8 @@ function addListeners() {
 
 // ++++++++++++++++++++ Initialization +++++++++++++++++++++
 /** onload callback */
-function start() {
+function init() {
     addListeners();
     CV.clearAndDraw();
 }
-window.addEventListener('load', start);
+window.addEventListener('load', init);
