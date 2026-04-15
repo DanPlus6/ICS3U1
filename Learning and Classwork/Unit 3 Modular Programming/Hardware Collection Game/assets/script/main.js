@@ -7,13 +7,12 @@ import { Canvas } from './Classes/GameScreen/Canvas.js';
 // +++++++++++++++++ Init variables ++++++++++++++++++++
 // ------------ Canvas -----------
 /** game screen/canvas */
-let CV = new Canvas('game-canvas', 24);
+let CV;
 
 // ----------- Player ------------
 /** const path to player sprite for game resetting */
 const PL_SPRITE_SRC = '';
-let PL = new Player(PL_SPRITE_SRC);
-CV.addEntity(PL);
+let PL;
 
 // ---------- Game clock -----------
 /** html target for game clock toggle button */
@@ -23,9 +22,9 @@ const BTN_RESET_CLOCK = document.getElementById('btn-reset-clock');
 /** html target for game clock */
 const H_GAME_CLOCK = document.getElementById('h-gameclock');
 /** variable to store game's clock time  */
-let gameTime = 0;
-/** initialized empty variable to store game's timer loop */
-let gameClock = null;
+let gameTime;
+/** variable storing storing game clock's interval */
+let gameClock;
 
 // ------- Player Movement ---------
 // states for directional movement and increasing and decreasing player speed
@@ -35,8 +34,8 @@ let mvLeft = false;
 let mvRight = false;
 let incKp = false;
 let decKp = false;
-/** intialized empty variable to store game refresher */
-let gameRefresher = null;
+/** variable storing game refresher's interval */
+let gameRefresher;
 
 
 // +++++++++++++++++ Player Movement +++++++++++++++++++
@@ -152,22 +151,50 @@ function refreshGame() {
     CV.clearAndDraw();
 }
 
-/** add event listeners except onload listener */
+/** attaches event listeners for the game after it's been started */
 function addListeners() {
-    // player controls
-    document.addEventListener('keydown',handleKeydown);
-    document.addEventListener('keyup',handleKeyup);
 
-    // game clock
+}
+
+/** attaches base event listeners that persist between game resets */
+function addBaseListeners() {
+    // For game toggle and reset buttons
     BTN_TOGGLE_CLOCK.addEventListener("click", toggleClock);
     BTN_RESET_CLOCK.addEventListener('click',resetClock);
 }
 
-
 // ++++++++++++++++++++ Initialization +++++++++++++++++++++
-/** onload callback */
+/** page onload callback */
 function init() {
+    addBaseListeners();
+}
+
+/** game load callback */  
+function start() {
+    // Canvas
+    CV = new Canvas('game-canvas', 24);
+
+    // Player
+    PL = new Player(PL_SPRITE_SRC);
+    CV.addEntity(PL);
+
+    // Game clock
+    gameTime = 0;
+    gameClock = null;
+
+    // Player Movement
+    let mvUp = false;
+    let mvDown = false;
+    let mvLeft = false;
+    let mvRight = false;
+    let incKp = false;
+    let decKp = false;
+    
+    gameRefresher = null;
+
     addListeners();
     CV.clearAndDraw();
 }
-window.addEventListener('load', init);
+
+// run onload initialization function once page loads
+window.addEventListener('load',init);
