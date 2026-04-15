@@ -14,9 +14,10 @@ export class InputManager {
     /**
      * check if a key is currently pressed
      * @param {*} key querying key
-     * @returns `true` if requested key has been pressed before and is currently pressed
+     * @returns `true` if requested key is currently pressed
      */
     isDown(key) {
+        // check truthfulness -- prevent non-existence/not-pressed-before cases
         return !!this.keys[code];
     }
 }
