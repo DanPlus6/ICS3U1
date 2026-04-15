@@ -17,7 +17,7 @@ export class Player extends Entity {
         super((path ? path : 'assets/img/PlayerAvatar/trollge.png'),width,height);
         
         // player movement
-        this.kp = 1;
+        this.kp = 4;
         this.KP_MIN = kpMin;
         this.KP_MAX = kpMax;
     }
