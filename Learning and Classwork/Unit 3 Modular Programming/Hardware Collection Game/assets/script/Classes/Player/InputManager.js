@@ -13,7 +13,7 @@ export class InputManager {
 
     /**
      * check if a key is currently pressed
-     * @param {*} key querying key
+     * @param {string} key querying key
      * @returns `true` if requested key is currently pressed
      */
     isDown(key) {
