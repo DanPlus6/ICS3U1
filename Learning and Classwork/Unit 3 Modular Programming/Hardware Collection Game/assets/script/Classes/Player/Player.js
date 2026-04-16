@@ -33,13 +33,13 @@ export class Player extends Entity {
     update() {
         /** lambda/short-form for checking state of an action */
         const check = act => this.actMap.isActive(act);
-        console.log(this.actMap)
+        
         if (check('mvUp')) {
             let new_y = this.y - this.kp;
             if (new_y >= 0) this.y = new_y;
             else this.y = 0;
         }
-        if (chech('mvDown')) {
+        if (check('mvDown')) {
             let new_y = this.y + this.kp;
             if (new_y + this.h <= this.cv.HEIGHT) this.y = new_y;
             else this.y = this.cv.HEIGHT - this.h;
