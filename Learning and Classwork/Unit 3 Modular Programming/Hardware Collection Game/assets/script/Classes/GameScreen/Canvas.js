@@ -15,7 +15,11 @@ export class Canvas {
         MakeConst(this, 'CANVAS', document.getElementById(canvasId));
         MakeConst(this, 'BRUSH', this.CANVAS.getContext('2d'));
 
-        // dimensions of canvas
+        // sync HTML5 canvas dimensions with CSS/client dimensions
+        this.CANVAS.width = this.CANVAS.clientWidth;
+        this.CANVAS.height = this.CANVAS.clientHeight;
+
+        // redundant vlaues for storing dimensions of canvas
         MakeConst(this, 'WIDTH', this.CANVAS.width);
         MakeConst(this, 'HEIGHT', this.CANVAS.height);
 
