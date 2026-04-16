@@ -18,6 +18,6 @@ export class InputManager {
      */
     isDown(key) {
         // check truthfulness -- prevent non-existence/not-pressed-before cases
-        return !!this.keys[code];
+        return !!this.keys[key];
     }
 }
