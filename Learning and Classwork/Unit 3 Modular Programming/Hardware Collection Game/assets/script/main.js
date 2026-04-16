@@ -66,6 +66,11 @@ function refreshGame() {
     CV.clearAndDraw();
 }
 
+/** attaches event listeners for the game after it's been started */
+function addListeners() {
+    // currently empty, awaiting new features
+}
+
 /** attaches base event listeners that persist between game resets */
 function addBaseListeners() {
     // For game toggle and reset buttons
