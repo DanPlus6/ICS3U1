@@ -15,8 +15,9 @@ let CV;
 /** const path to player sprite for game resetting */
 const PL_SPRITE_SRC = 'assets/img/PlayerAvatar/trollge.png';
 // player sprite dimensions
-const PL_W = 32;
-const PL_H = 32;
+const PL_W = 128;
+const PL_H = 128;
+const PL_S = 8;
 /** player object */
 let PL;
 
@@ -122,7 +123,7 @@ function start(initT) {
     actMapper = new ActionMap(iptManager);
 
     // Player
-    PL = new Player({path:PL_SPRITE_SRC, cv:CV, actMap:actMapper, width:PL_W, height:PL_H});
+    PL = new Player({path:PL_SPRITE_SRC, cv:CV, actMap:actMapper, width:PL_W, height:PL_H, kp:PL_S});
     CV.addEntity(PL);
     
     addListeners();
