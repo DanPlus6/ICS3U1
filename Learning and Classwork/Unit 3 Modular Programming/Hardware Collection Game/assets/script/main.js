@@ -13,7 +13,11 @@ let CV;
 
 // ----------- Player ------------
 /** const path to player sprite for game resetting */
-const PL_SPRITE_SRC = '';
+const PL_SPRITE_SRC = 'assets/img/PlayerAvatar/trollge.png';
+// player sprite dimensions
+const PL_W = 32;
+const PL_H = 32;
+/** player object */
 let PL;
 
 // ---------- Game clock -----------
@@ -28,6 +32,8 @@ let gameTime;
 let gameClock;
 /** variable storing game refresher's interval */
 let gameRefresher;
+/** check if first time starting the game */
+let firstTime = true;
 
 // ------- Player Movement ---------
 /** input manager that listens player input (keyboard events) */
@@ -47,12 +53,18 @@ function incrementClock() {
 function toggleClock() {
     if (gameClock != null) {
         BTN_TOGGLE_CLOCK.textContent = 'Start';
-        start();
+        
+        clearInterval(gameRefresher);
+        gameRefresher = null;
+
+        clearInterval(gameClock);
+        gameClock = null;
     } else {
+        start(firstTime);
+        firstTime = false;
+
         BTN_TOGGLE_CLOCK.textContent = 'Pause';
-
-        start();
-
+        
         gameRefresher = setInterval(refreshGame,20);
         gameClock = setInterval(incrementClock, 1000);
     }
@@ -85,7 +97,9 @@ function init() {
 }
 
 /** game load/game reset callback */  
-function start() {
+function start(initT) {
+    if (!initT) return;
+
     if (!!CV) {
         CV.clearCanvas();
         CV.clearEntities();
@@ -108,7 +122,7 @@ function start() {
     actMapper = new ActionMap(iptManager);
 
     // Player
-    PL = new Player({path:PL_SPRITE_SRC,cv:CV,actMap:actMapper});
+    PL = new Player({path:PL_SPRITE_SRC, cv:CV, actMap:actMapper, width:PL_W, height:PL_H});
     CV.addEntity(PL);
     
     addListeners();
