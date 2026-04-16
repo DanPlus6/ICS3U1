@@ -17,7 +17,7 @@ export class Player extends Entity {
      * @param {number} [args.kpMin] minimum movement speed for player
      * @param {number} [args.kpMax] maximum movement speed for player
      */
-    constructor({path='assets/img/PlayerAvatar/trollge.png', cv, actMap, width=32, height=32, kpMin=1, kpMax=10}) {
+    constructor({path='assets/img/PlayerAvatar/trollge.png', cv, actMap, width=96, height=96, kpMin=1, kpMax=10}) {
         // inherit properties from Entity class
         super(path, width, height);
 
