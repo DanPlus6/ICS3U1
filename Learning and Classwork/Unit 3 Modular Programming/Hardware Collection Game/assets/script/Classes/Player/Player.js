@@ -20,8 +20,10 @@ export class Player extends Entity {
     constructor({path, cv, actMap, width=32, height=32, kpMin=1, kpMax=10}) {
         // inherit properties from Entity class
         super((path ? path : 'assets/img/PlayerAvatar/trollge.png'),width,height);
-        
+
         // player movement
+        this.cv = cv;
+        this.actMap = actMap;
         this.kp = 4;
         this.KP_MIN = kpMin;
         this.KP_MAX = kpMax;
@@ -29,30 +31,33 @@ export class Player extends Entity {
 
     /** check player actions' state to actually perform them */
     update() {
-        if (this.actMap.mvUp) {
+        /** lambda/short-form for checking state of an action */
+        const check = act => this.actMap.isActive(act);
+        console.log(this.actMap)
+        if (check('mvUp')) {
             let new_y = this.y - this.kp;
             if (new_y >= 0) this.y = new_y;
             else this.y = 0;
         }
-        if (this.actMap.mvDown) {
+        if (chech('mvDown')) {
             let new_y = this.y + this.kp;
             if (new_y + this.h <= this.cv.HEIGHT) this.y = new_y;
             else this.y = this.cv.HEIGHT - this.h;
         }
-        if (this.actMap.mvLeft) {
+        if (check('mvLeft')) {
             let new_x = this.x - this.kp;
             if (new_x >= 0) this.x = new_x;
             else this.x = 0;
         }
-        if (this.actMap.mvRight) {
+        if (check('mvRight')) {
             let new_x = this.x + this.kp;
             if (new_x + this.w <= this.cv.WIDTH) this.x = new_x;
             else this.x = this.cv.WIDTH - this.w;
         }
-        if (this.actMap.incKp) {
+        if (check('incKp')) {
             if (this.kp < this.KP_MAX) this.kp++;
         }
-        if (this.actMap.decKp) {
+        if (check('decKp')) {
             if (this.kp > this.KP_MIN) this.kp--;
         }
     }
