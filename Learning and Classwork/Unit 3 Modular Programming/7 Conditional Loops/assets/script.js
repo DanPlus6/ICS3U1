@@ -7,7 +7,7 @@
  * @returns {number} a random integer between minimum and maximum inclusively
  */
 function makeRandomInt(minimum=0, maximum=10) {
-    // swap minimum and 
+    // swap minimum and maximum if lower bound is greater than upper bound
     if (minimum > maximum) { [maximum,minimum] = [minimum, maximum]; }
     return Math.floor(Math.random() * (maximum-minimum+1)) + minimum;
 }
@@ -28,4 +28,24 @@ function print2UniqueNumbers(minimum,maximum) {
     }
 
     alert(`First random int: ${num1},\nsecond random int: ${num2}`)
+}
+
+/**
+ * Alerts three unique random integers in the interval [minimum,maximum]
+ * @param {number} minimum lower bound
+ * @param {number} maximum upper bound
+ */
+function print3UniqueNumbers(minimum,maximum) {
+    if (minimum == maximum) { console.log("Lower bound and upper bound must not equal."); return; }
+    let num1 = makeRandomInt(minimum,maximum);
+    let num2 = makeRandomInt(minimum,maximum);
+    let num3 = makeRandomInt(minimum,maximum);
+
+    while (num1 == num2 || num1 == num3 || num2 == num3) {
+        num1 = makeRandomInt(minimum,maximum);
+        num2 = makeRandomInt(minimum,maximum);
+        num3 = makeRandomInt(minimum,maximum);
+    }
+
+    alert(`First random int: ${num1},\nsecond random int: ${num2},\nthird random int: ${num3}`)
 }
