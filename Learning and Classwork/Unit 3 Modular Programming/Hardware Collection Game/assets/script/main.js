@@ -60,7 +60,7 @@ function toggleClock() {
 
 
 // ++++++++++++++++++++ Callbacks for Init +++++++++++++++++++++
-/** refresh game */
+/** refresh game, ran on each frame */
 function refreshGame() {
     PL.update(actMapper,CV);
     CV.clearAndDraw();
