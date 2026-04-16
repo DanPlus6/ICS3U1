@@ -106,7 +106,7 @@ function start(initT) {
     }
 
     // Canvas
-    CV = new Canvas('game-canvas', 24);
+    CV = new Canvas('game-canvas', 96);
 
     // Game clock
     gameTime = 0;

@@ -19,7 +19,7 @@ export class Player extends Entity {
      */
     constructor({path='assets/img/PlayerAvatar/trollge.png', cv, actMap, width=96, height=96, kpMin=1, kpMax=10}) {
         // inherit properties from Entity class
-        super({path:path, width:width, height:height});
+        super({path:path, cv:cv, width:width, height:height});
 
         // player movement
         this.cv = cv;
