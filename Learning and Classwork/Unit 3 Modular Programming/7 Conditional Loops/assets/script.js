@@ -18,7 +18,10 @@ function makeRandomInt(minimum=0, maximum=10) {
  * @param {number} maximum upper bound
  */
 function print2UniqueNumbers(minimum,maximum) {
-    if (minimum == maximum) { console.log("Lower bound and upper bound must not equal."); return; }
+    if (minimum == maximum) { alert("Invalid range: Lower bound and upper bound must not equal."); return; }
+    if (minimum > maximum) { [maximum,minimum] = [minimum, maximum]; }
+    if ((maximum - minimum + 1) < 2) { alert("Invalid range: Range too small to generate 2 unique integers."); return; }
+
     let num1 = makeRandomInt(minimum,maximum);
     let num2 = makeRandomInt(minimum,maximum);
 
@@ -37,6 +40,9 @@ function print2UniqueNumbers(minimum,maximum) {
  */
 function print3UniqueNumbers(minimum,maximum) {
     if (minimum == maximum) { console.log("Lower bound and upper bound must not equal."); return; }
+    if (minimum > maximum) { [maximum,minimum] = [minimum, maximum]; }
+    if ((maximum - minimum + 1) < 3) { alert("Invalid range: Range too small to generate 3 unique integers."); return; }
+
     let num1 = makeRandomInt(minimum,maximum);
     let num2 = makeRandomInt(minimum,maximum);
     let num3 = makeRandomInt(minimum,maximum);
