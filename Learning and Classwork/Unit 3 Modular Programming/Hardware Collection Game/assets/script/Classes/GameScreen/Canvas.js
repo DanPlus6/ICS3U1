@@ -10,7 +10,7 @@ export class Canvas {
      * @param {string} canvasId id for the canvas html element  
      * @param {number} cellSize size for each spatial grid cell as an integer
      */
-    constructor(canvasId, cellSize=24) {
+    constructor(canvasId, cellSize=128) {
         // HTML5 canvas
         MakeConst(this, 'CANVAS', document.getElementById(canvasId));
         MakeConst(this, 'BRUSH', this.CANVAS.getContext('2d'));
