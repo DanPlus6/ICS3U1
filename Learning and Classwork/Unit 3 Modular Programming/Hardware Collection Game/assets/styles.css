@@ -3,7 +3,9 @@ html, body {
     margin: 0;
     overflow: hidden;
     text-align: center;
+    
     background-color: black;
+    color: white;
 }
 
 .gameclock {
