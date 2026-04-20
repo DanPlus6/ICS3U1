@@ -15,7 +15,7 @@ let CV;
 /** const path to player sprite for game resetting */
 const PL_SPRITE_SRC = 'assets/img/PlayerAvatar/trollge.png';
 // player sprite dimensions
-const PL_W = 128;
+const PL_W = 142;
 const PL_H = 128;
 const PL_S = 8;
 /** player object */
