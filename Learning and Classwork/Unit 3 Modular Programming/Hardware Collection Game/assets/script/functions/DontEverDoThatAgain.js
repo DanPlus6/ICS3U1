@@ -22,7 +22,7 @@ export function DontEverDoThatAgain(audioSrc = "assets/audio/dont-ever-do-that-a
     const img = document.createElement("img");
     img.src = imgSrc;
     Object.assign(img.style, {
-        maxWidth: "80%", maxHeight: "80%", objectFit: "contain"
+        width: "100%", height: "100%", objectFit: "cover"
     });
 
     overlay.appendChild(img);
