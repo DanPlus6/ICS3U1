@@ -1,7 +1,9 @@
 'use strict';
 
+import { DontEverDoThatAgain } from "./DontEverDoThatAgain.js";
+
 /**
- * Never do that again.
+ * I told you not to do that again.
  * @param {string} audioSrc path to audio to play
  * @param {number} audioDelay ms of audio to play before visuals start
  * @param {number} duration duration of the flashing in milliseconds
@@ -10,6 +12,7 @@
 export function Epilepsy(audioSrc = "assets/audio/epilepsy.wav", audioDelay = 2000, duration = 2000, hz = 20) {
     if (globalThis.active) return;
     globalThis.active = true;
+    if (!globalThis.epilepsyWarned) { globalThis.epilepsyWarned = true; DontEverDoThatAgain(); return;}
 
     const audio = new Audio(audioSrc);
     audio.play();
