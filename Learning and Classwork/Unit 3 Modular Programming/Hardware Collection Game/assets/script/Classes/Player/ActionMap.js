@@ -16,10 +16,7 @@ export class ActionMap {
             mvLeft: ['ArrowLeft', 'A', 'a'],
             mvRight: ['ArrowRight', 'D', 'd'],
             decKp: ['-'],
-            incKp: ['='],
-
-            // miscellaneous actions
-            barrelRoll: ['Space']
+            incKp: ['=']
         };
     }
 
