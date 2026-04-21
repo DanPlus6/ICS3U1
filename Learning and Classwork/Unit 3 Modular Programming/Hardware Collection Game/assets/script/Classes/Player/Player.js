@@ -65,7 +65,7 @@ export class Player extends Entity {
             if (this.kp > this.KP_MIN) this.kp--;
         }
         if (check('barrelRoll')) {
-            if (globalThis.barrelRolling) {
+            if (!globalThis.barrelRolling) {
                 globalThis.barrelRolling = true;
                 BarrelRoll();
             }
