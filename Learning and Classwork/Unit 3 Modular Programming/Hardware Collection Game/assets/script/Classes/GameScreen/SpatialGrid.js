@@ -22,6 +22,19 @@ export class SpatialGrid {
 		this.grid.get(cellKey).push(entity);
 	}
 
+	/** 
+	 * Remove an entity from the spcial grid
+	 * @param {Entity} entity 
+	 */
+	remove(entity) {
+		const cellKey = this.getCellKey(entity.x, entity.y);
+		const cell = this.grid.get(cellKey);
+		if (cell) {
+			const index = cell.indexOf(entity);
+			if (index !== -1) cell.splice(index,1);
+		}
+	}
+
 	/**
 	 * Get entities nearby to an entitiy
 	 * @param {*} entity the entity
@@ -42,7 +55,7 @@ export class SpatialGrid {
 
 		return nearby;
 	}
-
+	
 	/**
 	 * Get the cellKey pointing to the cell housing a requested location in the spatial grid
 	 * @param {*} x The x coordinate of the location
