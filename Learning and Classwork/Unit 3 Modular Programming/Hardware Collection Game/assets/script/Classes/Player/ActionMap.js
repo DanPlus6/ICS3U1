@@ -19,7 +19,7 @@ export class ActionMap {
             incKp: ['='],
 
             // misc actions
-            barrelRoll: ['Space']
+            barrelRoll: [' ']
         };
     }
 
