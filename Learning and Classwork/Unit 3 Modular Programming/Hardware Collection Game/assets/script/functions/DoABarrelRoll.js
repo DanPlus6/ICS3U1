@@ -1,7 +1,7 @@
 'use strict';
 
 /** Performs a barrel roll animation on the document body */
-export function LOL_BarrelRoll() {
+export function DoABarrelRoll() {
     const style = document.createElement('style');
     style.innerHTML = `
         @keyframes roll {
