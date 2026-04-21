@@ -42,6 +42,16 @@ let iptManager;
 /** action map that maps keyboard events to player actions (e.g. movements) */
 let actMapper;
 
+// Miscellaneous Global Properties
+/** barrel roll state */
+globalThis.barrelRolling = false;
+/** epilepsy state */
+globalThis.givingEpilepsy = false;
+/** epilepsy "warning" state */
+globalThis.epilepsyWarning = false;
+/** whether the user has been warned */
+globalThis.epilepsyWarned = false;
+
 
 // ++++++++++++++++++++++ Game Clock +++++++++++++++++++++++
 /** increment the game clock */
@@ -128,12 +138,6 @@ function start(initT) {
     CV.addEntity(PL);
     
     addListeners();
-
-    // miscellaneous properties for additional controls
-    /** barrel roll state */
-    globalThis.barrelRolling = false;
-    /** epilepsy state */
-    globalThis.givingEpilepsy = false;
 
     CV.clearAndDraw();
 }
