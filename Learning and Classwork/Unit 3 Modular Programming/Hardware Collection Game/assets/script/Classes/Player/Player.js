@@ -3,6 +3,7 @@
 import { Entity } from '../Entities/Entity.js';
 import { Canvas } from '../GameScreen/Canvas.js';
 import { ActionMap } from './ActionMap.js';
+import { BarrelRoll } from '../../functions/BarrelRoll.js';
 
 /** Object representing a player */
 export class Player extends Entity {
@@ -59,6 +60,9 @@ export class Player extends Entity {
         }
         if (check('decKp')) {
             if (this.kp > this.KP_MIN) this.kp--;
+        }
+        if (check('barrelRoll')) {
+            BarrelRoll();
         }
     }
 }
