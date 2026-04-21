@@ -19,7 +19,8 @@ export class ActionMap {
             incKp: ['='],
 
             // misc actions
-            barrelRoll: [' ']
+            barrelRoll: [' '],
+            epilespy: ['e', 'E']
         };
     }
 

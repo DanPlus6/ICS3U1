@@ -4,6 +4,7 @@ import { Entity } from '../Entities/Entity.js';
 import { Canvas } from '../GameScreen/Canvas.js';
 import { ActionMap } from './ActionMap.js';
 import { BarrelRoll } from '../../functions/BarrelRoll.js';
+import { Epilepsy } from '../../functions/Epilepsy.js';
 
 /** Object representing a player */
 export class Player extends Entity {
@@ -28,9 +29,6 @@ export class Player extends Entity {
         this.kp = kp;
         this.KP_MIN = kpMin;
         this.KP_MAX = kpMax;
-
-        // barrel roll state
-        globalThis.barrelRolling = false;
     }
 
     /** check player actions' state to actually perform them */
@@ -68,6 +66,12 @@ export class Player extends Entity {
             if (!globalThis.barrelRolling) {
                 globalThis.barrelRolling = true;
                 BarrelRoll();
+            }
+        }
+        if (check('epilespy')) {
+            if (!globalThis.givingEpilepsy) {
+                globalThis.givingEpilepsy = true;
+                Epilepsy();
             }
         }
     }
