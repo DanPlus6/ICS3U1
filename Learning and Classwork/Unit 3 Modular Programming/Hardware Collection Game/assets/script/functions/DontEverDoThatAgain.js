@@ -4,8 +4,9 @@
  * Don't ever do that again.
  * @param {string} audioSrc path to epilepsy warning audio file
  * @param {string} imgSrc path to epilepsy warning image file
+ * @param {number} duration duration for epilepsy warning audio/overlay
  */
-export function DontEverDoThatAgain(audioSrc = "assets/audio/dont-ever-do-that-again.mp3", imgSrc = "assets/img/dont-ever-do-that-again.png") {
+export function DontEverDoThatAgain(audioSrc = "assets/audio/dont-ever-do-that-again.mp3", imgSrc = "assets/img/dont-ever-do-that-again.png", duration = 3000) {
     if (globalThis.epilepsyWarning) return;
     globalThis.epilepsyWarning = true;
 
