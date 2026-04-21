@@ -11,8 +11,9 @@ import { DontEverDoThatAgain } from "./DontEverDoThatAgain.js";
  */
 export function Epilepsy(audioSrc = "assets/audio/epilepsy.wav", audioDelay = 2000, duration = 2000, hz = 20) {
     if (globalThis.active) return;
+    if (!globalThis.epilepsyWarned) { globalThis.epilepsyWarned = true; DontEverDoThatAgain(); return; }
+    if (globalThis.epilepsyWarning) return;
     globalThis.active = true;
-    if (!globalThis.epilepsyWarned) { globalThis.epilepsyWarned = true; DontEverDoThatAgain(); return;}
 
     const audio = new Audio(audioSrc);
     audio.play();
