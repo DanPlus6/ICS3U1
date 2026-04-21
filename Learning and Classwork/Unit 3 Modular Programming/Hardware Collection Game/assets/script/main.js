@@ -87,7 +87,6 @@ function toggleClock() {
 function refreshGame() {
     PL.update();
     CV.clearAndDraw();
-    console.log(JSON.parse(JSON.stringify(iptManager.keys)));
 }
 
 /** attaches event listeners for the game after it's been started */
