@@ -4,12 +4,11 @@
  * Never do that again.
  * @param {number} duration duration of the flashing in milliseconds
  * @param {number} hz frequency of the flashes in hertz
- * @returns 
  */
 export function Epilepsy(duration = 2000, hz = 15) {
-    if (active) return;
-    
-    active = true;
+    if (globalThis.givingEpilepsy) return;
+    globalThis.givingEpilepsy = true;
+
     const overlay = document.createElement("epilepsy-overlay");
     Object.assign(overlay.style, {
         position: "fixed", inset: "0", zIndex: "999999",
