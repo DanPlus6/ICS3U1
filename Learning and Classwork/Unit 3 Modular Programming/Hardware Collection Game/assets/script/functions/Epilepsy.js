@@ -15,7 +15,8 @@ export function Epilepsy(duration = 2000, hz = 20) {
     });
     document.body.appendChild(overlay);
 
-    const randInt = (a, b) => (Math.floor() * (b-a+1)) + a;
+    const rand = (a, b) => Math.random() * (b - a) + a;
+    const randInt = (a, b) => Math.floor(rand(a, b));
     const randColor = () => `hsl(${randInt(0,360)},${randInt(60,100)}%,${randInt(30,80)}%)`;
 
     const interval = 1000 / hz;
@@ -37,7 +38,7 @@ export function Epilepsy(duration = 2000, hz = 20) {
 
     raf = requestAnimationFrame(tick);
 
-    // Reset after the specified duration
+    // Stop after the specified duration
     setTimeout(() => {
         cancelAnimationFrame(raf);
         overlay.remove();
