@@ -20,7 +20,7 @@ export class ActionMap {
 
             // misc actions
             barrelRoll: [' '],
-            epilespy: ['e', 'E']
+            epilespy: ['End']
         };
     }
 
