@@ -75,8 +75,9 @@ function toggleClock() {
 // ++++++++++++++++++++ Callbacks for Init +++++++++++++++++++++
 /** refresh game, ran on each frame */
 function refreshGame() {
-    PL.update(actMapper,CV);
+    PL.update();
     CV.clearAndDraw();
+    console.log(JSON.parse(JSON.stringify(iptManager.keys)));
 }
 
 /** attaches event listeners for the game after it's been started */
@@ -127,6 +128,13 @@ function start(initT) {
     CV.addEntity(PL);
     
     addListeners();
+
+    // miscellaneous properties for additional controls
+    /** barrel roll state */
+    globalThis.barrelRolling = false;
+    /** epilepsy state */
+    globalThis.givingEpilepsy = false;
+
     CV.clearAndDraw();
 }
 
