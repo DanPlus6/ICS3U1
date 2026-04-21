@@ -26,6 +26,6 @@ export function Epilepsy(duration = 2000, hz = 15) {
     setTimeout(() => {
         clearInterval(flash);
         overlay.remove();
-        active = false;
+        globalThis.givingEpilepsy = false;
     }, duration);
 }
