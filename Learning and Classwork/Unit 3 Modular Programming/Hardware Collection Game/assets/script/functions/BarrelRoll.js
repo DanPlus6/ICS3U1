@@ -12,5 +12,6 @@ export function BarrelRoll(duration = 1250) {
     setTimeout(() => {
         elem.style.transition = "none";
         elem.style.transform = "rotate(0deg)";
+        globalThis.barrelRolling = false;
     }, duration);
 };

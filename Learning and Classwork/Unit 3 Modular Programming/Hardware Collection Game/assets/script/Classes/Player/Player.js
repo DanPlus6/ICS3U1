@@ -28,6 +28,9 @@ export class Player extends Entity {
         this.kp = kp;
         this.KP_MIN = kpMin;
         this.KP_MAX = kpMax;
+
+        // barrel roll state
+        globalThis.barrelRolling = false;
     }
 
     /** check player actions' state to actually perform them */
@@ -62,7 +65,10 @@ export class Player extends Entity {
             if (this.kp > this.KP_MIN) this.kp--;
         }
         if (check('barrelRoll')) {
-            BarrelRoll();
+            if (globalThis.barrelRolling) {
+                globalThis.barrelRolling = true;
+                BarrelRoll();
+            }
         }
     }
 }
