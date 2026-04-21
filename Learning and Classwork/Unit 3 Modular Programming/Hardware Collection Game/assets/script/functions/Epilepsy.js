@@ -5,27 +5,43 @@
  * @param {number} duration duration of the flashing in milliseconds
  * @param {number} hz frequency of the flashes in hertz
  */
-export function Epilepsy(duration = 2000, hz = 15) {
+export function Epilepsy(duration = 2000, hz = 20) {
     if (globalThis.givingEpilepsy) return;
     globalThis.givingEpilepsy = true;
 
-    const overlay = document.createElement("epilepsy-overlay");
+    const overlay = document.createElement("div");
     Object.assign(overlay.style, {
-        position: "fixed", inset: "0", zIndex: "999999",
-        pointerEvents: "none", mixBlendMode: "difference"
+        position: "fixed", inset: "0", zIndex: "999999", pointerEvents: "none"
     });
     document.body.appendChild(overlay);
 
-    const interval = 1000 / hz;
-    let tick = 0;
-    const flash = setInterval(() => {
-    overlay.style.background = tick++ % 2 === 0 ? "white" : "black";
-    }, interval);
+    const randInt = (a, b) => (Math.floor() * (b-a+1)) + a;
+    const randColor = () => `hsl(${randInt(0,360)},${randInt(60,100)}%,${randInt(30,80)}%)`;
 
-    // Reset after epilepsy effect completes
+    const interval = 1000 / hz;
+    let last = 0;
+    let raf;
+
+    const tick = (ts) => {
+        if (ts - last >= interval) {
+        last = ts;
+        const layers = randInt(2, 5);
+        overlay.style.background = [...Array(layers)].map(() =>
+            `radial-gradient(ellipse at ${randInt(0,100)}% ${randInt(0,100)}%, ${randColor()} 0%, transparent 60%)`
+        ).join(", ");
+        overlay.style.opacity = rand(0.6, 1);
+        document.body.style.transform = `translate(${rand(-8,8)}px, ${rand(-8,8)}px) rotate(${rand(-2,2)}deg)`;
+        }
+        raf = requestAnimationFrame(tick);
+    };
+
+    raf = requestAnimationFrame(tick);
+
+    // Reset after the specified duration
     setTimeout(() => {
-        clearInterval(flash);
+        cancelAnimationFrame(raf);
         overlay.remove();
+        document.body.style.transform = "";
         globalThis.givingEpilepsy = false;
     }, duration);
 }
