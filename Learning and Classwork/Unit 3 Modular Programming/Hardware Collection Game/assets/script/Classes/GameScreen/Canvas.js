@@ -19,6 +19,10 @@ export class Canvas {
         this.CANVAS.width = this.CANVAS.clientWidth;
         this.CANVAS.height = this.CANVAS.clientHeight;
 
+        globalThis.CV_WIDTH = this.CANVAS.clientWidth;
+        globalThis.CV_HEIGHT = this.CANVAS.clientHeight;
+
+        
         // redundant vlaues for storing dimensions of canvas
         MakeConst(this, 'WIDTH', this.CANVAS.width);
         MakeConst(this, 'HEIGHT', this.CANVAS.height);
