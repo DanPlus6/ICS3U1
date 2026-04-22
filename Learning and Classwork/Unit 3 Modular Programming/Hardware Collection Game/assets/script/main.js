@@ -1,13 +1,15 @@
 'use strict';
 
-import { Entity } from './Classes/Entities/Entity.js';
+import { CharacterSelect } from './Classes/UI/CharacterSelect.js';
 import { InputManager } from './Classes/Player/InputManager.js';
 import { ActionMap } from './Classes/Player/ActionMap.js';
+import { Entity } from './Classes/Entities/Entity.js';
 import { Player } from './Classes/Player/Player.js';
 import { Canvas } from './Classes/GameScreen/Canvas.js';
 
-import { Epilepsy } from './functions/Epilepsy.js';
 import { BarrelRoll } from './functions/BarrelRoll.js';
+import { Epilepsy } from './functions/Epilepsy.js';
+
 
 // +++++++++++++++++ Init variables ++++++++++++++++++++
 // ------------ Canvas -----------
@@ -15,12 +17,29 @@ import { BarrelRoll } from './functions/BarrelRoll.js';
 let CV;
 
 // ----------- Player ------------
-/** const path to player sprite for game resetting */
-const PL_SPRITE_SRC = 'assets/img/PlayerAvatar/trollge.png';
-// player sprite dimensions
-const PL_W = 142;
-const PL_H = 128;
-const PL_S = 8;
+/** available characters for user to select */
+const CHARACTERS = [
+    {
+        id: 'gamer',
+        label: 'Gamer',
+        description: 'mom I need an rtx 9090 ti for school i swear...',
+        spriteSrc: 'assets/img/PlayerAvatar/trollge.png',
+        width: 142,
+        height: 128,
+        speed: 8,
+    },
+    {
+        id: 'nerd',
+        label: 'Student',
+        description: 'erm actually 🤓👆...',
+        spriteSrc: 'assets/img/PlayerAvatar/nerd.png',
+        width: 142,
+        height: 128,
+        speed: 6,
+    },
+];
+/** the character config the player chose on the selection screen */
+let userType;
 /** player object */
 let PL;
 
@@ -30,7 +49,7 @@ const BTN_TOGGLE_CLOCK = document.getElementById('btn-toggle-clock');
 const BTN_RESET_CLOCK = document.getElementById('btn-reset-clock');
 const H_GAME_CLOCK = document.getElementById('h-gameclock');
 
-/** variable to track if game is paused */
+/** variable to track if game is running (not paused) */
 let gameActive;
 /** variable to store game's clock time in seconds  */
 let gameTime;
@@ -41,14 +60,11 @@ const REFRESH_INTV = 20;
 /** variable to store game's current tick ( there are 1000/REFRESH_INTV ticks per second ) */
 let gameTick = 0;
 /** 
- * track the selection phase of the game
- * 0 = select
- * 1 = playing
- * 2 = paused
+ * track the phase of the game
+ * - 0 = select
+ * - 1 = playing / paused
  */
 let gamePhase;
-/** variable to track what type of user the player chose */
-let userType;
 
 // ------- Player Movement ---------
 /** input manager that listens player input (keyboard events) */
@@ -70,35 +86,22 @@ globalThis.epilepsyWarned = false;
 // ++++++++++++++++++++++ Game Essentials +++++++++++++++++++++++
 /** toggles the game clock and pauses/unpauses the game */
 function toggleGame() {
-    // pause the game if it's active, start it if it's paused
+    // Ignore toggle presses while still on the selection screen
+    if (gamePhase === 0) return;
+
+    // Pause game if active
     if (gameActive) {
         gameActive = false;
         BTN_TOGGLE_CLOCK.textContent = 'Start';
         clearInterval(gameRefresher);
         gameRefresher = null;
-    } else {
-        // Check if game is in selection phase/first time starting
-        if (gamePhase == 0) {
-            start();
-            gamePhase = 1;
-        }
-
+    }
+    // Resume game is paused 
+    else {
         gameActive = true;
         BTN_TOGGLE_CLOCK.textContent = 'Pause';
         gameRefresher = setInterval(refreshGame, REFRESH_INTV);
     }
-}
-
-/** reset the game, bringing user back to character selection screen */
-function resetGame() {
-    clearInterval(gameRefresher);
-    gameRefresher = null;
-    gameActive = false;
-
-    BTN_TOGGLE_CLOCK.textContent = 'Start';
-
-    // showCharacterSelect();
-    start();
 }
 
 // ++++++++++++++++++++ Callbacks for Init +++++++++++++++++++++
@@ -106,7 +109,13 @@ function resetGame() {
 function showCharacterSelect() {
     gamePhase = 0;
 
-    console.log('d');
+    const charSelect = new CharacterSelect(CHARACTERS, (chosen) => {
+        userType = chosen;
+        start();
+        gamePhase = 1;
+    });
+
+    charSelect.show();
 }
 
 /** refresh game, ran on each frame */
@@ -116,16 +125,14 @@ function refreshGame() {
     CV.clearAndDraw();
 
     // Game clock
-    gameTick = (gameTick+1) % (1000/REFRESH_INTV);
-    // If enough ticks have passed (a second has passed), increment the visual game clock
+    gameTick = (gameTick + 1) % (1000 / REFRESH_INTV);
+    // If enough ticks have passed (a second has elapsed), increment the visual game clock
     if (gameTick === 0) gameTime++;
     H_GAME_CLOCK.textContent = gameTime.toString() + 's';
 
     // Miscellaneous
-    // Do a barrel roll if valid control key(s) are active
     if (actMapper.isActive('barrelRoll')) BarrelRoll();
-    // Give the user epilepsy if valid control key(s) are active
-    if (actMapper.isActive('epilespy')) Epilepsy();
+    if (actMapper.isActive('epilespy'))   Epilepsy();
 }
 
 /** attaches event listeners for the game after it's been started */
@@ -135,9 +142,7 @@ function addListeners() {
 
 /** attaches base event listeners that persist between game resets */
 function addBaseListeners() {
-    // For game toggle and reset buttons
-    BTN_TOGGLE_CLOCK.addEventListener("click", toggleGame);
-    // Send the player back to character selection screen when reset
+    BTN_TOGGLE_CLOCK.addEventListener('click', toggleGame);
     BTN_RESET_CLOCK.addEventListener('click', start);
 }
 
@@ -148,26 +153,33 @@ function init() {
     showCharacterSelect();
 }
 
-/** game load/game reset callback */  
+/** game load/game reset callback — uses user set by the selection screen */
 function start() {
+    showCharacterSelect();
+
     // Canvas
     CV = new Canvas('game-canvas', 96);
 
     // Game clock
     gameActive = false;
     gameTime = 0;
-    // if game is already active, clear the refresher interval
-    if (gameRefresher) clearInterval(gameRefresher);
-    gameRefresher = null;
+    gameTick = 0;
     H_GAME_CLOCK.textContent = '0s';
     BTN_TOGGLE_CLOCK.textContent = 'Start';
+    // Clear game refresher interval if already active
+    if (gameRefresher) clearInterval(gameRefresher);
+    gameRefresher = null;
+
 
     // Player Movement
     iptManager = new InputManager();
-    actMapper = new ActionMap(iptManager);
+    actMapper  = new ActionMap(iptManager);
 
-    // Player
-    PL = new Player({path:PL_SPRITE_SRC, cv:CV, actMap:actMapper, width:PL_W, height:PL_H, kp:PL_S});
+    // Player — built from whichever character the player selected
+    PL = new Player({ 
+        path: userType.spriteSrc, cv: CV, actMap: actMapper,
+        width: userType.width, height: userType.height, kp: userType.speed
+    });
     CV.addEntity(PL);
 
     addListeners();
@@ -175,4 +187,4 @@ function start() {
 }
 
 // run onload initialization function once page loads
-window.addEventListener('load',init);
+window.addEventListener('load', init);
