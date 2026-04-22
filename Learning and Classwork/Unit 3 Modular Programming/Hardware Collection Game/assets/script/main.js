@@ -37,8 +37,13 @@ let gameRefresher;
 const REFRESH_INTV = 20;
 /** variable to store game's current tick ( there are 1000/REFRESH_INTV ticks per second ) */
 let gameTick = 0;
-/** check if first time starting the game */
-let firstTime = true;
+/** 
+ * track the selection phase of the game
+ * 0 = select
+ * 1 = playing
+ * 2 = paused
+ */
+let gamePhase;
 /** variable to track what type of user the player chose */
 let userType;
 
@@ -59,32 +64,48 @@ globalThis.epilepsyWarning = false;
 globalThis.epilepsyWarned = false;
 
 
-// ++++++++++++++++++++++ Game Clock +++++++++++++++++++++++
+// ++++++++++++++++++++++ Game Essentials +++++++++++++++++++++++
 /** toggles the game clock and pauses/unpauses the game */
-function toggleClock() {
+function toggleGame() {
     // pause the game if it's active, start it if it's paused
     if (gameActive) {
         gameActive = false;
         BTN_TOGGLE_CLOCK.textContent = 'Start';
-        
         clearInterval(gameRefresher);
         gameRefresher = null;
     } else {
-        gameActive = true;
-        
-        if (firstTime) {
+        // Check if game is in selection phase/first time starting
+        if (gamePhase == 0) {
             start();
-            firstTime = false;
+            gamePhase = 1;
         }
 
+        gameActive = true;
         BTN_TOGGLE_CLOCK.textContent = 'Pause';
-        
         gameRefresher = setInterval(refreshGame, REFRESH_INTV);
     }
 }
 
+/** reset the game, bringing user back to character selection screen */
+function resetGame() {
+    clearInterval(gameRefresher);
+    gameRefresher = null;
+    gameActive = false;
+
+    BTN_TOGGLE_CLOCK.textContent = 'Start';
+
+    // showCharacterSelect();
+    start();
+}
 
 // ++++++++++++++++++++ Callbacks for Init +++++++++++++++++++++
+/** Show character/user-type selection screen for the player */
+function showCharacterSelect() {
+    gamePhase = 0;
+
+    console.log('d');
+}
+
 /** refresh game, ran on each frame */
 function refreshGame() {
     PL.update();
@@ -104,14 +125,16 @@ function addListeners() {
 /** attaches base event listeners that persist between game resets */
 function addBaseListeners() {
     // For game toggle and reset buttons
-    BTN_TOGGLE_CLOCK.addEventListener("click", toggleClock);
-    BTN_RESET_CLOCK.addEventListener('click', start);
+    BTN_TOGGLE_CLOCK.addEventListener("click", toggleGame);
+    // Send the player back to character selection screen when reset
+    BTN_RESET_CLOCK.addEventListener('click', );
 }
 
 // ++++++++++++++++++++ Initialization +++++++++++++++++++++
 /** page onload callback */
 function init() {
     addBaseListeners();
+    showCharacterSelect();
 }
 
 /** game load/game reset callback */  
@@ -134,9 +157,8 @@ function start() {
     // Player
     PL = new Player({path:PL_SPRITE_SRC, cv:CV, actMap:actMapper, width:PL_W, height:PL_H, kp:PL_S});
     CV.addEntity(PL);
-    
-    addListeners();
 
+    addListeners();
     CV.clearAndDraw();
 }
 
