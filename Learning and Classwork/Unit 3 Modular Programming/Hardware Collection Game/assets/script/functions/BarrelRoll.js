@@ -5,7 +5,8 @@
  * @param {number} duration The duration of the animation in milliseconds
  */
 export function BarrelRoll(duration = 1250) {
-    if (globalThis.barrelRolling) return; // Prevent overlapping rolls
+    // Do not perform barrel roll if one is already active
+    if (globalThis.barrelRolling) return;
     globalThis.barrelRolling = true;
 
     const elem = document.documentElement;

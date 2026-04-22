@@ -156,6 +156,7 @@ function start() {
     // Game clock
     gameActive = false;
     gameTime = 0;
+    // if game is already active, clear the refresher interval
     if (gameRefresher) clearInterval(gameRefresher);
     gameRefresher = null;
     H_GAME_CLOCK.textContent = '0s';

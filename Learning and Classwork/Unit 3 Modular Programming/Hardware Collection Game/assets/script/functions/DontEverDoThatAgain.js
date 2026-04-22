@@ -7,7 +7,7 @@
  * @param {number} duration duration for epilepsy warning audio/overlay
  */
 export function DontEverDoThatAgain(audioSrc = "assets/audio/dont-ever-do-that-again.mp3", imgSrc = "assets/img/dont-ever-do-that-again.png", duration = 3000) {
-     // Prevent overlapping epilepsy warnings
+    // Do not provide epilepsy warnings if a warning is already active
     if (globalThis.epilepsyWarning) return;
     globalThis.epilepsyWarning = true;
 
