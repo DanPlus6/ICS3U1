@@ -27,12 +27,16 @@ const BTN_TOGGLE_CLOCK = document.getElementById('btn-toggle-clock');
 const BTN_RESET_CLOCK = document.getElementById('btn-reset-clock');
 const H_GAME_CLOCK = document.getElementById('h-gameclock');
 // clock and intervals
-/** variable to store game's clock time  */
+/** variable to track if game is paused */
+let gameActive;
+/** variable to store game's clock time in seconds  */
 let gameTime;
-/** variable storing storing game clock's interval */
-let gameClock;
-/** variable storing game refresher's interval */
+/** variable storing game refresher's timeout timer */
 let gameRefresher;
+/** interval between game refreshes/"frames" in miliseconds */
+const REFRESH_INTV = 20;
+/** variable to store game's current tick ( there are 1000/REFRESH_INTV ticks per second ) */
+let gameTick = 0;
 /** check if first time starting the game */
 let firstTime = true;
 
@@ -54,30 +58,20 @@ globalThis.epilepsyWarned = false;
 
 
 // ++++++++++++++++++++++ Game Clock +++++++++++++++++++++++
-/** increment the game clock */
-function incrementClock() {
-    gameTime++;
-    H_GAME_CLOCK.textContent = gameTime.toString() + 's';
-}
-
 /** toggles the game clock and pauses/unpauses the game */
 function toggleClock() {
-    if (gameClock != null) {
+    if (gameActive) {
         BTN_TOGGLE_CLOCK.textContent = 'Start';
         
         clearInterval(gameRefresher);
         gameRefresher = null;
-
-        clearInterval(gameClock);
-        gameClock = null;
     } else {
         start(firstTime);
         firstTime = false;
 
         BTN_TOGGLE_CLOCK.textContent = 'Pause';
         
-        gameRefresher = setInterval(refreshGame,20);
-        gameClock = setInterval(incrementClock, 1000);
+        gameRefresher = setInterval(refreshGame, REFRESH_INTV);
     }
 }
 
@@ -87,6 +81,10 @@ function toggleClock() {
 function refreshGame() {
     PL.update();
     CV.clearAndDraw();
+
+    gameTick = (gameTick+1) % (1000/REFRESH_INTV);
+    if (gameTick === 0) gameTime++;
+    H_GAME_CLOCK.textContent = gameTime.toString() + 's';
 }
 
 /** attaches event listeners for the game after it's been started */
@@ -120,10 +118,9 @@ function start(initT) {
     CV = new Canvas('game-canvas', 96);
 
     // Game clock
+    gameActive = false;
     gameTime = 0;
-    if (gameClock) clearInterval(gameClock);
     if (gameRefresher) clearInterval(gameRefresher);
-    gameClock = null;
     gameRefresher = null;
     H_GAME_CLOCK.textContent = '0s';
     BTN_TOGGLE_CLOCK.textContent = 'Start';
