@@ -107,17 +107,41 @@ function toggleGame() {
 }
 
 // ++++++++++++++++++++ Callbacks for Init +++++++++++++++++++++
-/** Show character/user-type selection screen for the player */
-function showCharacterSelect() {
+/** callback to clear/reset the active game elements */
+function resetGame() {
+    // Canvas
+    CV = new Canvas('game-canvas', 96);
+
+    // Game clock
+    gameActive = false;
+    gameTime = 0;
+    gameTick = 0;
+    H_GAME_CLOCK.textContent = '0s';
+    BTN_TOGGLE_CLOCK.textContent = 'Start';
+    // Clear game refresher interval if already active
+    if (gameRefresher) clearInterval(gameRefresher);
+    gameRefresher = null;
+
+
+    // Player Movement
+    iptManager = new InputManager();
+    actMapper  = new ActionMap(iptManager);
+}
+
+/** restart the game as if it's the beginning */
+function restartGame() {
     // Prevent overlap if character selection is already active
     if (charSelecting) return;
     charSelecting = true;
 
+    // Game reset
+    resetGame();
     gamePhase = 0;
 
+    // Character selection
     const charSelect = new CharacterSelect(CHARACTERS, (chosen) => {
         userType = chosen;
-        start();
+        build();
         gamePhase = 1;
     });
 
@@ -143,49 +167,21 @@ function refreshGame() {
     if (actMapper.isActive('epilespy')) Epilepsy();
 }
 
-/** callback to reset/clear the game elements */
-function resetGame() {
-    // Canvas
-    CV = new Canvas('game-canvas', 96);
-
-    // Game clock
-    gameActive = false;
-    gameTime = 0;
-    gameTick = 0;
-    H_GAME_CLOCK.textContent = '0s';
-    BTN_TOGGLE_CLOCK.textContent = 'Start';
-    // Clear game refresher interval if already active
-    if (gameRefresher) clearInterval(gameRefresher);
-    gameRefresher = null;
-
-
-    // Player Movement
-    iptManager = new InputManager();
-    actMapper  = new ActionMap(iptManager);
-}
-
-/** attaches event listeners for the game after it's been started */
-function addListeners() {
-    // currently empty, awaiting new features
-}
-
 /** attaches base event listeners that persist between game resets */
 function addBaseListeners() {
     BTN_TOGGLE_CLOCK.addEventListener('click', toggleGame);
-    BTN_RESET_CLOCK.addEventListener('click', showCharacterSelect);
+    BTN_RESET_CLOCK.addEventListener('click', restartGame);
 }
 
 // ++++++++++++++++++++ Initialization +++++++++++++++++++++
 /** page onload callback */
 function init() {
     addBaseListeners();
-    showCharacterSelect();
+    restartGame();
 }
 
-/** game load/game reset callback — uses user set by the selection screen */
-function start() {
-    resetGame();
-
+/** build the user set by the selection screen */
+function build() {
     // Build player from whichever character the player selected
     PL = new Player({ 
         path: userType.spriteSrc, cv: CV, actMap: actMapper,
@@ -193,7 +189,6 @@ function start() {
     });
     CV.addEntity(PL);
 
-    addListeners();
     CV.clearAndDraw();
 }
 
