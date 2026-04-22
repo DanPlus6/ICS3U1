@@ -10,8 +10,11 @@ import { DontEverDoThatAgain } from "./DontEverDoThatAgain.js";
  * @param {number} hz frequency of the flashes in hertz
  */
 export function Epilepsy(audioSrc = "assets/audio/epilepsy.wav", audioDelay = 2000, duration = 2000, hz = 20) {
+    // Prevent overlapping epilepsy jumpscares
     if (globalThis.active) return;
+     // Ensure epilepsy warning is only given once
     if (!globalThis.epilepsyWarned) { globalThis.epilepsyWarned = true; DontEverDoThatAgain(); return; }
+     // Prevent normal epilepsy jumpscare when giving warning
     if (globalThis.epilepsyWarning) return;
     globalThis.active = true;
 
@@ -32,6 +35,7 @@ export function Epilepsy(audioSrc = "assets/audio/epilepsy.wav", audioDelay = 20
             overlay.style.background = tick++ % 2 === 0 ? "white" : "black";
         }, interval);
 
+        // Reset after epilepsy jumpscare finishes
         setTimeout(() => {
             clearInterval(flash);
             overlay.remove();

@@ -21,7 +21,7 @@ const PL_S = 8;
 /** player object */
 let PL;
 
-// ---------- Game clock -----------
+// ---------- Game Essentials -----------
 // HTML targets
 const BTN_TOGGLE_CLOCK = document.getElementById('btn-toggle-clock');
 const BTN_RESET_CLOCK = document.getElementById('btn-reset-clock');
@@ -39,6 +39,8 @@ const REFRESH_INTV = 20;
 let gameTick = 0;
 /** check if first time starting the game */
 let firstTime = true;
+/** variable to track what type of user the player chose */
+let userType;
 
 // ------- Player Movement ---------
 /** input manager that listens player input (keyboard events) */
@@ -89,6 +91,7 @@ function refreshGame() {
     CV.clearAndDraw();
 
     gameTick = (gameTick+1) % (1000/REFRESH_INTV);
+    // If enough ticks have passed (a second has passed), increment the visual game clock
     if (gameTick === 0) gameTime++;
     H_GAME_CLOCK.textContent = gameTime.toString() + 's';
 }
@@ -113,11 +116,6 @@ function init() {
 
 /** game load/game reset callback */  
 function start() {
-    if (!!CV) {
-        CV.clearCanvas();
-        CV.clearEntities();
-    }
-
     // Canvas
     CV = new Canvas('game-canvas', 96);
 

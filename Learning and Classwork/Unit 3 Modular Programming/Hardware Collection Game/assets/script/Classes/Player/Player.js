@@ -32,40 +32,48 @@ export class Player extends Entity {
         this.KP_MAX = kpMax;
     }
 
-    /** check player actions' state to actually perform them */
+    /** Communicate with action map to perform player actions if valid key(s) are pressed */
     update() {
         /** lambda/short-form for checking state of an action */
         const check = act => this.actMap.isActive(act);
         
+        // Move up if valid control key(s) are active
         if (check('mvUp')) {
             let new_y = this.y - this.kp;
             if (new_y >= 0) this.y = new_y;
             else this.y = 0;
         }
+        // Move down if valid control key(s) are active
         if (check('mvDown')) {
             let new_y = this.y + this.kp;
             if (new_y + this.h <= this.cv.HEIGHT) this.y = new_y;
             else this.y = this.cv.HEIGHT - this.h;
         }
+        // Move left if valid control key(s) are active
         if (check('mvLeft')) {
             let new_x = this.x - this.kp;
             if (new_x >= 0) this.x = new_x;
             else this.x = 0;
         }
+        // Move right if valid control key(s) are active
         if (check('mvRight')) {
             let new_x = this.x + this.kp;
             if (new_x + this.w <= this.cv.WIDTH) this.x = new_x;
             else this.x = this.cv.WIDTH - this.w;
         }
+        // Increase speed if valid control key(s) are active
         if (check('incKp')) {
             if (this.kp < this.KP_MAX) this.kp++;
         }
+        // Decrease speed if valid control key(s) are active
         if (check('decKp')) {
             if (this.kp > this.KP_MIN) this.kp--;
         }
+        // Do a barrel roll if valid control key(s) are active
         if (check('barrelRoll')) {
             BarrelRoll();
         }
+        // Give the user epilepsy if valid control key(s) are active
         if (check('epilespy')) {
             Epilepsy();
         }
