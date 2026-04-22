@@ -4,9 +4,6 @@ import { Entity } from '../Entities/Entity.js';
 import { Canvas } from '../GameScreen/Canvas.js';
 import { ActionMap } from './ActionMap.js';
 
-import { BarrelRoll } from '../../functions/BarrelRoll.js';
-import { Epilepsy } from '../../functions/Epilepsy.js';
-
 /** Object representing a player */
 export class Player extends Entity {
     /**
@@ -68,14 +65,6 @@ export class Player extends Entity {
         // Decrease speed if valid control key(s) are active
         if (check('decKp')) {
             if (this.kp > this.KP_MIN) this.kp--;
-        }
-        // Do a barrel roll if valid control key(s) are active
-        if (check('barrelRoll')) {
-            BarrelRoll();
-        }
-        // Give the user epilepsy if valid control key(s) are active
-        if (check('epilespy')) {
-            Epilepsy();
         }
     }
 }

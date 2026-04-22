@@ -6,6 +6,9 @@ import { ActionMap } from './Classes/Player/ActionMap.js';
 import { Player } from './Classes/Player/Player.js';
 import { Canvas } from './Classes/GameScreen/Canvas.js';
 
+import { Epilepsy } from './functions/Epilepsy.js';
+import { BarrelRoll } from './functions/BarrelRoll.js';
+
 // +++++++++++++++++ Init variables ++++++++++++++++++++
 // ------------ Canvas -----------
 /** game screen/canvas */
@@ -26,7 +29,7 @@ let PL;
 const BTN_TOGGLE_CLOCK = document.getElementById('btn-toggle-clock');
 const BTN_RESET_CLOCK = document.getElementById('btn-reset-clock');
 const H_GAME_CLOCK = document.getElementById('h-gameclock');
-// clock and intervals
+
 /** variable to track if game is paused */
 let gameActive;
 /** variable to store game's clock time in seconds  */
@@ -108,13 +111,21 @@ function showCharacterSelect() {
 
 /** refresh game, ran on each frame */
 function refreshGame() {
+    // Update entities and game screen
     PL.update();
     CV.clearAndDraw();
 
+    // Game clock
     gameTick = (gameTick+1) % (1000/REFRESH_INTV);
     // If enough ticks have passed (a second has passed), increment the visual game clock
     if (gameTick === 0) gameTime++;
     H_GAME_CLOCK.textContent = gameTime.toString() + 's';
+
+    // Miscellaneous
+    // Do a barrel roll if valid control key(s) are active
+    if (actMapper.isActive('barrelRoll')) BarrelRoll();
+    // Give the user epilepsy if valid control key(s) are active
+    if (actMapper.isActive('epilespy')) Epilepsy();
 }
 
 /** attaches event listeners for the game after it's been started */
@@ -127,7 +138,7 @@ function addBaseListeners() {
     // For game toggle and reset buttons
     BTN_TOGGLE_CLOCK.addEventListener("click", toggleGame);
     // Send the player back to character selection screen when reset
-    BTN_RESET_CLOCK.addEventListener('click', );
+    BTN_RESET_CLOCK.addEventListener('click', start);
 }
 
 // ++++++++++++++++++++ Initialization +++++++++++++++++++++
