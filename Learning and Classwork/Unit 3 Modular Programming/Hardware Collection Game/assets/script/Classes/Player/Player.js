@@ -4,10 +4,9 @@ import { Entity } from '../Entities/Entity.js';
 import { Canvas } from '../GameScreen/Canvas.js';
 import { ActionMap } from './ActionMap.js';
 
-/** Object representing a player */
 export class Player extends Entity {
     /**
-     * Constructs a player entity
+     * Object representing a player entity
      * @param {Object} args destructured object containing arguments
      * @param {string} args.path path to the image for player's sprite
      * @param {Canvas} args.cv active game screen

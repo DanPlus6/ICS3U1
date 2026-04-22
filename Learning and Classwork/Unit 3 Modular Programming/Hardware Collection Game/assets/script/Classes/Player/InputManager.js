@@ -1,7 +1,7 @@
 'use strict';
 
-/** class for managing user/player inputs */
 export class InputManager {
+    /** class for managing user/player inputs */
     constructor() {
         /** map to store status of keys */
         this.keys = {};

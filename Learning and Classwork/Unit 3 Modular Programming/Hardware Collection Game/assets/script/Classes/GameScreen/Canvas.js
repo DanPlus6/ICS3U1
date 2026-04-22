@@ -4,9 +4,9 @@ import { Entity } from '../Entities/Entity.js';
 import { SpatialGrid } from './SpatialGrid.js';
 import { MakeConst } from '../../functions/MakeConst.js';
 
-/** canvas/screen class for the game, replaces basic HTML5 canvas */
 export class Canvas {
     /**
+     * canvas/screen class for the game, replaces basic HTML5 canvas
      * @param {string} canvasId id for the canvas html element  
      * @param {number} cellSize size for each spatial grid cell as an integer
      */

@@ -2,9 +2,9 @@
 
 import { Canvas } from "../GameScreen/Canvas.js";
 
-/** Object representing an entity */
 export class Entity {
     /**
+     * Object representing an entity
      * @param {Object} args destructured object containing arguments
      * @param {Canvas} cv active canvas for scaling sprite/avatar dimensions
      * @param {string} args.path path to the image for entities sprite

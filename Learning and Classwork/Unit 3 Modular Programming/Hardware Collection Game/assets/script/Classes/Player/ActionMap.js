@@ -2,7 +2,6 @@
 
 import { InputManager } from "./InputManager.js";
 
-/** maps key presses from an active InputManager object to an action for player momvenet */
 export class ActionMap {
     /**
      * maps key presses from an active InputManager object to an action for player momvenet
