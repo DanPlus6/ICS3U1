@@ -65,6 +65,8 @@ let gameTick = 0;
  * - 1 = playing / paused
  */
 let gamePhase;
+/** variable to track whether selection phase is active to prevent overlap */
+let charSelecting = false;
 
 // ------- Player Movement ---------
 /** input manager that listens player input (keyboard events) */
@@ -107,6 +109,10 @@ function toggleGame() {
 // ++++++++++++++++++++ Callbacks for Init +++++++++++++++++++++
 /** Show character/user-type selection screen for the player */
 function showCharacterSelect() {
+    // Prevent overlap if character selection is already active
+    if (charSelecting) return;
+    charSelecting = true;
+
     gamePhase = 0;
 
     const charSelect = new CharacterSelect(CHARACTERS, (chosen) => {
@@ -116,6 +122,8 @@ function showCharacterSelect() {
     });
 
     charSelect.show();
+
+    charSelecting = false;
 }
 
 /** refresh game, ran on each frame */
@@ -132,31 +140,11 @@ function refreshGame() {
 
     // Miscellaneous
     if (actMapper.isActive('barrelRoll')) BarrelRoll();
-    if (actMapper.isActive('epilespy'))   Epilepsy();
+    if (actMapper.isActive('epilespy')) Epilepsy();
 }
 
-/** attaches event listeners for the game after it's been started */
-function addListeners() {
-    // currently empty, awaiting new features
-}
-
-/** attaches base event listeners that persist between game resets */
-function addBaseListeners() {
-    BTN_TOGGLE_CLOCK.addEventListener('click', toggleGame);
-    BTN_RESET_CLOCK.addEventListener('click', start);
-}
-
-// ++++++++++++++++++++ Initialization +++++++++++++++++++++
-/** page onload callback */
-function init() {
-    addBaseListeners();
-    showCharacterSelect();
-}
-
-/** game load/game reset callback — uses user set by the selection screen */
-function start() {
-    showCharacterSelect();
-
+/** callback to reset/clear the game elements */
+function resetGame() {
     // Canvas
     CV = new Canvas('game-canvas', 96);
 
@@ -174,8 +162,31 @@ function start() {
     // Player Movement
     iptManager = new InputManager();
     actMapper  = new ActionMap(iptManager);
+}
 
-    // Player — built from whichever character the player selected
+/** attaches event listeners for the game after it's been started */
+function addListeners() {
+    // currently empty, awaiting new features
+}
+
+/** attaches base event listeners that persist between game resets */
+function addBaseListeners() {
+    BTN_TOGGLE_CLOCK.addEventListener('click', toggleGame);
+    BTN_RESET_CLOCK.addEventListener('click', showCharacterSelect);
+}
+
+// ++++++++++++++++++++ Initialization +++++++++++++++++++++
+/** page onload callback */
+function init() {
+    addBaseListeners();
+    showCharacterSelect();
+}
+
+/** game load/game reset callback — uses user set by the selection screen */
+function start() {
+    resetGame();
+
+    // Build player from whichever character the player selected
     PL = new Player({ 
         path: userType.spriteSrc, cv: CV, actMap: actMapper,
         width: userType.width, height: userType.height, kp: userType.speed
