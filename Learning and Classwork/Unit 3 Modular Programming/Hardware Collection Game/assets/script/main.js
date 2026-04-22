@@ -60,14 +60,20 @@ globalThis.epilepsyWarned = false;
 // ++++++++++++++++++++++ Game Clock +++++++++++++++++++++++
 /** toggles the game clock and pauses/unpauses the game */
 function toggleClock() {
+    // pause the game if it's active, start it if it's paused
     if (gameActive) {
+        gameActive = false;
         BTN_TOGGLE_CLOCK.textContent = 'Start';
         
         clearInterval(gameRefresher);
         gameRefresher = null;
     } else {
-        start(firstTime);
-        firstTime = false;
+        gameActive = true;
+        
+        if (firstTime) {
+            start(true);
+            firstTime = false;
+        }
 
         BTN_TOGGLE_CLOCK.textContent = 'Pause';
         
@@ -96,7 +102,7 @@ function addListeners() {
 function addBaseListeners() {
     // For game toggle and reset buttons
     BTN_TOGGLE_CLOCK.addEventListener("click", toggleClock);
-    BTN_RESET_CLOCK.addEventListener('click',start);
+    BTN_RESET_CLOCK.addEventListener('click', start);
 }
 
 // ++++++++++++++++++++ Initialization +++++++++++++++++++++
@@ -118,7 +124,7 @@ function start(initT) {
     CV = new Canvas('game-canvas', 96);
 
     // Game clock
-    gameActive = false;
+    gameActive = true;
     gameTime = 0;
     if (gameRefresher) clearInterval(gameRefresher);
     gameRefresher = null;
