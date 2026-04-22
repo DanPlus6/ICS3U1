@@ -16,7 +16,7 @@ export class Player extends Entity {
      * @param {number} [args.kpMin] minimum movement speed for player
      * @param {number} [args.kpMax] maximum movement speed for player
      */
-    constructor({path='assets/img/PlayerAvatar/trollge.png', cv, actMap, width=96, height=96, kp=4, kpMin=1, kpMax=10}) {
+    constructor({path='assets/img/PlayerAvatar/trollge.png', cv, actMap, width=96, height=96, kp=4}) {
         // inherit properties from Entity class
         super({path:path, cv:cv, width:width, height:height});
 
@@ -24,8 +24,6 @@ export class Player extends Entity {
         this.cv = cv;
         this.actMap = actMap;
         this.kp = kp;
-        this.KP_MIN = kpMin;
-        this.KP_MAX = kpMax;
     }
 
     /** Communicate with action map to perform player actions if valid key(s) are pressed */
@@ -56,14 +54,6 @@ export class Player extends Entity {
             let new_x = this.x + this.kp;
             if (new_x + this.w <= this.cv.WIDTH) this.x = new_x;
             else this.x = this.cv.WIDTH - this.w;
-        }
-        // Increase speed if valid control key(s) are active
-        if (check('incKp')) {
-            if (this.kp < this.KP_MAX) this.kp++;
-        }
-        // Decrease speed if valid control key(s) are active
-        if (check('decKp')) {
-            if (this.kp > this.KP_MIN) this.kp--;
         }
     }
 }
