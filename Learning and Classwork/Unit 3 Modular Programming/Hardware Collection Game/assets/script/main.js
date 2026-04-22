@@ -24,8 +24,8 @@ const CHARACTERS = [
         label: 'Gamer',
         description: 'mom I need an rtx 9090 ti for school i swear...',
         spriteSrc: 'assets/img/PlayerAvatar/trollge.png',
-        width: 142,
-        height: 128,
+        width: 140,
+        height: 140,
         speed: 8,
     },
     {
@@ -33,8 +33,8 @@ const CHARACTERS = [
         label: 'Student',
         description: 'erm actually 🤓👆...',
         spriteSrc: 'assets/img/PlayerAvatar/nerd.png',
-        width: 142,
-        height: 128,
+        width: 140,
+        height: 140,
         speed: 6,
     },
 ];
@@ -59,12 +59,6 @@ let gameRefresher;
 const REFRESH_INTV = 20;
 /** variable to store game's current tick ( there are 1000/REFRESH_INTV ticks per second ) */
 let gameTick = 0;
-/** 
- * track the phase of the game
- * - 0 = select
- * - 1 = playing / paused
- */
-let gamePhase;
 /** variable to track whether selection phase is active to prevent overlap */
 let charSelecting = false;
 
@@ -89,7 +83,7 @@ globalThis.epilepsyWarned = false;
 /** toggles the game clock and pauses/unpauses the game */
 function toggleGame() {
     // Ignore toggle presses while still on the selection screen
-    if (gamePhase === 0) return;
+    if (charSelecting) return;
 
     // Pause game if active
     if (gameActive) {
@@ -136,13 +130,11 @@ function restartGame() {
 
     // Game reset
     resetGame();
-    gamePhase = 0;
 
     // Character selection
     const charSelect = new CharacterSelect(CHARACTERS, (chosen) => {
         userType = chosen;
         build();
-        gamePhase = 1;
     });
 
     charSelect.show();
@@ -169,7 +161,10 @@ function refreshGame() {
 
 /** attaches base event listeners that persist between game resets */
 function addBaseListeners() {
+    // Game toggling
     BTN_TOGGLE_CLOCK.addEventListener('click', toggleGame);
+
+    // Game resetting
     BTN_RESET_CLOCK.addEventListener('click', restartGame);
 }
 
