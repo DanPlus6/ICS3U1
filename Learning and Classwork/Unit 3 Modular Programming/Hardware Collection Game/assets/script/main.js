@@ -71,7 +71,7 @@ function toggleClock() {
         gameActive = true;
         
         if (firstTime) {
-            start(true);
+            start();
             firstTime = false;
         }
 
@@ -112,9 +112,7 @@ function init() {
 }
 
 /** game load/game reset callback */  
-function start(initT) {
-    if (!initT) return;
-
+function start() {
     if (!!CV) {
         CV.clearCanvas();
         CV.clearEntities();
@@ -124,7 +122,7 @@ function start(initT) {
     CV = new Canvas('game-canvas', 96);
 
     // Game clock
-    gameActive = true;
+    gameActive = false;
     gameTime = 0;
     if (gameRefresher) clearInterval(gameRefresher);
     gameRefresher = null;
