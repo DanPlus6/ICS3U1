@@ -32,11 +32,19 @@ export class Canvas {
     }
 
     /**
-     * Append an entity to array storing entities on the page
+     * Append an entity to spatial grid storing entities on the page
      * @param {Entity} entity a valid entity object
      */
     addEntity(entity) {
         this.spatGrid.add(entity);
+    }
+
+    /**
+     * Remove an entity from the spatial grid storing entities on the page
+     * @param {Entity} entity
+     */
+    rmEntity(entity) {
+        this.spatGrid.remove(entity);
     }
 
     /** clear visual canvas */
