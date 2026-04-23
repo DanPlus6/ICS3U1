@@ -15,12 +15,19 @@ export class Entity {
         this.sprite = new Image();
         this.sprite.src = path;
 
-        // entity avatar's width and height, use default size of invalid dimensions provided and downscale if too large
-        let stagingW = (width>0 ? width : this.sprite.naturalWidth);
-        let stagingH = (height>0 ? height : this.sprite.naturalHeight);
+        // Hardcoded dimensions of gamer's gpu entity dimensions (for meme emphasis)
+        if (path == 'assets/img/Entities/gamer/gpu.png') {
+            this.w = 312;
+            this.h = 312;
+        }
+        else {
+            // entity avatar's width and height, use default size of invalid dimensions provided and downscale if too large
+            let stagingW = (width>0 ? width : this.sprite.naturalWidth);
+            let stagingH = (height>0 ? height : this.sprite.naturalHeight);
 
-        MakeConst(this, 'w', (stagingW>globalThis.CV_WIDTH ? Math.round(globalThis.CV_WIDTH/10) : stagingW));
-        MakeConst(this, 'h', (stagingH>globalThis.CV_HEIGHT ? Math.round(globalThis.CV_HEIGHT/10) : stagingH));
+            MakeConst(this, 'w', (stagingW>globalThis.CV_WIDTH ? Math.round(globalThis.CV_WIDTH/10) : stagingW));
+            MakeConst(this, 'h', (stagingH>globalThis.CV_HEIGHT ? Math.round(globalThis.CV_HEIGHT/10) : stagingH));
+        }
 
         // entity avatar's top-left x and y coordinates
         this.x = 0;
