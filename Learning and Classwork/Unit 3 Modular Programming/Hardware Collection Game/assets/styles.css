@@ -152,7 +152,13 @@ body {
 /* Game text display area */
 .game-text-display {
     width: 1200px;
-    min-height: 32px;
-    margin-top: 64px;
+    height: 96px;
+    margin-top: 24px;
     text-align: center;
+}
+
+.game-text-display p {
+    margin: 0;
+    min-height: 1.4em;
+    line-height: 1.4;
 }
