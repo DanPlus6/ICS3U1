@@ -95,7 +95,7 @@ let userType;
 /** player object */
 let PL;
 
-// Hardware collection
+// ----------- Hardware Collection ------------
 /** bank storing general information about a computer hardware part that does not vary depending on user type */
 const BANK = {
     'cpu' : 'You have picked up the CPU. The CPU is the main processor of the computer and follows instructions, performs calculations, and helps run programs.',
@@ -113,11 +113,22 @@ let itemsPicked;
 let hardwareEntities;
 /** prevent held space from re-picking items every frame */
 let pickupPressed;
+
+// Hints
 /** floating hint element created in script */
 let controlsHintEl;
 /** single control hint shown when the player is stuck */
-const CONTROL_HINT = 'Hint: Use W A S D or the arrow keys to move, walk into hardware to inspect it, then press Space to pick it up.';
-// html targets
+const CONTROL_HINT = 'Hint: Use W A S D or the arrow keys to move.';
+/** single pickup hint shown when the player hasn't picked anything up */
+const PICKUP_HINT = 'Walk into hardware to inspect it, then press Space to pick it up.';
+/** track time when player last moved */
+let lastMoveTime;
+/** track time when player last picked up a hardware part */
+let lastPickupTime;
+/** track if player has ever moved */
+let hasEverMoved;
+
+// HTML targets
 const LINE_1 = document.getElementById('text-ln1');
 const LINE_2 = document.getElementById('text-ln2');
 const LINE_3 = document.getElementById('text-ln3');
@@ -232,13 +243,21 @@ function resetGame() {
     itemsPicked = 0;
     hardwareEntities = [];
     pickupPressed = false;
+
     LINE_1.textContent = '';
     LINE_2.textContent = '';
     LINE_3.textContent = '';
+
     H_ITEMS_COUNTER.textContent = '';
     P_WIN_MESSAGE.textContent = '';
+
     IMG_WIN_COMPUTER.removeAttribute('src');
     DIV_WIN_OVERLAY.classList.add('hidden');
+    
+    lastMoveTime  = 0;
+    lastPickupTime = 0;
+    hasEverMoved  = false;
+
     hideControlsHint();
 }
 
@@ -381,6 +400,7 @@ function handleHardwareInteractions() {
                 itemsPicked++;
                 CV.rmEntity(entity);
             }
+            lastPickupTime = gameTime;
 
             hardwareEntities = hardwareEntities.filter(entity => !touchedSet.has(entity));
             H_ITEMS_COUNTER.textContent = `Items Picked up: ${itemsPicked}/${HARDWARE_TYPES.length}`;
@@ -396,19 +416,25 @@ function handleHardwareInteractions() {
     }
 }
 
-/** show control hints only if the player still has not made progress after waiting */
+/** show control hints only if the player appears to be stuck/not know how to play the game */
 function handleControlsHints() {
-    if (!gameActive || charSelecting || itemsPicked > 0) {
+    if (!gameActive || charSelecting || itemsPicked >= HARDWARE_TYPES.length) {
         hideControlsHint();
         return;
     }
 
-    if (gameTime < 6) {
-        hideControlsHint();
-        return;
-    }
+    const timeSinceMove = gameTime - lastMoveTime;
+    const timeSincePickup = gameTime - lastPickupTime;
 
-    showControlsHint(CONTROL_HINT);
+    // if player has been idle for 5s, remind them how to move
+    if (timeSinceMove >= 5) {
+        showControlsHint(CONTROL_HINT);
+    } // if player is moving but hasn't collected anything for 10s
+    else if (hasEverMoved && timeSincePickup >= 10) {
+        showControlsHint(PICKUP_HINT);
+    } else {
+        hideControlsHint();
+    }
 }
 
 /** refresh game, ran on each frame */
@@ -416,7 +442,11 @@ function refreshGame() {
     // Update entities and game screen
     PL.update();
     // update player grid cell only after actual position change
-    if (PL.oldX != PL.x || PL.oldY != PL.y) CV.update(PL);
+    if (PL.oldX != PL.x || PL.oldY != PL.y) {
+        CV.update(PL);
+        lastMoveTime = gameTime;
+        hasEverMoved = true;
+    }
     handleHardwareInteractions();
 
     CV.clearAndDraw();
