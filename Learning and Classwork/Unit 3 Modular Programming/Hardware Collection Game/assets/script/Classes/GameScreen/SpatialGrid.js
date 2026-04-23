@@ -42,16 +42,14 @@ export class SpatialGrid {
 	/**
 	 * Update an entity's position in the spatial grid if they have moved to a different cell
 	 * @param {Entity} entity object containing current updated entity
-	 * @param {number} oldX old X coordinate of entity before movmenet
-	 * @param {number} oldY old Y coordinate of entity before movmenet
 	 */
-	update(entity, oldX, oldY) {
-		const oldKey = this.getCellKey(oldX, oldY);
+	update(entity) {
+		const oldKey = this.getCellKey(entity.oldX, entity.oldY);
 		const newKey = this.getCellKey(entity.x,entity.y);
 
 		// If entity has moved to new position, move it in the spatial grid
 		if (oldKey !== newKey) {
-			this.remove({x: oldX, y: oldY, ...entity});
+			this.remove({x: entity.oldX, y: entity.oldY, ...entity});
 			this.add(entity);
 		}
 	}

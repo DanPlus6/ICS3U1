@@ -30,24 +30,32 @@ export class Player extends MovingEntity {
         
         // Move up if valid control key(s) are active
         if (check('mvUp')) {
+            this.oldY = this.y;
+
             let new_y = this.y - this.kp;
             if (new_y >= 0) this.y = new_y;
             else this.y = 0;
         }
         // Move down if valid control key(s) are active
         if (check('mvDown')) {
+            this.oldY = this.y;
+
             let new_y = this.y + this.kp;
             if (new_y + this.h <= globalThis.CV_HEIGHT) this.y = new_y;
             else this.y = globalThis.CV_HEIGHT - this.h;
         }
         // Move left if valid control key(s) are active
         if (check('mvLeft')) {
+            this.oldX = this.x;
+
             let new_x = this.x - this.kp;
             if (new_x >= 0) this.x = new_x;
             else this.x = 0;
         }
         // Move right if valid control key(s) are active
         if (check('mvRight')) {
+            this.oldX = this.x;
+
             let new_x = this.x + this.kp;
             if (new_x + this.w <= globalThis.CV_WIDTH) this.x = new_x;
             else this.x = globalThis.CV_WIDTH - this.w;

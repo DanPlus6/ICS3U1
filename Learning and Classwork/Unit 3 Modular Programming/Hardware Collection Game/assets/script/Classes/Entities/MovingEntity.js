@@ -19,7 +19,7 @@ export class MovingEntity extends Entity {
 
         // entity movement
         this.kp = kp;
-        this.oldX = null;
-        this.oldY = null;
+        this.oldX = 0;
+        this.oldY = 0;
     }
 }

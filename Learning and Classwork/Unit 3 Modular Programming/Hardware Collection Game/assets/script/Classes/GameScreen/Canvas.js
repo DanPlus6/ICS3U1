@@ -49,6 +49,14 @@ export class Canvas {
         this.spatGrid.grid.clear();
     }
 
+	/**
+	 * Update an entity's position in the spatial grid if they have moved to a different cell
+	 * @param {Entity} entity object containing current updated entity
+	 */
+    update(entity) {
+        this.spatGrid.update(entity);
+    }
+
     /** draws provided entities onto screen */
     clearAndDraw() {
         this.clearCanvas();

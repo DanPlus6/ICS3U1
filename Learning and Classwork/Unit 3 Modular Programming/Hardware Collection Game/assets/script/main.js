@@ -144,6 +144,8 @@ function restartGame() {
 function refreshGame() {
     // Update entities and game screen
     PL.update();
+    if (PL.oldX != PL.y || PL.oldY != PL.y) CV.update(PL);
+
     CV.clearAndDraw();
 
     // Game clock
