@@ -49,6 +49,15 @@ body {
     margin-bottom: 6px;
 }
 
+.misc-controls-panel small {
+    font-size: 15px;
+}
+
+.misc-controls-panel li {
+    font-size: 10px;
+    margin-left: 10px;
+}
+
 
 /* Game clock and game control buttons */
 .gameclock {
