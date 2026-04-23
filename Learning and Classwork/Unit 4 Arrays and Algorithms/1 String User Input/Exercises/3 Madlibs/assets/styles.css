@@ -22,8 +22,13 @@ button {
 }
 
 #output-field {
-    display: block;
-    max-width: 300px;
-    max-height: 20px;
-    border: 1px white;
+    visibility: hidden;
+
+    margin-top: 10px;
+    
+    width: 300px;
+    height: auto;
+
+    padding: 10px;
+    border: 2px solid white;
 }
