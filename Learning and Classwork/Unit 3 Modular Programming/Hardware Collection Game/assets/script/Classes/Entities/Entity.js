@@ -1,6 +1,6 @@
 'use strict';
 
-const p = require('path');
+import { MakeConst } from "../../functions/MakeConst.js";
 
 export class Entity {
     /**
@@ -19,14 +19,14 @@ export class Entity {
         let stagingW = (width>0 ? width : this.sprite.naturalWidth);
         let stagingH = (height>0 ? height : this.sprite.naturalHeight);
 
-        this.w = (stagingW>globalThis.CV_WIDTH ? Math.round(globalThis.CV_WIDTH/10) : stagingW);
-        this.h = (stagingH>globalThis.CV_HEIGHT ? Math.round(globalThis.CV_HEIGHT/10) : stagingH);
+        MakeConst(this, 'w', (stagingW>globalThis.CV_WIDTH ? Math.round(globalThis.CV_WIDTH/10) : stagingW));
+        MakeConst(this, 'h', (stagingH>globalThis.CV_HEIGHT ? Math.round(globalThis.CV_HEIGHT/10) : stagingH));
 
         // entity avatar's top-left x and y coordinates
         this.x = 0;
         this.y = 0;
 
         // entity id for displaying information about it
-        this.id = p.parse(path).name;
+        MakeConst(this, 'id', path.split('/').pop().split('.')[0]);
     } 
 }
