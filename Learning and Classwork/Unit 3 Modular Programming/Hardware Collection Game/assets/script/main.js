@@ -105,6 +105,8 @@ const BANK = {
     'motherboard' : 'You have picked up the motherboard. The motherboard is the main circuit board that connects all the computer parts together so they can communicate.',
     'mouse' : 'You have picked up the mouse. A mouse is an input device used to move the pointer, click on items, and interact with programs on the computer.'
 }
+/** ordered list of hardware part ids to spawn on the canvas */
+const HARDWARE_TYPES = Object.keys(BANK);
 /** track how many items the user has picked up so far */
 let itemsPicked;
 
@@ -208,6 +210,57 @@ function restartGame() {
     charSelect.show();
 }
 
+/**
+ * Check whether two entities overlap using AABB collision
+ * @param {Entity} a first entity
+ * @param {Entity} b second entity
+ * @returns {boolean} whether the entities overlap
+ */
+function isOverlapping(a, b) {
+    return a.x < b.x + b.w &&
+    a.x + a.w > b.x &&
+    a.y < b.y + b.h &&
+    a.y + a.h > b.y;
+}
+
+/**
+ * Place an entity at a random position that does not overlap anything already placed
+ * @param {Entity} entity the entity to place
+ * @param {Entity[]} existingEntities entities already placed on the canvas
+ */
+function placeEntityRandomly(entity, existingEntities) {
+    const maxX = CV.WIDTH - entity.w;
+    const maxY = CV.HEIGHT - entity.h;
+    const maxAttempts = 500;
+
+    // Attempt within a limited number of tries to spawn a random entity without overlap
+    for (let attempt = 0; attempt < maxAttempts; attempt++) {
+        entity.x = Math.floor(Math.random() * (maxX + 1));
+        entity.y = Math.floor(Math.random() * (maxY + 1));
+
+        // check for overlap when spawning
+        if (!existingEntities.some(existing => isOverlapping(entity, existing))) return;
+    }
+
+    throw new Error(`Unable to place ${entity.id} without overlap 🤡.`);
+}
+
+/** spawn all hardware entities for the selected character */
+function spawnHardwareEntities() {
+    const placedEntities = [PL];
+
+    // loop through hardware entities for selected character and attempt to spawn them randomly w/o overlap
+    for (const hardwareType of HARDWARE_TYPES) {
+        const entity = new Entity({
+            path: `assets/img/Entities/${userType.id}/${hardwareType}.png`
+        });
+
+        placeEntityRandomly(entity, placedEntities);
+        CV.addEntity(entity);
+        placedEntities.push(entity);
+    }
+}
+
 /** refresh game, ran on each frame */
 function refreshGame() {
     // Update entities and game screen
@@ -253,6 +306,7 @@ function build() {
         width: userType.width, height: userType.height, kp: userType.speed
     });
     CV.addEntity(PL);
+    spawnHardwareEntities();
 
     CV.clearAndDraw();
 }
