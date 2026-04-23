@@ -22,7 +22,7 @@ const CHARACTERS = [
     {
         id: 'gamer',
         label: 'Gamer',
-        description: 'mom I need an rtx 9090 ti for school i swear...',
+        description: 'mom I need an RTX 9090 TI for school I swear...',
         spriteSrc: 'assets/img/PlayerAvatar/trollge.png',
         width: 140,
         height: 140,
@@ -206,6 +206,14 @@ function resetGame() {
     H_ITEMS_COUNTER.textContent = '';
 }
 
+/** start a fresh active run after the player has been built */
+function startGame() {
+    gameActive = true;
+    BTN_TOGGLE_CLOCK.textContent = 'Pause';
+    if (gameRefresher) clearInterval(gameRefresher);
+    gameRefresher = setInterval(refreshGame, REFRESH_INTV);
+}
+
 /** restart the game as if it's the beginning */
 function restartGame() {
     // Prevent overlap if character selection is already active
@@ -219,6 +227,7 @@ function restartGame() {
     const charSelect = new CharacterSelect(CHARACTERS, (chosen) => {
         userType = chosen;
         build();
+        startGame();
         charSelecting = false;
     });
 
