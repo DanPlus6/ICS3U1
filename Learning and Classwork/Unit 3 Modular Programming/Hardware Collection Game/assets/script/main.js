@@ -163,7 +163,7 @@ function refreshGame() {
 function addBaseListeners() {
     // Game toggling
     BTN_TOGGLE_CLOCK.addEventListener('click', toggleGame);
-    window.addEventListener('keydown', e=>{if(e.key == ' ') toggleGame();});
+    window.addEventListener('keydown', e=>{if(e.key == 'p' || e.key == 'P') toggleGame();});
 
     // Game resetting
     BTN_RESET_CLOCK.addEventListener('click', restartGame);
