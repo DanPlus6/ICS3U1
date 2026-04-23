@@ -13,7 +13,10 @@ body {
     align-items: center;
 }
 
+.input-field label {
+    margin-right: 10px;
+}
+
 button {
     margin: 5px;
 }
-
