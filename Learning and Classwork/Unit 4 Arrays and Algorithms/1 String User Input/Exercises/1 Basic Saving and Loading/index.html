@@ -19,16 +19,16 @@
     When the user clicks the other “Load” Button, print out the saved user’s name and age in a paragraph.
     -->
     <div class="input-field">
-        <label for="ipt-name"></label>
+        <label for="ipt-name">Input your name:</label>
         <input id="ipt-name">
     </div>
 
     <div class="input-field">
-        <label for="ipt-age"></label>
+        <label for="ipt-age">Input your age:</label>
         <input id="ipt-age">
     </div>
-    <button id="btn-save">Save</button>
-    <button id="btn-load">Load</button>
+    <button id="btn-save" onclick="save()">Save</button>
+    <button id="btn-load" onclick="load()">Load</button>
 
     <p id="p-load"></p>
 
