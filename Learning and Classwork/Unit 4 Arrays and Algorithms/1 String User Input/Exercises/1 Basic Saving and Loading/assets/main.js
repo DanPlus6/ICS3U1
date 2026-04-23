@@ -1,22 +1,32 @@
 'use strict';
 
 // targets to HTML elements
-const P_ANSWER = document.getElementById('p-answer');
-const TXT_QUESTION = document.getElementById('txt-question');
+const P_LOAD = document.getElementById('p-load');
+const IPT_NAME = document.getElementById('ipt-name')
+const IPT_AGE = document.getElementById('ipt-age');
 
-/** bank of answers to choose from for the 8ball */
-const ANSWERS = [
-    "Yes", "No", "The future is uncertain", "Definitely maybe", "No way Jose",
-    "Ask again later", "For certain", "Not a snowball’s chance", "?"
-]
+// variables to store user inputs
+let name;
+let age;
 
-/** give the user an answer if they ask the magic 8-ball */
-function askQuestion() {
-    if (TXT_QUESTION.value != '') P_ANSWER.textContent = ANSWERS[Math.floor(Math.random()*ANSWERS.length)];
-    else P_ANSWER.textContent = 'You must ask me a question first!';
+function save() {
+    if (IPT_NAME.value != '' && IPT_AGE.value != '') {
+        if (Number.isFinite(+IPT_AGE.value)) age = IPT_AGE.value;
+        else {
+            alert("Age must be a valid number!");
+            return;
+        }
+        name = IPT_NAME.value;
+
+        IPT_NAME.value = '';
+        IPT_AGE.value = '';
+    } else alert("You must fill in both input fields to save!")
 }
 
-TXT_QUESTION.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') askQuestion();
-});
+function load() {
+    if (IPT_NAME && IPT_AGE) P_LOAD.textContent = `Your name is ${name} and you're ${age} years old.`
+    else alert("You must save first before loading.")
+}
+
+
 
