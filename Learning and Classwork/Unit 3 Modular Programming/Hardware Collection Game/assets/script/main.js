@@ -307,20 +307,21 @@ function getTouchedHardware() {
 /** handle hardware touch display and pickup behavior */
 function handleHardwareInteractions() {
     const touchedHardware = getTouchedHardware();
-    const infoTarget = touchedHardware.find(entity => !entity.pickedUp) || touchedHardware[0] || null;
+    const infoTarget = touchedHardware[0] || null;
 
     displayHardwareInfo(infoTarget);
 
     // Check if pickup hotkey is pressed
     if (actMapper.isActive('pickupItem')) {
         if (!pickupPressed) {
+            const touchedSet = new Set(touchedHardware);
+
             for (const entity of touchedHardware) {
-                if (!entity.pickedUp) {
-                    entity.pickedUp = true;
-                    itemsPicked++;
-                    CV.rmEntity(entity);
-                }
+                itemsPicked++;
+                CV.rmEntity(entity);
             }
+
+            hardwareEntities = hardwareEntities.filter(entity => !touchedSet.has(entity));
             H_ITEMS_COUNTER.textContent = `Items Picked up: ${itemsPicked}/${HARDWARE_TYPES.length}`;
         }
         pickupPressed = true;
@@ -334,7 +335,7 @@ function handleHardwareInteractions() {
 function refreshGame() {
     // Update entities and game screen
     PL.update();
-    if (PL.oldX != PL.y || PL.oldY != PL.y) CV.update(PL);
+    if (PL.oldX != PL.x || PL.oldY != PL.y) CV.update(PL);
     handleHardwareInteractions();
 
     CV.clearAndDraw();
@@ -343,7 +344,7 @@ function refreshGame() {
     gameTick = (gameTick + 1) % (1000 / REFRESH_INTV);
     // If enough ticks have passed (a second has elapsed), increment the visual game clock
     if (gameTick === 0) gameTime++;
-    H_GAME_CLOCK.textContent = `Time: ${gameTime.toString()}s'`;
+    H_GAME_CLOCK.textContent = `Time: ${gameTime.toString()}s`;
 
     // Miscellaneous
     if (actMapper.isActive('barrelRoll')) BarrelRoll();
