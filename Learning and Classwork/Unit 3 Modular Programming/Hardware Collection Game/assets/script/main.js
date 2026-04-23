@@ -27,6 +27,32 @@ const CHARACTERS = [
         width: 140,
         height: 140,
         speed: 8,
+        bank: {
+            'cpu' : [
+                'A gamer benefits from a fast mid-range or high-end CPU because games need strong single-core speed for smooth frame rates.',
+                'Modern games also use multiple cores, so 6 to 8 cores is a strong target for gaming and background apps like voice chat or recording.'
+            ],
+            'gpu' : [
+                'The GPU matters a lot for gamers because it renders the graphics, lighting, textures, and visual effects you see on screen.',
+                'Higher resolutions and higher graphics settings need a stronger graphics card, especially for ray tracing or very high refresh rate monitors.'
+            ],
+            'ram' : [
+                'Gamers should usually aim for at least 16 GB of RAM so the game, operating system, and background apps can all run comfortably.',
+                'If the player likes modded games, streaming, or heavy multitasking, 32 GB can be even better.'
+            ],
+            'ssd' : [
+                'An SSD helps games load much faster, reduces waiting times, and makes the whole system feel more responsive.',
+                'Large modern games take a lot of space, so a gamer often wants a bigger SSD to store several games at once.'
+            ],
+            'motherboard' : [
+                'A gamer needs a motherboard that supports the chosen CPU, enough RAM slots, and useful features like fast USB ports and good cooling support.',
+                'It should also have room for future upgrades such as more storage or a better graphics card.'
+            ],
+            'mouse' : [
+                'For gaming, a mouse should feel comfortable, respond quickly, and have a sensor that tracks movement accurately.',
+                'Extra buttons can also help in some games by making actions easier to reach.'
+            ]
+        }
     },
     {
         id: 'nerd',
@@ -36,12 +62,50 @@ const CHARACTERS = [
         width: 140,
         height: 140,
         speed: 6,
+        bank: {
+            'cpu' : [
+                'For a student, a basic modern CPU such as an Intel Core i3 or AMD Ryzen 3 is usually enough for schoolwork, web browsing, and documents.',
+                'Most classroom programs are lightweight, so students usually do not need an expensive high-performance processor.'
+            ],
+            'gpu' : [
+                'A student usually does not need a powerful dedicated GPU because school tasks like research, slideshows, and writing do not use much graphics power.',
+                'Integrated graphics are often enough unless the student also does editing, 3D work, or gaming.'
+            ],
+            'ram' : [
+                'Students should have enough RAM to keep browser tabs, documents, and learning apps open without slowdown.',
+                '8 GB works for light use, while 16 GB gives a smoother experience for multitasking.'
+            ],
+            'ssd' : [
+                'An SSD is very useful for students because it makes the computer boot faster and opens assignments and apps quickly.',
+                'It also helps keep the system feeling responsive during everyday school use.'
+            ],
+            'motherboard' : [
+                'A student mainly needs a reliable motherboard that works with the chosen CPU and provides the basic ports needed for school accessories.',
+                'It does not need to be fancy, but it should be dependable and easy to upgrade later if needed.'
+            ],
+            'mouse' : [
+                'For a student, a mouse should be simple, comfortable, and dependable for long homework sessions.',
+                'Comfort and ease of use matter more than gaming features or flashy design.'
+            ]
+        }
     },
 ];
 /** the character config the player chose on the selection screen */
 let userType;
 /** player object */
 let PL;
+
+// Hardware collection
+/** bank storing general information about a computer hardware part that does not vary depending on user type */
+const BANK = {
+    'cpu' : 'You have picked up the CPU. The CPU is the main processor of the computer and follows instructions, performs calculations, and helps run programs.',
+    'gpu' : 'You have picked up the GPU. The GPU is responsible for rendering graphics, images, video, and visual effects, and it is especially important for games and 3D work.',
+    'ram' : 'You have picked up the RAM. RAM is short-term memory that stores data the computer is actively using so programs can access it quickly.',
+    'ssd' : 'You have picked up the SSD. An SSD is long-term storage that keeps files, programs, and the operating system saved even when the computer is turned off.',
+    'motherboard' : 'You have picked up the motherboard. The motherboard is the main circuit board that connects all the computer parts together so they can communicate.',
+    'mouse' : 'You have picked up the mouse. A mouse is an input device used to move the pointer, click on items, and interact with programs on the computer.'
+}
+let itemsPicked;
 
 // ---------- Game Essentials -----------
 // HTML targets
@@ -119,6 +183,9 @@ function resetGame() {
     // Player Movement
     iptManager = new InputManager();
     actMapper  = new ActionMap(iptManager);
+
+    // Hardware collection
+    itemsPicked = 0;
 }
 
 /** restart the game as if it's the beginning */
