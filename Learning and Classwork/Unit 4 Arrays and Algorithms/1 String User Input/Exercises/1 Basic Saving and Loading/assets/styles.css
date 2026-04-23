@@ -5,3 +5,12 @@ body {
     justify-content: center;
     height: 100vh;
 }
+
+
+.input-field {
+    margin: 5px 5px 5px 5px;
+}
+
+button {
+    margin: 5px;
+}
