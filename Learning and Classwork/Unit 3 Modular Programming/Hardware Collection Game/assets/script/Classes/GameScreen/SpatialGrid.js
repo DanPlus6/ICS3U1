@@ -1,6 +1,7 @@
 'use strict';
 
 import { Entity } from '../Entities/Entity.js';
+import { MakeConst } from '../../functions/MakeConst.js';
 
 export class SpatialGrid {
 	/**
@@ -8,7 +9,7 @@ export class SpatialGrid {
 	 * @param {number} cellSize size of each square cell in spatial grid as an integer
 	 */
 	constructor(cellSize) {
-		this.cellSize = cellSize;
+		MakeConst(this, 'cellSize', cellSize);
 		this.grid = new Map();
 	}
 

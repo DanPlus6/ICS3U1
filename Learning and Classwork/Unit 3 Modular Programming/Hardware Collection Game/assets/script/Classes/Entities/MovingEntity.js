@@ -2,6 +2,7 @@
 
 import { Canvas } from "../GameScreen/Canvas.js";
 import { Entity } from "./Entity.js";
+import { MakeConst } from "../../functions/MakeConst.js";
 
 export class MovingEntity extends Entity {
     /**
@@ -18,7 +19,7 @@ export class MovingEntity extends Entity {
         super({path:path, width:width, height:height});
 
         // entity movement
-        this.kp = kp;
+        MakeConst(this, 'kp', kp);
         this.oldX = 0;
         this.oldY = 0;
     }
