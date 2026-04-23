@@ -109,6 +109,15 @@ const BANK = {
 const HARDWARE_TYPES = Object.keys(BANK);
 /** track how many items the user has picked up so far */
 let itemsPicked;
+/** active spawned hardware entities */
+let hardwareEntities;
+/** prevent held space from re-picking items every frame */
+let pickupPressed;
+// html targets
+const LINE_1 = document.getElementById('text-ln1');
+const LINE_2 = document.getElementById('text-ln2');
+const LINE_3 = document.getElementById('text-ln3');
+const H_ITEMS_COUNTER = document.getElementById('h-itemspicked');
 
 // ---------- Game Essentials -----------
 // HTML targets
@@ -176,7 +185,7 @@ function resetGame() {
     gameActive = false;
     gameTime = 0;
     gameTick = 0;
-    H_GAME_CLOCK.textContent = '0s';
+    H_GAME_CLOCK.textContent = 'Time: 0s';
     BTN_TOGGLE_CLOCK.textContent = 'Start';
     // Clear game refresher interval if already active
     if (gameRefresher) clearInterval(gameRefresher);
@@ -189,6 +198,12 @@ function resetGame() {
 
     // Hardware collection
     itemsPicked = 0;
+    hardwareEntities = [];
+    pickupPressed = false;
+    LINE_1.textContent = '';
+    LINE_2.textContent = '';
+    LINE_3.textContent = '';
+    H_ITEMS_COUNTER.textContent = '';
 }
 
 /** restart the game as if it's the beginning */
@@ -254,10 +269,64 @@ function spawnHardwareEntities() {
         const entity = new Entity({
             path: `assets/img/Entities/${userType.id}/${hardwareType}.png`
         });
+        entity.pickedUp = false;
 
         placeEntityRandomly(entity, placedEntities);
         CV.addEntity(entity);
         placedEntities.push(entity);
+        hardwareEntities.push(entity);
+    }
+}
+
+/**
+ * Show three text lines for the currently touched hardware entity
+ * @param {Entity|null} entity touched hardware entity
+ */
+function displayHardwareInfo(entity) {
+    if (!entity) {
+        LINE_1.textContent = '';
+        LINE_2.textContent = '';
+        LINE_3.textContent = '';
+        return;
+    }
+
+    const specificBank = userType.bank[entity.id] || [];
+    LINE_1.textContent = BANK[entity.id] || '';
+    LINE_2.textContent = specificBank[0] || '';
+    LINE_3.textContent = specificBank[1] || '';
+}
+
+/**
+ * Get all hardware entities the player is currently touching
+ * @returns {Entity[]} touched hardware entities
+ */
+function getTouchedHardware() {
+    return hardwareEntities.filter(entity => isOverlapping(PL, entity));
+}
+
+/** handle hardware touch display and pickup behavior */
+function handleHardwareInteractions() {
+    const touchedHardware = getTouchedHardware();
+    const infoTarget = touchedHardware.find(entity => !entity.pickedUp) || touchedHardware[0] || null;
+
+    displayHardwareInfo(infoTarget);
+
+    // Check if pickup hotkey is pressed
+    if (actMapper.isActive('pickupItem')) {
+        if (!pickupPressed) {
+            for (const entity of touchedHardware) {
+                if (!entity.pickedUp) {
+                    entity.pickedUp = true;
+                    itemsPicked++;
+                    CV.rmEntity(entity);
+                }
+            }
+            H_ITEMS_COUNTER.textContent = `Items Picked up: ${itemsPicked}/${HARDWARE_TYPES.length}`;
+        }
+        pickupPressed = true;
+    }
+    else {
+        pickupPressed = false;
     }
 }
 
@@ -266,6 +335,7 @@ function refreshGame() {
     // Update entities and game screen
     PL.update();
     if (PL.oldX != PL.y || PL.oldY != PL.y) CV.update(PL);
+    handleHardwareInteractions();
 
     CV.clearAndDraw();
 
@@ -273,7 +343,7 @@ function refreshGame() {
     gameTick = (gameTick + 1) % (1000 / REFRESH_INTV);
     // If enough ticks have passed (a second has elapsed), increment the visual game clock
     if (gameTick === 0) gameTime++;
-    H_GAME_CLOCK.textContent = gameTime.toString() + 's';
+    H_GAME_CLOCK.textContent = `Time: ${gameTime.toString()}s'`;
 
     // Miscellaneous
     if (actMapper.isActive('barrelRoll')) BarrelRoll();
@@ -300,6 +370,8 @@ function init() {
 
 /** build the user set by the selection screen */
 function build() {
+    H_ITEMS_COUNTER.textContent = `Items Picked up: ${itemsPicked}/${HARDWARE_TYPES.length}`;
+
     // Build player from whichever character the player selected
     PL = new Player({ 
         path: userType.spriteSrc, cv: CV, actMap: actMapper,
