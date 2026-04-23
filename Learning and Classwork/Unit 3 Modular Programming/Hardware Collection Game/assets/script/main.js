@@ -193,6 +193,8 @@ function hideControlsHint() {
 function toggleGame() {
     // Ignore toggle presses while still on the selection screen
     if (charSelecting) return;
+    // Do not allow the finished run to be started again.
+    if (!DIV_WIN_OVERLAY.classList.contains('hidden')) return;
 
     // Pause the game if it is currently running.
     // Pause game if active
