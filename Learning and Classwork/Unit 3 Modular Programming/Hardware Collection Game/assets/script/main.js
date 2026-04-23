@@ -100,7 +100,6 @@ function toggleGame() {
     }
 }
 
-// ++++++++++++++++++++ Callbacks for Init +++++++++++++++++++++
 /** callback to clear/reset the active game elements */
 function resetGame() {
     // Canvas
@@ -163,9 +162,11 @@ function refreshGame() {
 function addBaseListeners() {
     // Game toggling
     BTN_TOGGLE_CLOCK.addEventListener('click', toggleGame);
+    window.addEventListener('keydown', e=>{if(e.key == ' ') toggleGame();});
 
     // Game resetting
     BTN_RESET_CLOCK.addEventListener('click', restartGame);
+    window.addEventListener('keydown', e=>{if(e.key == 'r' || e.key == 'R') restartGame();});
 }
 
 // ++++++++++++++++++++ Initialization +++++++++++++++++++++

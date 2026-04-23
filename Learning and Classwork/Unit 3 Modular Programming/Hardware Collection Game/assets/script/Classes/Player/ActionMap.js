@@ -16,7 +16,7 @@ export class ActionMap {
             mvRight: ['ArrowRight', 'D', 'd'],
 
             // misc actions
-            barrelRoll: [' ', 'b', 'B'],
+            barrelRoll: ['b', 'B'],
             epilespy: ['End']
         };
     }
