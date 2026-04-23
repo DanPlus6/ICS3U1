@@ -1,5 +1,6 @@
 'use strict';
 
+const p = require('path');
 
 export class Entity {
     /**
@@ -24,5 +25,8 @@ export class Entity {
         // entity avatar's top-left x and y coordinates
         this.x = 0;
         this.y = 0;
+
+        // entity id for displaying information about it
+        this.id = p.parse(path).name;
     } 
 }
