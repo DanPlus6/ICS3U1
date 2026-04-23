@@ -118,6 +118,9 @@ const LINE_1 = document.getElementById('text-ln1');
 const LINE_2 = document.getElementById('text-ln2');
 const LINE_3 = document.getElementById('text-ln3');
 const H_ITEMS_COUNTER = document.getElementById('h-itemspicked');
+const DIV_WIN_OVERLAY = document.getElementById('win-overlay');
+const P_WIN_MESSAGE = document.getElementById('win-message');
+const IMG_WIN_COMPUTER = document.getElementById('win-computer-image');
 
 // ---------- Game Essentials -----------
 // HTML targets
@@ -204,6 +207,9 @@ function resetGame() {
     LINE_2.textContent = '';
     LINE_3.textContent = '';
     H_ITEMS_COUNTER.textContent = '';
+    P_WIN_MESSAGE.textContent = '';
+    IMG_WIN_COMPUTER.removeAttribute('src');
+    DIV_WIN_OVERLAY.classList.add('hidden');
 }
 
 /** start a fresh active run after the player has been built */
@@ -212,6 +218,18 @@ function startGame() {
     BTN_TOGGLE_CLOCK.textContent = 'Pause';
     if (gameRefresher) clearInterval(gameRefresher);
     gameRefresher = setInterval(refreshGame, REFRESH_INTV);
+}
+
+/** stop the run and show the win overlay */
+function showWinOverlay() {
+    gameActive = false;
+    if (gameRefresher) clearInterval(gameRefresher);
+    gameRefresher = null;
+    BTN_TOGGLE_CLOCK.textContent = 'Start';
+
+    P_WIN_MESSAGE.textContent = `You built the computer in ${gameTime} seconds.`;
+    IMG_WIN_COMPUTER.src = `assets/img/Entities/${userType.id}/computer.png`;
+    DIV_WIN_OVERLAY.classList.remove('hidden');
 }
 
 /** restart the game as if it's the beginning */
@@ -332,6 +350,8 @@ function handleHardwareInteractions() {
 
             hardwareEntities = hardwareEntities.filter(entity => !touchedSet.has(entity));
             H_ITEMS_COUNTER.textContent = `Items Picked up: ${itemsPicked}/${HARDWARE_TYPES.length}`;
+
+            if (itemsPicked === HARDWARE_TYPES.length) showWinOverlay();
         }
         pickupPressed = true;
     }

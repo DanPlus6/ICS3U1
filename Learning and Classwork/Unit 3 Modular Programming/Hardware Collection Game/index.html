@@ -44,9 +44,17 @@
             <button id="btn-reset-clock">Reset</button>
         </div>
 
-        <canvas id="game-canvas">
-            Graphics not supported, please enable javascript
-        </canvas>
+        <div class="canvas-stage">
+            <canvas id="game-canvas">
+                Graphics not supported, please enable javascript
+            </canvas>
+
+            <div id="win-overlay" class="win-overlay hidden">
+                <h2>Computer Completed!</h2>
+                <p id="win-message"></p>
+                <img id="win-computer-image" alt="Completed computer build">
+            </div>
+        </div>
 
         <div class="game-text-display">
             <p id="text-ln1"></p>
