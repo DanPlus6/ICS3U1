@@ -144,6 +144,6 @@ body {
 .game-text-display {
     width: 1200px;
     min-height: 32px;
-    margin-top: 12px;
+    margin-top: 64px;
     text-align: center;
 }
