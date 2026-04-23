@@ -6,20 +6,31 @@
 
     <link rel="stylesheet" href="assets/styles.css">
 
-    <title>Magic 8-Ball</title>
+    <title>Basic Saving and Loading</title>
 </head>
 <body>
-    <h1>Ask the Magic 8Ball!</h1>
+    <!-- 
+    2 Text input fields, 2 Labels, and 2 Buttons.
+    The 2 Text input fields allow you to input the user’s age and the user’s name.
+    The 2 Labels are used as prompts for the Text input fields.
+    Use global constants for the textboxes.
+    One Button is a “Save” button. When the button is pressed, the data in the text input fields are saved into
+    2 different variables, and the text input fields are cleared.
+    When the user clicks the other “Load” Button, print out the saved user’s name and age in a paragraph.
+    -->
+    <div class="input-field">
+        <label for="ipt-name"></label>
+        <input id="ipt-name">
+    </div>
 
-    <img src="assets/img/Magic8ball.jpg"/>
-    <p></p>
+    <div class="input-field">
+        <label for="ipt-age"></label>
+        <input id="ipt-age">
+    </div>
+    <button id="btn-save">Save</button>
+    <button id="btn-load">Load</button>
 
-    <label for="txt-question">Question:<label>
-    <input id="txt-question" type="text" placeholder="Ask me anything...">
-    <p></p>
-    <button onclick="askQuestion()">Ask the Magic 8-Ball</button>
-    <br>
-    <p id="p-answer"></p>
+    <p id="p-load"></p>
 
     <script src="assets/main.js"></script>
 </body>
