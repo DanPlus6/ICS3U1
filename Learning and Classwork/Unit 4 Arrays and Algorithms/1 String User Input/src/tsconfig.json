@@ -7,9 +7,12 @@
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "nodenext",
+    "lib": ["ESNext", "dom", "DOM.Iterable"],
+    "module": "Preserve",
     "target": "esnext",
     "types": [],
+    "allowJs": true,
+    "outDir": "dist",
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
@@ -40,5 +43,6 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
-  }
+  },
+  "include" : ["**/*"]
 }
