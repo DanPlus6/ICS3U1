@@ -12,7 +12,7 @@ import { DontEverDoThatAgain } from "./DontEverDoThatAgain.js";
 export function Epilepsy(audioSrc = "assets/audio/epilepsy.wav", audioDelay = 2000, duration = 2000, hz = 20) {
     // Do not give the user epilepsy jumpscares if one is already active
     if (globalThis.active) return;
-    // Ensure epilepsy warning is only given once
+    // Show the warning first before allowing the full effect
     if (!globalThis.epilepsyWarned) { globalThis.epilepsyWarned = true; DontEverDoThatAgain(); return; }
     // Do not give the user normal epilepsy jumpscares when giving a warning
     if (globalThis.epilepsyWarning) return;

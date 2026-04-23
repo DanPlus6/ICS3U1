@@ -164,6 +164,7 @@ function toggleGame() {
     // Ignore toggle presses while still on the selection screen
     if (charSelecting) return;
 
+    // Pause the game if it is currently running.
     // Pause game if active
     if (gameActive) {
         gameActive = false;
@@ -216,6 +217,7 @@ function resetGame() {
 function startGame() {
     gameActive = true;
     BTN_TOGGLE_CLOCK.textContent = 'Pause';
+    // Prevent duplicate refresh loops before starting a new one
     if (gameRefresher) clearInterval(gameRefresher);
     gameRefresher = setInterval(refreshGame, REFRESH_INTV);
 }
@@ -223,6 +225,7 @@ function startGame() {
 /** stop the run and show the win overlay */
 function showWinOverlay() {
     gameActive = false;
+    // Stop the active refresh loop before showing the win screen
     if (gameRefresher) clearInterval(gameRefresher);
     gameRefresher = null;
     BTN_TOGGLE_CLOCK.textContent = 'Start';
@@ -280,7 +283,7 @@ function placeEntityRandomly(entity, existingEntities) {
         entity.x = Math.floor(Math.random() * (maxX + 1));
         entity.y = Math.floor(Math.random() * (maxY + 1));
 
-        // check for overlap when spawning
+        // accept current random position only if it does not overlap an existing entity
         if (!existingEntities.some(existing => isOverlapping(entity, existing))) return;
     }
 
@@ -310,6 +313,7 @@ function spawnHardwareEntities() {
  * @param {Entity|null} entity touched hardware entity
  */
 function displayHardwareInfo(entity) {
+    // clear text display when the player is not touching any hardware.
     if (!entity) {
         LINE_1.textContent = '';
         LINE_2.textContent = '';
@@ -338,8 +342,9 @@ function handleHardwareInteractions() {
 
     displayHardwareInfo(infoTarget);
 
-    // Check if pickup hotkey is pressed
+    // only process pickup logic while the pickup key is being held.
     if (actMapper.isActive('pickupItem')) {
+        // Only count the pickup once per key press.
         if (!pickupPressed) {
             const touchedSet = new Set(touchedHardware);
 
@@ -351,6 +356,7 @@ function handleHardwareInteractions() {
             hardwareEntities = hardwareEntities.filter(entity => !touchedSet.has(entity));
             H_ITEMS_COUNTER.textContent = `Items Picked up: ${itemsPicked}/${HARDWARE_TYPES.length}`;
 
+            // end run once every required hardware part has been collected.
             if (itemsPicked === HARDWARE_TYPES.length) showWinOverlay();
         }
         pickupPressed = true;
@@ -364,6 +370,7 @@ function handleHardwareInteractions() {
 function refreshGame() {
     // Update entities and game screen
     PL.update();
+    // update player grid cell only after actual position change
     if (PL.oldX != PL.x || PL.oldY != PL.y) CV.update(PL);
     handleHardwareInteractions();
 
@@ -376,7 +383,9 @@ function refreshGame() {
     H_GAME_CLOCK.textContent = `Time: ${gameTime.toString()}s`;
 
     // Miscellaneous
+    // Trigger the barrel roll effect only when its hotkey is active.
     if (actMapper.isActive('barrelRoll')) BarrelRoll();
+    // Give the user a jumpscare if they press the key they were told not to press
     if (actMapper.isActive('epilespy')) Epilepsy();
 }
 
@@ -384,11 +393,17 @@ function refreshGame() {
 function addBaseListeners() {
     // Game toggling
     BTN_TOGGLE_CLOCK.addEventListener('click', toggleGame);
-    window.addEventListener('keydown', e=>{if(e.key == 'p' || e.key == 'P') toggleGame();});
+    window.addEventListener('keydown', e=>{
+        // Toggle the game only when the P key is pressed.
+        if(e.key == 'p' || e.key == 'P') toggleGame();
+    });
 
     // Game resetting
     BTN_RESET_CLOCK.addEventListener('click', restartGame);
-    window.addEventListener('keydown', e=>{if(e.key == 'r' || e.key == 'R') restartGame();});
+    window.addEventListener('keydown', e=>{
+        // Restart the game only when the R key is pressed.
+        if(e.key == 'r' || e.key == 'R') restartGame();
+    });
 }
 
 // ++++++++++++++++++++ Initialization +++++++++++++++++++++

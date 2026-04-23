@@ -38,7 +38,7 @@ export class CharacterSelect {
 
     /** hide the character selection overlay */
     hide() {
-        // Remove overlay if exists
+        // only remove the overlay when one is currently displayed
         if (this.overlay) {
             this.overlay.remove();
             this.overlay = null;
@@ -84,6 +84,7 @@ export class CharacterSelect {
 
     /** Idempotent/repeatable method to injects CSS once into <head> */
     #injectStyles() {
+        // Skip reinjecting the stylesheet if it was already added earlier.
         if (document.getElementById('char-select-styles')) return;
 
         const style = document.createElement('style');

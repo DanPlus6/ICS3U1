@@ -20,6 +20,7 @@ export class SpatialGrid {
 	add(entity) {
 		const cellKey = this.getCellKey(entity.x, entity.y);
 		// Initialize a cell grid for entity's position if it doesn't exist
+		// Create the cell bucket before pushing into it.
 		if (!this.grid.has(cellKey)) this.grid.set(cellKey, []);
 		this.grid.get(cellKey).push(entity);
 	}
@@ -32,10 +33,10 @@ export class SpatialGrid {
 		const cellKey = this.getCellKey(entity.x, entity.y);
 		const cell = this.grid.get(cellKey);
 
-		// Check if cell exists
+		// Only search for the entity when the cell is present
 		if (cell) {
 			const index = cell.indexOf(entity);
-			// If requested entity to remove is found, remove it
+			// Remove the entity only if it is actually in the cell
 			if (index !== -1) cell.splice(index,1);
 		}
 	}
@@ -48,7 +49,7 @@ export class SpatialGrid {
 		const oldKey = this.getCellKey(entity.oldX, entity.oldY);
 		const newKey = this.getCellKey(entity.x,entity.y);
 
-		// If entity has moved to new position, move it in the spatial grid
+		// update grid only when the entity changed cells
 		if (oldKey !== newKey) {
 			this.remove({x: entity.oldX, y: entity.oldY, ...entity});
 			this.add(entity);
@@ -70,7 +71,7 @@ export class SpatialGrid {
 					entity.x + dx * this.cellSize,
 					entity.y + dy * this.cellSize
 				);
-				// If adjacent cell exists, insert its entities to a result array
+				// only append neighbors from cells that exist
 				if (this.grid.has(neighborKey)) nearby.push(...this.grid.get(neighborKey));
 			}
 		}

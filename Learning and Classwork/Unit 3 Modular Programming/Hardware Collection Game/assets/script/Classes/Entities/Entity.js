@@ -15,7 +15,7 @@ export class Entity {
         this.sprite = new Image();
         this.sprite.src = path;
 
-        // Hardcoded dimensions of gamer's gpu entity dimensions (for meme emphasis)
+        // hardcoded oversized meme dimensions only for the gamer's GPU sprite 🤡
         if (path == 'assets/img/Entities/gamer/gpu.png') {
             this.w = 312;
             this.h = 312;

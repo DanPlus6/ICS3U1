@@ -33,6 +33,7 @@ export class Player extends MovingEntity {
             this.oldY = this.y;
 
             let new_y = this.y - this.kp;
+            // Move up normally only if the player stays inside the canvas.
             if (new_y >= 0) this.y = new_y;
             else this.y = 0;
         }
@@ -41,6 +42,7 @@ export class Player extends MovingEntity {
             this.oldY = this.y;
 
             let new_y = this.y + this.kp;
+            // Move down normally only if the player stays inside the canvas.
             if (new_y + this.h <= globalThis.CV_HEIGHT) this.y = new_y;
             else this.y = globalThis.CV_HEIGHT - this.h;
         }
@@ -49,6 +51,7 @@ export class Player extends MovingEntity {
             this.oldX = this.x;
 
             let new_x = this.x - this.kp;
+            // Move left normally only if the player stays inside the canvas.
             if (new_x >= 0) this.x = new_x;
             else this.x = 0;
         }
@@ -57,6 +60,7 @@ export class Player extends MovingEntity {
             this.oldX = this.x;
 
             let new_x = this.x + this.kp;
+            // Move right normally only if the player stays inside the canvas.
             if (new_x + this.w <= globalThis.CV_WIDTH) this.x = new_x;
             else this.x = globalThis.CV_WIDTH - this.w;
         }
