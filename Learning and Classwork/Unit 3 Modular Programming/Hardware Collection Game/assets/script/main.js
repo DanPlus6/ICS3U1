@@ -115,12 +115,8 @@ let hardwareEntities;
 let pickupPressed;
 /** floating hint element created in script */
 let controlsHintEl;
-/** list of control hints to rotate through when the player is stuck */
-const CONTROL_HINTS = [
-    'Hint: Use W A S D or the arrow keys to move around.',
-    'Hint: Walk into a hardware part to read information about it.',
-    'Hint: Press Space while touching a hardware part to pick it up.'
-];
+/** single control hint shown when the player is stuck */
+const CONTROL_HINT = 'Hint: Use W A S D or the arrow keys to move, walk into hardware to inspect it, then press Space to pick it up.';
 // html targets
 const LINE_1 = document.getElementById('text-ln1');
 const LINE_2 = document.getElementById('text-ln2');
@@ -412,8 +408,7 @@ function handleControlsHints() {
         return;
     }
 
-    const hintIndex = Math.min(Math.floor((gameTime - 6) / 6), CONTROL_HINTS.length - 1);
-    showControlsHint(CONTROL_HINTS[hintIndex]);
+    showControlsHint(CONTROL_HINT);
 }
 
 /** refresh game, ran on each frame */
