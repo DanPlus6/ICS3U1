@@ -113,6 +113,14 @@ let itemsPicked;
 let hardwareEntities;
 /** prevent held space from re-picking items every frame */
 let pickupPressed;
+/** floating hint element created in script */
+let controlsHintEl;
+/** list of control hints to rotate through when the player is stuck */
+const CONTROL_HINTS = [
+    'Hint: Use W A S D or the arrow keys to move around.',
+    'Hint: Walk into a hardware part to read information about it.',
+    'Hint: Press Space while touching a hardware part to pick it up.'
+];
 // html targets
 const LINE_1 = document.getElementById('text-ln1');
 const LINE_2 = document.getElementById('text-ln2');
@@ -156,6 +164,28 @@ globalThis.givingEpilepsy = false;
 globalThis.epilepsyWarning = false;
 /** whether the user has been warned */
 globalThis.epilepsyWarned = false;
+
+/** create the floating hint element once without relying on pre-existing HTML */
+function ensureControlsHint() {
+    if (controlsHintEl) return;
+
+    controlsHintEl = document.createElement('div');
+    controlsHintEl.className = 'controls-hint hidden';
+    document.body.appendChild(controlsHintEl);
+}
+
+/** show a hint message in the floating hint element */
+function showControlsHint(message) {
+    ensureControlsHint();
+    controlsHintEl.textContent = message;
+    controlsHintEl.classList.remove('hidden');
+}
+
+/** hide the floating hint element */
+function hideControlsHint() {
+    ensureControlsHint();
+    controlsHintEl.classList.add('hidden');
+}
 
 
 // ++++++++++++++++++++++ Game Essentials +++++++++++++++++++++++
@@ -211,6 +241,7 @@ function resetGame() {
     P_WIN_MESSAGE.textContent = '';
     IMG_WIN_COMPUTER.removeAttribute('src');
     DIV_WIN_OVERLAY.classList.add('hidden');
+    hideControlsHint();
 }
 
 /** start a fresh active run after the player has been built */
@@ -355,6 +386,7 @@ function handleHardwareInteractions() {
 
             hardwareEntities = hardwareEntities.filter(entity => !touchedSet.has(entity));
             H_ITEMS_COUNTER.textContent = `Items Picked up: ${itemsPicked}/${HARDWARE_TYPES.length}`;
+            hideControlsHint();
 
             // end run once every required hardware part has been collected.
             if (itemsPicked === HARDWARE_TYPES.length) showWinOverlay();
@@ -364,6 +396,22 @@ function handleHardwareInteractions() {
     else {
         pickupPressed = false;
     }
+}
+
+/** show control hints only if the player still has not made progress after waiting */
+function handleControlsHints() {
+    if (!gameActive || charSelecting || itemsPicked > 0) {
+        hideControlsHint();
+        return;
+    }
+
+    if (gameTime < 6) {
+        hideControlsHint();
+        return;
+    }
+
+    const hintIndex = Math.min(Math.floor((gameTime - 6) / 6), CONTROL_HINTS.length - 1);
+    showControlsHint(CONTROL_HINTS[hintIndex]);
 }
 
 /** refresh game, ran on each frame */
@@ -387,6 +435,7 @@ function refreshGame() {
     if (actMapper.isActive('barrelRoll')) BarrelRoll();
     // Give the user a jumpscare if they press the key they were told not to press
     if (actMapper.isActive('epilespy')) Epilepsy();
+    handleControlsHints();
 }
 
 /** attaches base event listeners that persist between game resets */
@@ -409,6 +458,7 @@ function addBaseListeners() {
 // ++++++++++++++++++++ Initialization +++++++++++++++++++++
 /** page onload callback */
 function init() {
+    ensureControlsHint();
     addBaseListeners();
     restartGame();
 }

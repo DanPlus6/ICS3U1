@@ -186,6 +186,24 @@ body {
     display: none;
 }
 
+.controls-hint {
+    position: fixed;
+    left: 50%;
+    bottom: 28px;
+    transform: translateX(-50%);
+    max-width: 520px;
+    padding: 12px 18px;
+    border: 2px solid rgba(255, 255, 255, 0.28);
+    border-radius: 12px;
+    background: rgba(15, 15, 15, 0.92);
+    color: white;
+    text-align: center;
+    line-height: 1.4;
+    z-index: 5;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.38);
+    pointer-events: none;
+}
+
 /* Game text display area */
 .game-text-display {
     width: 1200px;
