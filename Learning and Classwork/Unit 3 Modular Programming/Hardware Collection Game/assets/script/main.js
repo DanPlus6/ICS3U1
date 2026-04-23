@@ -105,6 +105,7 @@ const BANK = {
     'motherboard' : 'You have picked up the motherboard. The motherboard is the main circuit board that connects all the computer parts together so they can communicate.',
     'mouse' : 'You have picked up the mouse. A mouse is an input device used to move the pointer, click on items, and interact with programs on the computer.'
 }
+/** track how many items the user has picked up so far */
 let itemsPicked;
 
 // ---------- Game Essentials -----------
