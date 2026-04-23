@@ -134,11 +134,10 @@ function restartGame() {
     const charSelect = new CharacterSelect(CHARACTERS, (chosen) => {
         userType = chosen;
         build();
+        charSelecting = false;
     });
 
     charSelect.show();
-
-    charSelecting = false;
 }
 
 /** refresh game, ran on each frame */
