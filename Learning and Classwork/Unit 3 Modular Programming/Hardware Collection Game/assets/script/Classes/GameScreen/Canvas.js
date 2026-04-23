@@ -60,9 +60,10 @@ export class Canvas {
     /** draws provided entities onto screen */
     clearAndDraw() {
         this.clearCanvas();
-        for (const v of this.spatGrid.grid.values()) {
-            const e = v[0];
-            this.BRUSH.drawImage(e.sprite, e.x, e.y, e.w, e.h);
+        for (const cell of this.spatGrid.grid.values()) {
+            for (const entity of cell) {
+                this.BRUSH.drawImage(entity.sprite, entity.x, entity.y, entity.w, entity.h);
+            }
         }
     }
 }
