@@ -21,9 +21,9 @@ button {
     margin: 5px;
 }
 
-.output-field {
-    display: none;
+#output-field {
+    display: block;
     max-width: 300px;
     max-height: 20px;
-    border: 0p white;
+    border: 1px white;
 }
