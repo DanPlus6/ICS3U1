@@ -20,12 +20,12 @@ function save() {
 
         IPT_NAME.value = '';
         IPT_AGE.value = '';
-    } else alert("You must fill in both input fields to save!")
+    } else alert("You must fill in both input fields to save!");
 }
 
 function load() {
-    if (IPT_NAME && IPT_AGE) P_LOAD.textContent = `Your name is ${name} and you're ${age} years old.`
-    else alert("You must save first before loading.")
+    if (IPT_NAME && IPT_AGE) P_LOAD.textContent = `Your name is ${name} and you're ${age} years old.`;
+    else alert("You must save first before loading.");
 }
 
 
