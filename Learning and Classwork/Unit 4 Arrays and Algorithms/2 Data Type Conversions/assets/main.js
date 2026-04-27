@@ -20,7 +20,8 @@ function roundp(num, places=2) {
  * Takes the value of the number 1 and number 2 input boxes and adds them
  */
 function add() {
-    if (!IPT_NUM1.value || !IPT_NUM2.value) { alert("Input must not be empty!"); return; }
+    // Check for invalid number input
     if (isNaN(IPT_NUM1.value) || isNaN(IPT_NUM2.value)) { alert("Invalid input! Inputs must be proper numbers!"); return; }
+
     P_ANS.textContent = roundp((+IPT_NUM1.value) + (+IPT_NUM2.value));
 }
