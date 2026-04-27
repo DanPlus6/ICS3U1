@@ -18,7 +18,7 @@
         
         <button onclick="add()">=</button>
 
-        <p id="p-answers"></p>
+        <p id="p-calc-ans"></p>
     </div>
 
     <div class="guess-number">
@@ -26,10 +26,24 @@
 
         <input type="number" id="ipt-num-g" placeholder="Guess the number...">
         
-        <button onclick="guess()"></button>
+        <button onclick="guess()">Guess</button>
 
-        <p id="guess-res"></p>
+        <p id="p-guess-res"></p>
     </div>
+
+    <div class="calc-hyp">
+        <h1>Hypotenuse Calculator</h1>
+
+        <input type="number" id="ipt-num-a" placeholder="0">
+        +
+        <input type="number" id="ipt-num-b" placeholder="0">
+
+        <button onclick="calcHyp()">=</button>
+
+        <p id="p-hypcalc-ans"></p>
+    </div>
+
+    
 
     <script src="assets/main.js"></script>
 </body>
