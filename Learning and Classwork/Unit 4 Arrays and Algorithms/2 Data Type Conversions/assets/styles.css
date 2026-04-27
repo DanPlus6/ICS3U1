@@ -6,7 +6,7 @@ body {
     height: 100vh;
 }
 
-#p-answers {
+p {
     display: inline;
     padding-left: 10px;
 }
