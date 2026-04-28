@@ -46,7 +46,20 @@
     <div class="rolling-calc">
         <h1>"Rolling" Calculator</h1>
 
-        <input type="number" id="ipt-num-r">
+        <p id="p-rollcalc-ans">0</p>
+
+        <input type="text" id="ipt-num-r" placeholder="Enter one number">
+
+        <div>
+            <button onclick="rollingCalc('add')">+</button>
+            <button onclick="rollingCalc('subtract')">-</button>
+            <button onclick="rollingCalc('multiply')">x</button>
+            <button onclick="rollingCalc('divide')">/</button>
+            <button onclick="rollingCalc('power')">^</button>
+            <button onclick="clearRollingCalc()">Clear</button>
+        </div>
+
+        <p id="p-rollcalc-msg"></p>
     </div>
 
     <script src="assets/main.js"></script>
