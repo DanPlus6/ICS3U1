@@ -9,10 +9,20 @@ const IMG_PATHS = [
     'lor-floor-of-philosophy.jpeg', 'lor-floor-of-religion.png', 'lor-floor-of-social-science.jpg', 'lor-librarytree.png',
     'lor-palelibrarian.png', 'lor-rolandAndAngelaNoLogo.jpg', 'lor-rolandAndAngelaWithLogo.jpg', 'lor-seedoflight.png', 'lor.jpg'
 ];
-let cur_idx = 0;
+/** index of current image in file paths array */
+let cur_idx = Math.floor(IMG_PATHS.length/2);
+IMG_CUR.src = "assets/img/" + IMG_PATHS[cur_idx];
 
 /** switch the image slideshow "windows spotlight" to the next image */
 function nextPicture() {
-    cur_idx = (cur_idx+1)%IMG_PATHS.length;
+    cur_idx++;
+    if (cur_idx >= IMG_PATHS.length) cur_idx = IMG_PATHS.length-1;
+    IMG_CUR.src = "assets/img/" + IMG_PATHS[cur_idx];
+}
+
+/** switch the image slideshow to the previous image */
+function prevPicture() {
+    cur_idx--;
+    if (cur_idx < 0) cur_idx = 0;
     IMG_CUR.src = "assets/img/" + IMG_PATHS[cur_idx];
 }
