@@ -13,6 +13,11 @@ const P_GUESS_RES = document.getElementById('p-guess-res');
 const IPT_NUMA = document.getElementById('ipt-num-a');
 const IPT_NUMB = document.getElementById('ipt-num-b');
 const P_HYPCALC_ANS = document.getElementById('p-hypcalc-ans');
+// Rolling calculator
+const IPT_NUM_R = document.getElementById('ipt-num-r');
+const P_ROLLCALC_ANS = document.getElementById('p-rollcalc-ans');
+const P_ROLLCALC_MSG = document.getElementById('p-rollcalc-msg');
+let rollTotal = 0;
 
 // Calculator
 /**
@@ -78,6 +83,57 @@ function calcHyp() {
     P_HYPCALC_ANS.textContent = roundp(Math.sqrt(a*a + b*b));
 }
 
+// Rolling calculator
+/**
+ * Validate and convert the rolling calculator input value
+ * @returns {number | null}
+ */
+function getRollingInput() {
+    let value = IPT_NUM_R.value.trim();
+
+    if (!value || isNaN(value)) {
+        P_ROLLCALC_MSG.textContent = 'Error: enter a valid number.';
+        return null;
+    }
+
+    P_ROLLCALC_MSG.textContent = '';
+    return +value;
+}
+
+/**
+ * Apply an operation to the rolling total using the current textbox value
+ * @param {'add' | 'subtract' | 'multiply' | 'divide' | 'power'} operation
+ */
+function rollingCalc(operation) {
+    let input = getRollingInput();
+    if (input === null) return;
+
+    if (operation === 'add') rollTotal += input;
+    else if (operation === 'subtract') rollTotal -= input;
+    else if (operation === 'multiply') rollTotal *= input;
+    else if (operation === 'divide') {
+        if (input === 0) {
+            P_ROLLCALC_MSG.textContent = 'Error: cannot divide by 0.';
+            return;
+        }
+        rollTotal /= input;
+    }
+    else if (operation === 'power') rollTotal **= input;
+
+    rollTotal = roundp(rollTotal);
+    P_ROLLCALC_ANS.textContent = rollTotal;
+    IPT_NUM_R.value = '';
+    P_ROLLCALC_MSG.textContent = '';
+}
+
+/** Reset the rolling calculator */
+function clearRollingCalc() {
+    rollTotal = 0;
+    P_ROLLCALC_ANS.textContent = rollTotal;
+    IPT_NUM_R.value = '';
+    P_ROLLCALC_MSG.textContent = '';
+}
+
 
 // Add base event listeners upon page load
 // calculator
@@ -85,4 +141,5 @@ IPT_NUM1.addEventListener('keydown', e => {if (e.key == 'Enter') add();});
 IPT_NUM2.addEventListener('keydown', e => {if (e.key == 'Enter') add();});
 // number guessing game
 IPT_GUESS.addEventListener('keydown', e => {if (e.key == 'Enter') guess();});
-
+// rolling calculator
+IPT_NUM_R.addEventListener('keydown', e => {if (e.key == 'Enter') rollingCalc('add');});
