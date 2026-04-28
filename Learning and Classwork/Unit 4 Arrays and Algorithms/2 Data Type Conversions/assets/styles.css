@@ -14,3 +14,7 @@ p {
 div {
     margin-bottom: 75px;
 }
+
+.rolling-calc p {
+    display: block;
+}
