@@ -29,6 +29,8 @@ function roundp(num, places=2) {
  * Takes the value of the number 1 and number 2 input boxes and adds them
  */
 function add() {
+    P_CALC_ANS.textContent = '';
+
     // Check for invalid number input
     if (isNaN(IPT_NUM1.value) || isNaN(IPT_NUM2.value)) { alert("Invalid input! Inputs must be proper numbers!"); return; }
 
@@ -51,6 +53,8 @@ function rng(lower_bound=1, upper_bound=100) {
 
 /** Check if the user successfully guesses the target number */
 function guess() {
+    P_GUESS_RES.textContent = "";
+
     // validate guessing input
     if (isNaN(IPT_GUESS.value)) { alert("Invalid guess, must be a proper number!"); return; }
     
@@ -63,6 +67,8 @@ function guess() {
 // Hypotenuse calculator
 /** calculate hypotenuse of a triangle given input for side lengths of a and b */
 function calcHyp() {
+    P_HYPCALC_ANS.textContent = "";
+
     // check for empty input
     if (!IPT_NUMA.value || !IPT_NUMB.value) { alert("Invalid input! Inputs must not be empty!"); return; }
     // validate number input
