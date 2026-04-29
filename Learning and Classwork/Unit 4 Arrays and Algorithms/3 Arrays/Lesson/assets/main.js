@@ -16,13 +16,13 @@ IMG_CUR.src = "assets/img/" + IMG_PATHS[cur_idx];
 /** switch the image slideshow "windows spotlight" to the next image */
 function nextPicture() {
     cur_idx++;
-    if (cur_idx >= IMG_PATHS.length) cur_idx = IMG_PATHS.length-1;
+    cur_idx %= IMG_PATHS.length;
     IMG_CUR.src = "assets/img/" + IMG_PATHS[cur_idx];
 }
 
 /** switch the image slideshow to the previous image */
 function prevPicture() {
     cur_idx--;
-    if (cur_idx < 0) cur_idx = 0;
+    cur_idx = ((cur_idx % IMG_PATHS.length) + IMG_PATHS.length) % IMG_PATHS.length;
     IMG_CUR.src = "assets/img/" + IMG_PATHS[cur_idx];
 }
