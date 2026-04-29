@@ -5,7 +5,7 @@ const IMG_CUR = document.getElementById('img-current');
 
 // "Windows spotlight"
 const IMG_PATHS = [
-    
+    'minecraft.webp', 'library-of-ruina.jpeg', 'lobotomy-corporation.jpg', 'limbus-company.jpg', 'project-creedbreaker.webp'
 ];
 /** index of current image in file paths array */
 let cur_idx = Math.floor(IMG_PATHS.length/2);
