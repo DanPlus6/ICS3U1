@@ -8,14 +8,13 @@ const IPT_RAND_QUANT = document.getElementById('ipt-random-quantity');
 function count1To10() {
     P_ANS.innerHTML = '';
 
-    for (let i = 1; i <= 10; i++) {
-        P_ANS.innerHTML += (i + '\n');
-    }
+    for (let i = 1; i <= 10; i++) P_ANS.innerHTML += (i + '\n');
 }
 
 /** count in the interval [50,1] in the terminal */
 function count50To1() {
-    for (let i = 50; i >= 1; i--) console.log(i);
+    P_ANS.innerHTML = '';
+    for (let i = 50; i >= 1; i--) P_ANS.innerHTML.log(i);
 }
 
 /**  */
