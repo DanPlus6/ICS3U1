@@ -4,7 +4,7 @@
 const P_ANS = document.getElementById('p-answer');
 const IPT_RAND_QUANT = document.getElementById('ipt-random-quantity');
 
-/** count from 1 to 10 */
+/** count from 1 to 10 and print the numbers in a paragraph */
 function count1To10() {
     P_ANS.innerHTML = '';
 
@@ -12,7 +12,7 @@ function count1To10() {
     for (let i = 1; i <= 10; i++) P_ANS.innerHTML += (i + '\n');
 }
 
-/** count from 50 to 1 in a paragraph */
+/** count from 50 to 1 and print the numbers in a paragraph */
 function count50To1() {
     P_ANS.innerHTML = '';
 
@@ -20,9 +20,15 @@ function count50To1() {
     for (let i = 50; i >= 1; i--) P_ANS.innerHTML += (i + '\n');
 }
 
-/** sums up numbers to a million */
+/** sums up numbers from 1 to a million and prints in P_ANSWER */
 function sumToAMillion() {
+    P_ANS.innerHTML = '';
+    let res = 0;
 
+    // adds up numbers from 1 to 1 million
+    for (let i = 1; i <= 1_000_000; i++) res += i;
+
+    P_ANS.innerHTML = res;
 }
 
 /**
