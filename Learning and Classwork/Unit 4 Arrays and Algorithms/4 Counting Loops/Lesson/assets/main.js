@@ -6,9 +6,10 @@ const IPT_RAND_QUANT = document.getElementById('ipt-random-quantity');
 
 /** count from 1 to 10 */
 function count1to10() {
-    P_ANS.textContent = '';
+    P_ANS.innerHTML = '';
+
     for (let i = 1; i <= 10; i++) {
-        P_ANS.textContent += `${i} `;
+        P_ANS.innerHTML += (i + '\n');
     }
 }
 
@@ -29,3 +30,4 @@ function sumToAMillion() {
 function makeRandomNumbers(quantity) {
 
 }
+
