@@ -5,7 +5,7 @@ const P_ANS = document.getElementById('p-answer');
 const IPT_RAND_QUANT = document.getElementById('ipt-random-quantity');
 
 /** count from 1 to 10 */
-function count1to10() {
+function count1To10() {
     P_ANS.innerHTML = '';
 
     for (let i = 1; i <= 10; i++) {
