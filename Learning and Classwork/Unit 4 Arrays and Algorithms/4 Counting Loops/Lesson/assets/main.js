@@ -14,7 +14,7 @@ function count1To10() {
 /** count in the interval [50,1] in the terminal */
 function count50To1() {
     P_ANS.innerHTML = '';
-    for (let i = 50; i >= 1; i--) P_ANS.innerHTML.log(i);
+    for (let i = 50; i >= 1; i--) P_ANS.innerHTML += (i + '\n');
 }
 
 /**  */
