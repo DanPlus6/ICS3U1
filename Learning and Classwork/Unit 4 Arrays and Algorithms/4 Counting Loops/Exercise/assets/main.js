@@ -18,10 +18,15 @@ function randint(min=1,max=100) {
     return Math.floor(Math.random() * (max-min+1)) + min;
 }
 
-/** main callback to generate addition questions and answers based on user input */
+/** main callback to generate addition questions and answers based on user input and print them inside P_QUESTIONS and P_ANS respectively */
 function makeAdditionQuestions() {
-    for (let i = 0; i < Number(IPT_NUM_QUES.value); i++) {
-        
+    // generate random addition questions and their answers and print them in the paragraph elements
+    for (let i = 1; i <= Number(IPT_NUM_QUES.value); i++) {
+        let r1 = randint(), r2 = randint();
+        let ans = r1+r2;
+
+        P_QUESTIONS.innerHTML += `Q${i}: ${r1} + ${r2} = \n`;
+        P_ANS.innerHTML += `Q${i}: ${r1} + ${r2} = ${ans}\n`;
     }
 }
 
