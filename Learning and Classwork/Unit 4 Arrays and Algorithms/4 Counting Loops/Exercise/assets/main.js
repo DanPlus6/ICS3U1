@@ -20,6 +20,9 @@ function randint(min=1,max=100) {
 
 /** main callback to generate addition questions and answers based on user input and print them inside P_QUESTIONS and P_ANS respectively */
 function makeAdditionQuestions() {
+    P_QUESTIONS.innerHTML = '';
+    P_ANS.innerHTML = '';
+
     // generate random addition questions and their answers and print them in the paragraph elements
     for (let i = 1; i <= Number(IPT_NUM_QUES.value); i++) {
         let r1 = randint(), r2 = randint();
