@@ -23,4 +23,12 @@ function printArray(arr) {
     for (const e of arr) console.log(e);
 }
 
+/**
+ * tests the printArray function by printing both stringArray and numbersArray to the console
+ */
+function printArrayTest() {
+    printArray(stringArray);
+    printArray(numbersArray);
+}
+
 
