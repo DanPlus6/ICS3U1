@@ -3,8 +3,9 @@
 // HTML targets
 const P_DISPLAY1 = document.getElementById('p-display1');
 const P_DISPLAY2 = document.getElementById('p-display2');
+const TXT_IPT = document.getElementById('txt-input');
 
-// arrays to be used in the algorithms
+// arrays to be used as test data for the algorithms
 const stringArray = [
     'noodles', 'dumplings',
     'pizza', 'burger',
@@ -59,4 +60,15 @@ function countOccurences(arr, val) {
 function printArrayTest() {
     P_DISPLAY1.innerHTML = printArray(stringArray);
     P_DISPLAY2.innerHTML = printArray(numbersArray);
+}
+
+/**
+ * test the countOccurences function by counting number of occurences of input value inside of the string or number array
+ */
+function countOccurencesTest() {
+    // check if input value is a number of string to determine whether to check occurences inside numbers or strings array
+    if (isNaN(TXT_IPT.value)) 
+        P_DISPLAY1.textContent = `Input value occurs ${countOccurences(stringArray,TXT_IPT.value)} times in the strings array.`;
+    else
+        P_DISPLAY2.textContent = `Input value occurs ${countOccurences(numbersArray,TXT_IPT.value)} times in the number array.`;
 }
