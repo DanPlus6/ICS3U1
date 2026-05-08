@@ -55,9 +55,20 @@ function countOccurences(arr, val) {
 
 // Test button callbacks
 /**
+ * callback to clear all output and input fields
+ */
+function clear() {
+    P_DISPLAY1.innerHTML = '';
+    P_DISPLAY2.innerHTML = '';
+    TXT_IPT.innerHTML = '';
+}
+
+/**
  * test the printArray function by printing both stringArray and numbersArray to the console
  */
 function printArrayTest() {
+    clear();
+    
     P_DISPLAY1.innerHTML = printArray(stringArray);
     P_DISPLAY2.innerHTML = printArray(numbersArray);
 }
@@ -66,8 +77,13 @@ function printArrayTest() {
  * test the countOccurences function by counting number of occurences of input value inside of the string or number array
  */
 function countOccurencesTest() {
+    /** temporary variable to track input field's value */
+    let ipt = TXT_IPT.value;
+    
+    clear();
+
     // check if input value is a number of string to determine whether to check occurences inside numbers or strings array
-    if (isNaN(TXT_IPT.value)) 
+    if (isNaN(ipt)) 
         P_DISPLAY1.textContent = `Input value occurs ${countOccurences(stringArray,TXT_IPT.value)} times in the strings array.`;
     else
         P_DISPLAY2.textContent = `Input value occurs ${countOccurences(numbersArray,TXT_IPT.value)} times in the number array.`;
