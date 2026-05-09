@@ -70,6 +70,21 @@ function findMaximum(arr) {
     return curMax;
 }
 
+/**
+ * Find the index of the first occurence of a value in an array
+ * @param {Array} arr the array to search in
+ * @param {*} val the value to search for
+ * @returns index of the search value if it is found, else -1
+ */
+function searchArray(arr, val) {
+    // iterate through array to search for value
+    for (let i = 0; i < arr.length; i++) {
+        // check if current element is equal to search value
+        if (arr[i] == val) return i;
+    }
+    return -1;
+}
+
 
 // Test button callbacks
 /**
@@ -104,7 +119,7 @@ function countOccurencesTest() {
     if (isNaN(ipt)) 
         P_DISPLAY1.textContent = `Input value occurs ${countOccurences(stringArray,TXT_IPT.value)} times in the strings array.`;
     else
-        P_DISPLAY2.textContent = `Input value occurs ${countOccurences(numbersArray,TXT_IPT.value)} times in the number array.`;
+        P_DISPLAY2.textContent = `Input value occurs ${countOccurences(numbersArray,+TXT_IPT.value)} times in the number array.`;
 }
 
 /** test the findMaximum function by finding max element in the */
@@ -112,4 +127,21 @@ function findMaximumTest() {
     clear();
 
     P_DISPLAY1.innerHTML = findMaximum(numbersArray);
+}
+
+/** test the searchArray function by search for an input value inside of the string or numbers array */
+function searchArrayTest() {
+    /** temporary variable to track input field's value */
+    let ipt = TXT_IPT.value;
+    
+    clear();
+
+    // check if input value is a number of string to determine whether to search for input value inside numbers or strings array
+    if (isNaN(ipt)) {
+        let res = searchArray(stringArray,ipt);
+        P_DISPLAY1.textContent = (res != -1 ? `Input value is first found at index ${res} in the strings array.` : 'Input value was not found in the strings array.');
+    } else {
+        let res = searchArray(numbersArray,+ipt);
+        P_DISPLAY2.textContent = (res != -1 ? `Input value is first found at index ${res} in the numbers array.` : 'Input value was not found in the numbers array.');
+    }
 }
