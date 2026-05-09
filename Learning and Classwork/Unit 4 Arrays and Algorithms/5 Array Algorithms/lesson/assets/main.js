@@ -52,6 +52,24 @@ function countOccurences(arr, val) {
     return count;
 }
 
+/**
+ * Finds the maximum element in a number array
+ * @param {number[]} arr an array of real numbers
+ * @returns the greatest element in given array 
+ */
+function findMaximum(arr) {
+    /** value to store the running max as we iterate */
+    let curMax = arr[0];
+
+    // iterate through all elements of the number array
+    for (let i = 0; i < arr.length; i++) {
+        // replace running max with current element if current element is greater
+        curMax = (arr[i] > curMax ? arr[i] : curMax);
+    }
+
+    return curMax;
+}
+
 
 // Test button callbacks
 /**
@@ -68,7 +86,7 @@ function clear() {
  */
 function printArrayTest() {
     clear();
-    
+
     P_DISPLAY1.innerHTML = printArray(stringArray);
     P_DISPLAY2.innerHTML = printArray(numbersArray);
 }
@@ -87,4 +105,11 @@ function countOccurencesTest() {
         P_DISPLAY1.textContent = `Input value occurs ${countOccurences(stringArray,TXT_IPT.value)} times in the strings array.`;
     else
         P_DISPLAY2.textContent = `Input value occurs ${countOccurences(numbersArray,TXT_IPT.value)} times in the number array.`;
+}
+
+/** test the findMaximum function by finding max element in the */
+function findMaximumTest() {
+    clear();
+
+    P_DISPLAY1.innerHTML = findMaximum(numbersArray);
 }
