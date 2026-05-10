@@ -85,6 +85,28 @@ function searchArray(arr, val) {
     return -1;
 }
 
+/**
+ * Finds the second maximum element in a number array
+ * @param {number[]} arr an array of real numbers
+ * @returns the second greatest element in given array
+ */
+function findSecondBiggest(arr) {
+    if (arr[0] > arr[1]) {
+        let fMax = arr[0];
+        let sMax = arr[1];
+    } else {
+        let fMax = arr[1];
+        let sMax = arr[0];
+    }
+        
+    for (let i = 2; i < arr.length; i++) {
+        if (arr[i] > fMax) fMax = arr[i];
+        else if (arr[i] > sMax) sMax = arr[i];
+    }
+
+    return sMax;
+}
+
 
 // Test button callbacks
 /**
@@ -122,7 +144,7 @@ function countOccurencesTest() {
         P_DISPLAY2.textContent = `Input value occurs ${countOccurences(numbersArray,+TXT_IPT.value)} times in the number array.`;
 }
 
-/** test the findMaximum function by finding max element in the */
+/** test the findMaximum function by finding max element in the numbers array */
 function findMaximumTest() {
     clear();
 
@@ -144,4 +166,11 @@ function searchArrayTest() {
         let res = searchArray(numbersArray,+ipt);
         P_DISPLAY2.textContent = (res != -1 ? `Input value is first found at index ${res} in the numbers array.` : 'Input value was not found in the numbers array.');
     }
+}
+
+/** test the findSecondBiggest function by finding second max element in the numbers array */
+function findSecondBiggestTest() {
+    clear();
+
+    P_DISPLAY1.innerHTML = findSecondBiggest(numbersArray);
 }
