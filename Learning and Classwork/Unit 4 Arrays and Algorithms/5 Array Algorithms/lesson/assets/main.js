@@ -107,6 +107,21 @@ function findSecondBiggest(arr) {
     return sMax;
 }
 
+/**
+ * Finds the index of the maximum element in a number array
+ * @param {number[]} arr an array of real numbers
+ * @returns the index of the greatest element
+ */
+function findIndexOfMaximum(arr) {
+    let curMax = arr[0], i = 0;
+    for (; i < arr.length; i++) {
+        if (arr[i] > curMax) {
+            curMax = arr[i];
+        }
+    }
+    return i;
+}
+
 
 // Test button callbacks
 /**
@@ -173,4 +188,11 @@ function findSecondBiggestTest() {
     clear();
 
     P_DISPLAY1.innerHTML = findSecondBiggest(numbersArray);
+}
+
+/** test the findIndexOfMaximum function by getting index of maximum element in numbers array */
+function findIndexOfMaximumTest() {
+    clear();
+
+    P_DISPLAY1.innerHTML = findIndexOfMaximum(numbersArray);
 }
