@@ -137,6 +137,24 @@ function findIndexOfMinimum(arr) {
     return i;
 }
 
+/**
+ * "Prints" out all the elements in a (number) array between (inclusive) the lower and upper bounds provided
+ * @param {number[]} arr input number array
+ * @param {number} low lower bound
+ * @param {number} high upper bound
+ * @returns {string} a string buffer containing all elements within bounds separated by a linebreak character
+ */
+function printElementsInRange(arr, low, high) {
+    let res = "";
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] > low && arr[i] < high) {
+            res += arr[i] + '<br>';
+        }
+    }
+    
+    return res;
+}
+
 
 // Test button callbacks
 /**
@@ -217,4 +235,11 @@ function findIndexOfMaximumTest() {
     clear();
 
     P_DISPLAY1.innerHTML = findIndexOfMinimum(numbersArray);
+}
+
+/** test the printElementsInRange function by printing all elements in numbers array in the interval [60,80] */
+function printElementsInRangeTest() {
+    clear();
+
+    P_DISPLAY1.innerHTML = printElementsInRange(numbersArray, 60, 80);
 }
