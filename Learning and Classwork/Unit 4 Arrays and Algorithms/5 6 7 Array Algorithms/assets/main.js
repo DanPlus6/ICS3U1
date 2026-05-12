@@ -38,16 +38,17 @@ function printArray(arr) {
  * Count the number of occurences of a value in an array
  * @param {Array} arr the array to search in
  * @param {*} val the value to search for
+ * @param {number} start the index to start searching at
  * @returns {number} the number of occurences of search value in the array
  */
-function countOccurences(arr, val) {
+function countOccurences(arr, val, start=0) {
     /** value to track how many times search value was found */
     let count = 0;
 
     // iterate through each element of the given array
-    for (const e of arr) 
+    for (let i = start; i < arr.length; i++) 
         // if current element is equal to search value, increment counter
-        if (e == val) ++count;
+        if (arr[i] == val) ++count;
 
     return count;
 }
@@ -74,11 +75,12 @@ function findMaximum(arr) {
  * Find the index of the first occurence of a value in an array
  * @param {Array} arr the array to search in
  * @param {*} val the value to search for
+ * @param {number} start the index to start searching at
  * @returns index of the search value if it is found, else -1
  */
-function searchArray(arr, val) {
+function searchArray(arr, val, start=0) {
     // iterate through array to search for value
-    for (let i = 0; i < arr.length; i++) {
+    for (let i = start; i < arr.length; i++) {
         // check if current element is equal to search value
         if (arr[i] == val) return i;
     }
