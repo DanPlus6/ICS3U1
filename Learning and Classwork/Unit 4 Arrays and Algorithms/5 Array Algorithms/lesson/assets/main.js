@@ -13,7 +13,7 @@ const stringArray = [
 ];
 
 const numbersArray = [
-    1, 2, 3, 4, 1, 7, 4, 0, 2, 9
+    89, 578, 1, 2, 30, 4, 1, 50123, 7, 4, 28, 2, 9, 481, 291
 ];
 
 
@@ -91,16 +91,20 @@ function searchArray(arr, val) {
  * @returns the second greatest element in given array
  */
 function findSecondBiggest(arr) {
-    if (arr[0] > arr[1]) {
-        let fMax = arr[0];
-        let sMax = arr[1];
-    } else {
-        let fMax = arr[1];
-        let sMax = arr[0];
-    }
-        
+    /** variable to store the first maximum */
+    let fMax;
+    /** variable to store the second maximum */
+    let sMax;
+
+    // check whether first or second element is greater to decide the starting first/second maximum
+    if (arr[0] > arr[1]) { fMax = arr[0]; sMax = arr[1]; }
+    else { fMax = arr[1]; sMax = arr[0]; }
+    
+    // iterate through array elements
     for (let i = 2; i < arr.length; i++) {
+        // check if element is greater than current first maximum
         if (arr[i] > fMax) fMax = arr[i];
+        // check if element is smaller than first maximum but greater than current second maximum
         else if (arr[i] > sMax) sMax = arr[i];
     }
 
@@ -113,13 +117,20 @@ function findSecondBiggest(arr) {
  * @returns the index of the greatest element
  */
 function findIndexOfMaximum(arr) {
-    let curMax = arr[0], i = 0;
-    for (; i < arr.length; i++) {
+    /** variable to track our running maximum */
+    let curMax = arr[0];
+    /** variable to track index of our running maximum */
+    let idx = 0;
+
+    // iterate through array elements
+    for (let i = 0; i < arr.length; i++) {
+        // check if current element is greater than current maximum
         if (arr[i] > curMax) {
             curMax = arr[i];
+            idx = i;
         }
     }
-    return i;
+    return idx;
 }
 
 /**
@@ -128,10 +139,17 @@ function findIndexOfMaximum(arr) {
  * @returns the index of the smallest element
  */
 function findIndexOfMinimum(arr) {
-    let curMin = arr[0], i = 0;
-    for (; i < arr.length; i++) {
+    /** variable to track our running minimum */
+    let curMin = arr[0];
+    /** variable to track index of our running minimum */
+    let idx = 0;
+
+    // iterate through elements of array
+    for (let i = 0; i < arr.length; i++) {
+        // check if current element is lesser than current minimum
         if (arr[i] < curMin) {
             curMin = arr[i];
+            idx = i;
         }
     }
     return i;
@@ -145,8 +163,12 @@ function findIndexOfMinimum(arr) {
  * @returns {string} a string buffer containing all elements within bounds separated by a linebreak character
  */
 function printElementsInRange(arr, low, high) {
+    /** string buffer to store output */
     let res = "";
+
+    // iterate through elements of array
     for (let i = 0; i < arr.length; i++) {
+        // check if current element is within bounds
         if (arr[i] > low && arr[i] < high) {
             res += arr[i] + '<br>';
         }
@@ -161,9 +183,14 @@ function printElementsInRange(arr, low, high) {
  * @returns the average of all positive numbers in given array
  */
 function calculateMeanOfPositives(arr) {
+    /** variable to store the sum of positive numbers */
     let sum = 0;
+    /** variable to track number of positive numbers */
     let posNums = 0;
+
+    // iterate through numbers in array
     for (let num of arr) {
+        // check if current number is positive
         if (num > 0) {
             ++posNums;
             sum += num;
