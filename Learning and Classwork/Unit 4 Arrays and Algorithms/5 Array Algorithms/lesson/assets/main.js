@@ -122,6 +122,21 @@ function findIndexOfMaximum(arr) {
     return i;
 }
 
+/**
+ * Finds the index of the minimum element in a number array
+ * @param {number[]} arr an array of real numbers
+ * @returns the index of the smallest element
+ */
+function findIndexOfMinimum(arr) {
+    let curMin = arr[0], i = 0;
+    for (; i < arr.length; i++) {
+        if (arr[i] < curMin) {
+            curMin = arr[i];
+        }
+    }
+    return i;
+}
+
 
 // Test button callbacks
 /**
@@ -195,4 +210,11 @@ function findIndexOfMaximumTest() {
     clear();
 
     P_DISPLAY1.innerHTML = findIndexOfMaximum(numbersArray);
+}
+
+/** test the findIndexOfMinimum function by getting index of minimum element in numbers array */
+function findIndexOfMaximumTest() {
+    clear();
+
+    P_DISPLAY1.innerHTML = findIndexOfMinimum(numbersArray);
 }
