@@ -155,6 +155,24 @@ function printElementsInRange(arr, low, high) {
     return res;
 }
 
+/**
+ * Gets the mean of all positive numbers in a number array
+ * @param {number[]} arr an array of real numbers
+ * @returns the average of all positive numbers in given array
+ */
+function calculateMeanOfPositives(arr) {
+    let sum = 0;
+    let posNums = 0;
+    for (let num of arr) {
+        if (num > 0) {
+            ++posNums;
+            sum += num;
+        }
+    }
+
+    return sum/posNums;
+}
+
 
 // Test button callbacks
 /**
@@ -242,4 +260,11 @@ function printElementsInRangeTest() {
     clear();
 
     P_DISPLAY1.innerHTML = printElementsInRange(numbersArray, 60, 80);
+}
+
+/** test the calculateMeanOfPositives function by printing average of all positive numbers in numbers array */
+function calculateMeanOfPositivesTest() {
+    clear();
+
+    P_DISPLAY1.innerHTML = calculateMeanOfPositives(numbersArray);
 }
