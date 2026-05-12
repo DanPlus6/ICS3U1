@@ -220,6 +220,24 @@ function copyArray(arr) {
     return arr;
 }
 
+/**
+ * Get index of all the occurences of a value in an array
+ * @param {Array} arr the input array
+ * @param {*} val the search value
+ * @returns {number[]} an array containing all indices where value is found in array
+ */
+function searchArrayAllMatches(arr, val) {
+    /** array to store all indexes of the value in the array */
+    let idxs = [];
+
+    // loop through array elements
+    for (let i = 0; i < arr.length; i++) {
+        // check if current element is equal to search value
+        if (arr[i] == val) idxs.push(i);
+    }
+    return idx;
+}
+
 
 // Test button callbacks
 /**
@@ -320,6 +338,14 @@ function calculateMeanOfPositivesTest() {
 function copyArrayTest() {
     clear();
 
-    P_DISPLAY1.innerHTML = printArray(stringArray);
-    P_DISPLAY2.innerHTML = printArray(copyArray(stringArray));
+    P_DISPLAY1.innerHTML = stringArray;
+    P_DISPLAY2.innerHTML = stringArray;
+}
+
+/** test the searchArrayAllMatches function by finding all indices of 1 in numbers array and 'noodles' in strings array */
+function searchArrayAllMatchesTest() {
+    clear();
+
+    P_DISPLAY1.innerHTML = searchArrayAllMatches(numbersArray,1);
+    P_DISPLAY2.innerHTML = searchArrayAllMatches(stringArray, 'noodles');
 }
