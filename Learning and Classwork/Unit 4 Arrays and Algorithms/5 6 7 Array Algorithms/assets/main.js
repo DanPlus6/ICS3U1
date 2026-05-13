@@ -254,6 +254,25 @@ function sortArray(arr) {
     }
 }
 
+/**
+ * Appends a specified number of empty cells to an array
+ * @param {Array} arr the array to resize
+ * @param {number} len number of elements to add to the array
+ * @returns resized array
+ */
+function resizeArray(arr, len) {
+    // check if array does not need to be resized
+    if (!len) return copyArray(arr);
+    
+    /** temporary variable to store array we're resizing */
+    let arr = copyArray(arr);
+
+    // add empty elements to array as specified
+    for (let i = 0; i < len; i++) arr += [];
+
+    return arr;
+}
+
 
 // Test button callbacks
 /**
