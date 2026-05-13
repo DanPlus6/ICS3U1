@@ -238,6 +238,22 @@ function searchArrayAllMatches(arr, val) {
     return idx;
 }
 
+/**
+ * Sorts an array in-place using selection-sort algorithm
+ * @param {number[]} arr A number array
+ */
+function sortArray(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        let minIdx = i;
+        for (let j = i+1; j < arr.length; j++) {
+            if (arr[j] < arr[minIdx])
+                minIdx = j;
+        }
+
+        [arr[i],arr[minIdx]] = [arr[minIdx],arr[i]];
+    }
+}
+
 
 // Test button callbacks
 /**
@@ -348,4 +364,13 @@ function searchArrayAllMatchesTest() {
 
     P_DISPLAY1.innerHTML = searchArrayAllMatches(numbersArray,1);
     P_DISPLAY2.innerHTML = searchArrayAllMatches(stringArray, 'noodles');
+}
+
+/** tests the sortArray function by sorting a copy of the numbers array and printing it to the paragraph */
+function sortArrayTest() {
+    clear();
+
+    let arr = numbersArray;
+    sortArray(arr);
+    P_DISPLAY1.innerHTML = printArray(arr);
 }
