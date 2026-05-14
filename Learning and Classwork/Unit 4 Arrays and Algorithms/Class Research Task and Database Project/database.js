@@ -81,7 +81,7 @@ globalThis.internationalTuitions = internationalTuitions;
 let academicCostDetails = new Array(numberOfSchools);
 globalThis.academicCostDetails = academicCostDetails;
 
-/** Number array to show the academic costs of a single year of international student tuition. */
+/** Number array to show additional academic costs included */
 let academicCosts = new Array(numberOfSchools);
 globalThis.academicCosts = academicCosts;
 
