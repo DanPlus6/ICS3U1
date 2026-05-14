@@ -18,7 +18,7 @@ globalThis.schoolPictures[myIdx] =
     `https://commons.wikimedia.org/wiki/Special:FilePath/University%20of%20Waterloo%20campus.JPG`;
 
 globalThis.mapPictures[myIdx] =
-    `https://staticmap.openstreetmap.de/staticmap.php?center=43.4723,-80.5449&zoom=13&size=600x400&markers=43.4723,-80.5449,red-pushpin`;
+    `https://i.imgur.com/8HweuU1.png`;
 
 globalThis.programNames[myIdx] =
     `Software Engineering`;
