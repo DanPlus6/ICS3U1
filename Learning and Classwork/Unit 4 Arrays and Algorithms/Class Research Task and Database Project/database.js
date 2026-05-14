@@ -85,9 +85,10 @@ globalThis.academicCostDetails = academicCostDetails;
 let academicCosts = new Array(numberOfSchools);
 globalThis.academicCosts = academicCosts;
 
-/** String array to show which living costs are included in the next array.
+/** 
+ * String array to show which living costs are included in the next array.
  * 
- *  For example, housing, meals, entertainment, transportation, etc.
+ * For example, housing, meals, entertainment, transportation, etc.
  */
 let livingCostDetails = new Array(numberOfSchools);
 globalThis.livingCostDetails = livingCostDetails;
