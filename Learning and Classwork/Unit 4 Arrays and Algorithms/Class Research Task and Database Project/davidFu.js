@@ -55,12 +55,10 @@ globalThis.internationalTuitions[myIdx] =
     59000.0;
 
 globalThis.academicCostDetails[myIdx] =
-    `Domestic student: about $6,985 tuition + $817 co-op fee + about $1,031 incidental fees = about $8,833 per academic term in Fall 2025. Over 8 academic study terms, tuition and fees are about $70,664. Textbooks are about $2,476 per year, or about $12,380 over 5 years, making the total without living costs about $83,044.<br><br>
-    International student: about $34,597-$34,942 tuition + $836 co-op fee + about $1,287 incidental fees = about $36,720-$37,065 per academic term in Spring 2026. Over 8 academic study terms, tuition and fees are about $295,000. With textbooks, the total without living costs is about $307,380.<br><br>
-    Incidental fees include items such as health/dental plans, a transit pass, recreation facilities, student clubs, and career advisors. International students must also enroll in UHIP.`;
+    `Textbooks cost approximately $2,476 for one full year. Over the 5-year Software Engineering co-op program, that is about $12,380 total. Incidental fees, such as health/dental plans, a transit pass, recreation facilities, student clubs, and career advisors, are included in the tuition fee bill. Co-op students also pay a co-op fee each academic term, and international students must enroll in UHIP.`;
 
 globalThis.academicCosts[myIdx] =
-    12380.0;
+    2476.0;
 
 globalThis.livingCostDetails[myIdx] =
     `On-campus residence costs about $4,127-$5,492 per term, with meal plans adding about $2,220-$4,600 per term. Off-campus housing costs about $827-$1,833 per month depending on size, location, and amenities. Other costs, including laundry, clothing, phone, internet, personal care, and entertainment, are about $4,000 per year. Total living expenses for two academic terms are estimated at about $16,000-$20,000.`;
