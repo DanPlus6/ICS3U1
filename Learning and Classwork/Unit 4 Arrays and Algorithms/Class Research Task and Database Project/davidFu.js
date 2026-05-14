@@ -49,10 +49,10 @@ globalThis.admissionAveragesNeeded[myIdx] =
     95;
 
 globalThis.domesticTuitions[myIdx] =
-    70664;
+    70664.0;
 
 globalThis.internationalTuitions[myIdx] =
-    295000;
+    295000.0;
 
 globalThis.academicCostDetails[myIdx] =
     `Domestic student: about $6,985 tuition + $817 co-op fee + about $1,031 incidental fees = about $8,833 per academic term in Fall 2025. Over 8 academic study terms, tuition and fees are about $70,664. Textbooks are about $2,476 per year, or about $12,380 over 5 years, making the total without living costs about $83,044.<br><br>
@@ -60,13 +60,13 @@ globalThis.academicCostDetails[myIdx] =
     Incidental fees include items such as health/dental plans, a transit pass, recreation facilities, student clubs, and career advisors. International students must also enroll in UHIP.`;
 
 globalThis.academicCosts[myIdx] =
-    12380;
+    12380.0;
 
 globalThis.livingCostDetails[myIdx] =
     `On-campus residence costs about $4,127-$5,492 per term, with meal plans adding about $2,220-$4,600 per term. Off-campus housing costs about $827-$1,833 per month depending on size, location, and amenities. Other costs, including laundry, clothing, phone, internet, personal care, and entertainment, are about $4,000 per year. Total living expenses for two academic terms are estimated at about $16,000-$20,000.`;
 
 globalThis.livingCosts[myIdx] =
-    90000;
+    90000.0;
 
 globalThis.interestingFacts[myIdx] =
     `<ol>
