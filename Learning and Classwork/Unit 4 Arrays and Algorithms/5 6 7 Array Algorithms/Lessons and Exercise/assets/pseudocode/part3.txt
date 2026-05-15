@@ -91,8 +91,6 @@ Call searchArray to find deletion index
 If deletion index is -1, return copy of array
 Iterate through input array at deletion index+1 and set working array at current index-1 to array at current index
 
-Set element at end of working array to NULL
-
 Output:
 Our storage/working array with element deleted
 
