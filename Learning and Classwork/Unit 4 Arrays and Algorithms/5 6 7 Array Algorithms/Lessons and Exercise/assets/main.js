@@ -293,6 +293,29 @@ function shiftArrayLeft(arr) {
     return workingArr;
 }
 
+/**
+ * Gets a copy of an array with the first occurence of a specified value deleted and rest of array collapsed
+ * @param {*} arr the input array
+ * @param {*} val the value to be deleted
+ * @returns array with first occurences of deletion value deleted and rest of array collapsed
+ */
+function deleteElement(arr, val) {
+    /** index of deletion value */
+    let delIdx = searchArray(arr, val);
+    // if deletion value not found, return copy of array as nothing changed
+    if (delIdx != -1) return copyArray(arr);
+
+    // working array where element will be deleted and elements will be shifted
+    let workingArr = new Array(arr.length-1);
+
+    // iterate from element after deletion index to end
+    for (let i = delIdx+1; i < arr.length; i++) {
+        workingArr[i-1] = arr[i];
+    }
+    
+    return workingArr;
+}
+
 // -----------------------------------------------------------------------------------------------------------
 
 // Test button callbacks
