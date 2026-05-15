@@ -38,7 +38,7 @@ A second working array
 Write pseudocode for a function named shiftArrayLeft() that will solve this problem.
 ```
 FUNCTION shiftArrayLeft(arr)
-    let workingArr = new Array(arr.length);
+    SET workingArr = new Array(arr.length);
     FOR i from 1 to arr.length-1
         SET workingArr[i-1] = arr[i]
     NEXT i
@@ -80,22 +80,44 @@ F
 null
 
 Create an IPO+S Chart to analyse this problem.
-Input
-Processing
-Output
-Storage
+Input:
+An input array
 
+Processing:
+The value whose deletion is desired
+Initialize our working array to length of input array
 
+Call searchArray to find deletion index
+If deletion index is -1, return copy of array
+Iterate through input array at deletion index+1 and set working array at current index-1 to array at current index
 
+Set element at end of working array to NULL
 
+Output:
+Our storage/working array with element deleted
 
-
-
-
+Storage:
+Our storage/working array
 
 
 Write pseudocode for a function named deleteElement() that will solve this problem.
 
+```
+FUNCTION deleteElement(arr, val) 
+    SET delIdx = searchArray(arr, val)
+    IF delIdx != -1 THEN
+        RETURN copyArray(arr)
+    END IF
+
+    SET workingArr = new Array(arr.length-1)
+
+    FOR i from idx+1 to arr.length-1
+        SET workingArr[i-1] = arr[i]
+    NEXT i
+    
+    RETURN workingArr
+END FUNCTION
+```
 
 
 EXERCISES
