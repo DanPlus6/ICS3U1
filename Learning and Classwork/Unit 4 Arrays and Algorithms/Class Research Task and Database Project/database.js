@@ -2,48 +2,37 @@
 
 // Global constants
 const numberOfSchools = 19;
-globalThis.numberOfSchools = 19;
 
 // Global values
 /** String array to store school’s name */
 let schoolNames = new Array(numberOfSchools); 
-globalThis.schoolNames = schoolNames;
 
 /** String array to store the city where the school is located */
 let cities = new Array(numberOfSchools);
-globalThis.cities = cities;
 
 /** String array to store the province, state, or territory where the school is located */
 let provinces = new Array(numberOfSchools);
-globalThis.provinces = provinces;
 
 /** String array to store the country where the school is located */
 let countries = new Array(numberOfSchools);
-globalThis.countries = countries;
 
 /** String array to store links to pictures of the schools */
 let schoolPictures = new Array(numberOfSchools);
-globalThis.schoolPictures = schoolPictures;
 
 /** String array to store links to maps of where the schools are located */
 let mapPictures = new Array(numberOfSchools);
-globalThis.mapPictures = mapPictures;
 
 /** String array to store the program names */
 let programNames = new Array(numberOfSchools); 
-globalThis.programNames = programNames;
 
 /** number array to store the length of program in years */
 let lengthsOfPrograms = new Array(numberOfSchools);
-globalThis.lengthsOfPrograms = lengthsOfPrograms;
 
 /** String array to store a description of the program */
 let programDescriptions = new Array(numberOfSchools);
-globalThis.programDescriptions = programDescriptions;
 
 /** Boolean array – true if a program has coop or an internship, false otherwise */
 let coop = new Array(numberOfSchools);
-globalThis.coop = coop;
 
 /** 
  * String array with a list of the courses needed to be admitted into the program.
@@ -51,7 +40,6 @@ globalThis.coop = coop;
  * Use <br> tags to put each on a different line
  */
 let admissionCoursesNeeded = new Array(numberOfSchools);
-globalThis.admissionCoursesNeeded = admissionCoursesNeeded;
 
 /**
  * Number array to store the admission average needed to be admitted into the program. 
@@ -63,15 +51,12 @@ globalThis.admissionCoursesNeeded = admissionCoursesNeeded;
  * For “low”, use a number ending with 2.
  */
 let admissionAveragesNeeded = new Array(numberOfSchools);
-globalThis.admissionAveragesNeeded = admissionAveragesNeeded;
 
 /** Number array to show the cost of a single year of domestic student tuition. */
 let domesticTuitions = new Array(numberOfSchools);
-globalThis.domesticTuitions = domesticTuitions;
 
 /** Number array to show the cost of a single year of international student tuition. */
 let internationalTuitions = new Array(numberOfSchools);
-globalThis.internationalTuitions = internationalTuitions;
 
 /** 
  * String array to show which additional academic costs are included in the next array.
@@ -79,11 +64,9 @@ globalThis.internationalTuitions = internationalTuitions;
  * For example, books, coop fees, etc.
  */
 let academicCostDetails = new Array(numberOfSchools);
-globalThis.academicCostDetails = academicCostDetails;
 
 /** Number array to show additional academic costs included */
 let academicCosts = new Array(numberOfSchools);
-globalThis.academicCosts = academicCosts;
 
 /** 
  * String array to show which living costs are included in the next array.
@@ -91,11 +74,9 @@ globalThis.academicCosts = academicCosts;
  * For example, housing, meals, entertainment, transportation, etc.
  */
 let livingCostDetails = new Array(numberOfSchools);
-globalThis.livingCostDetails = livingCostDetails;
 
 /** Number array to show the living cost of a single year */
 let livingCosts = new Array(numberOfSchools);
-globalThis.livingCosts = livingCosts;
 
 /**
  * String array to show 3 interesting facts for the school.
@@ -103,24 +84,18 @@ globalThis.livingCosts = livingCosts;
  * Use an ordered list <ol> and <li> to separate each of the 3 facts.
  */
 let interestingFacts = new Array(numberOfSchools);
-globalThis.interestingFacts = interestingFacts;
 
 /** String array with a link to the first primary source used for research */
 let primarySources1 = new Array(numberOfSchools);
-globalThis.primarySources1 = primarySources1;
 
 /** String array with a link to the second primary source used for research */
 let primarySources2 = new Array(numberOfSchools);
-globalThis.primarySources2 = primarySources2;
 
 /** String array with a link to the third primary source used for research */
 let primarySources3 = new Array(numberOfSchools);
-globalThis.primarySources3 = primarySources3;
 
 /** String array with a link to the first secondary source used for research */
 let secondarySources1 = new Array(numberOfSchools);
-globalThis.secondarySources1 = secondarySources1;
 
 /** String array with a link to the second secondary source used for research */
 let secondarySources2 = new Array(numberOfSchools);
-globalThis.secondarySources2 = secondarySources2;
