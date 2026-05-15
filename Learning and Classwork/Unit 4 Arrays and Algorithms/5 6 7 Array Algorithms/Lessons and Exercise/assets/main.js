@@ -273,6 +273,27 @@ function resizeArray(arr, len) {
     return arr;
 }
 
+/**
+ * Shifts an array left without wrap-around, meaning last element becomes NULL
+ * @param {Array} arr an input array
+ * @returns an array with every element shifted to the left by 1 and the last element set to NULL
+ */
+function shiftArrayLeft(arr) {
+    /** our working array that will be shifted */
+    let workingArr = new Array(arr.length);
+    
+    // traverse array
+    for (let i = 1; i < arr.length; i++) {
+        // move current element to the left by 1 in our working array
+        workingArr[i-1] = arr[i];
+    }
+    // set last element in working array to null
+    workingArr[arr.length-1] = null;
+
+    return workingArr;
+}
+
+// -----------------------------------------------------------------------------------------------------------
 
 // Test button callbacks
 /**
