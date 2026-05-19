@@ -226,7 +226,7 @@ function copyArray(arr) {
  * @param {*} val the search value
  * @returns {number[]} an array containing all indices where value is found in array
  */
-function searchArrayAllMatches(arr, val) {
+function searchAllMatches(arr, val) {
     /** array to store all indexes of the value in the array */
     let idxs = [];
 
@@ -421,12 +421,12 @@ function copyArrayTest() {
     P_DISPLAY2.innerHTML = stringArray;
 }
 
-/** test the searchArrayAllMatches function by finding all indices of 1 in numbers array and 'noodles' in strings array */
-function searchArrayAllMatchesTest() {
+/** test the searchAllMatches function by finding all indices of 1 in numbers array and 'noodles' in strings array */
+function searchAllMatchesTest() {
     clear();
 
-    P_DISPLAY1.innerHTML = searchArrayAllMatches(numbersArray,1);
-    P_DISPLAY2.innerHTML = searchArrayAllMatches(stringArray, 'noodles');
+    P_DISPLAY1.innerHTML = searchAllMatches(numbersArray,1);
+    P_DISPLAY2.innerHTML = searchAllMatches(stringArray, 'noodles');
 }
 
 /** tests the sortArray function by sorting a copy of the numbers array and printing it to the paragraph */
