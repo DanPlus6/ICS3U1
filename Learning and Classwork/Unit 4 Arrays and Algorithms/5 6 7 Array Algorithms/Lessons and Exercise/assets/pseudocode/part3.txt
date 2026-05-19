@@ -82,22 +82,25 @@ null
 Create an IPO+S Chart to analyse this problem.
 Input:
 An input array
+The value of desired element to be deleted
 
 Processing:
-The value whose deletion is desired
-Initialize our working array to length of input array
+Initialize an empty array of length equal to input array length
 
-Call searchArray to find deletion index
-If deletion index is -1, return copy of array
-Iterate through input array at deletion index+1 and set working array at current index-1 to array at current index
+Iterate through array and copy input array element at current index to working array at current index if current element 
+does not equal deletion value, if so, set the boolean flag to true and break
+
+Iterate throguh array at iterator+1 and copy input array element at current index to working array at current index-1
+
+If boolean flag is true, pop last element of array
 
 Output:
 Our storage/working array with element deleted
 
 Storage:
-A variable to store index for copying traversal
+A boolean flag to track if deletion value is found
+A variable to store index/iterator for array traversal
 A copy of input array -- our storage/working array
-A variable to store index for copying traversal if deletion element is found
 
 
 Write pseudocode for a function named deleteElement() that will solve this problem.
