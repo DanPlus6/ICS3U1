@@ -308,6 +308,11 @@ function deleteElement(arr, val) {
     // working array where element will be deleted and elements will be shifted
     let workingArr = new Array(arr.length-1);
 
+    // iterate from beginning of array to before deletion index
+    for (let i = 0; i < delIdx; i++) {
+        workingArr[i] = arr[i];
+    }
+
     // iterate from element after deletion index to end
     for (let i = delIdx+1; i < arr.length; i++) {
         workingArr[i-1] = arr[i];
