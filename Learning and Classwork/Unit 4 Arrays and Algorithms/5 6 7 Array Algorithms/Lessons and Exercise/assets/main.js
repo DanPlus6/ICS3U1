@@ -239,10 +239,10 @@ function searchAllMatches(arr, val) {
 }
 
 /**
- * Sorts an array in-place using selection-sort algorithm
- * @param {number[]} arr A number array
+ * Sorts an array in-place in ascending order using selection-sort algorithm
+ * @param {number[]} arr A number array sorted in ascending order
  */
-function sortArray(arr) {
+function sortAscending(arr) {
     for (let i = 0; i < arr.length; i++) {
         let minIdx = i;
         for (let j = i+1; j < arr.length; j++) {
@@ -429,11 +429,11 @@ function searchAllMatchesTest() {
     P_DISPLAY2.innerHTML = searchAllMatches(stringArray, 'noodles');
 }
 
-/** tests the sortArray function by sorting a copy of the numbers array and printing it to the paragraph */
+/** tests the sortAscending function by sorting a copy of the numbers array and printing it to the paragraph */
 function sortArrayTest() {
     clear();
 
     let arr = numbersArray;
-    sortArray(arr);
+    sortAscending(arr);
     P_DISPLAY1.innerHTML = printArray(arr);
 }
