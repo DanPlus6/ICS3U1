@@ -95,7 +95,9 @@ Output:
 Our storage/working array with element deleted
 
 Storage:
-Our storage/working array
+A variable to store index for copying traversal
+A copy of input array -- our storage/working array
+A variable to store index for copying traversal if deletion element is found
 
 
 Write pseudocode for a function named deleteElement() that will solve this problem.
