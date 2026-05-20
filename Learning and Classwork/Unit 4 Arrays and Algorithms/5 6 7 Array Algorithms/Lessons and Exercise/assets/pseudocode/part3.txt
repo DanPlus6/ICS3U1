@@ -85,14 +85,16 @@ An input array
 The value of desired element to be deleted
 
 Processing:
+Initialize a boolean flag to false
 Initialize an empty array of length equal to input array length
+Initialize iterator to 0
 
 Iterate through array and copy input array element at current index to working array at current index if current element 
 does not equal deletion value, if so, set the boolean flag to true and break
 
 Iterate throguh array at iterator+1 and copy input array element at current index to working array at current index-1
 
-If boolean flag is true, pop last element of array
+If boolean flag is false, pop last element of array
 
 Output:
 Our storage/working array with element deleted
@@ -107,18 +109,28 @@ Write pseudocode for a function named deleteElement() that will solve this probl
 
 ```
 FUNCTION deleteElement(arr, val) 
-    SET delIdx = searchArray(arr, val)
-    IF delIdx != -1 THEN
-        RETURN copyArray(arr)
+    SET found = false
+    SET wArr = new Array(arr.length+1)
+
+    SET i = 0
+    FOR i to arr.length-1
+        IF arr[i] != val THEN
+            SET wArr[i] = arr[i]
+        ELSE
+            SET found = true
+            BREAK
+        END IF    
+    NEXT i
+
+    FOR i from i+1 to arr.length-1
+        SET wArr[i-1] = arr[i]
+    NEXT i
+
+    IF !found THEN
+        COMPUTE wArr.pop()
     END IF
 
-    SET workingArr = new Array(arr.length-1)
-
-    FOR i from idx+1 to arr.length-1
-        SET workingArr[i-1] = arr[i]
-    NEXT i
-    
-    RETURN workingArr
+    RETURN wArr;
 END FUNCTION
 ```
 

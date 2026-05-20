@@ -300,25 +300,33 @@ function shiftArrayLeft(arr) {
  * @returns array with first occurences of deletion value deleted and rest of array collapsed
  */
 function deleteElement(arr, val) {
-    /** index of deletion value */
-    let delIdx = searchArray(arr, val);
-    // if deletion value not found, return copy of array as nothing changed
-    if (delIdx != -1) return copyArray(arr);
+    /** flag to check whether deletion value was found */
+    let found = false;
+    /** a working array to copy elements into */
+    let wArr = new Array(arr.length+1);
 
-    // working array where element will be deleted and elements will be shifted
-    let workingArr = new Array(arr.length-1);
-
-    // iterate from beginning of array to before deletion index
-    for (let i = 0; i < delIdx; i++) {
-        workingArr[i] = arr[i];
+    // iterate through array
+    let i = 0;
+    for (; i < arr.length; i++) {
+        // if not deletion value, copy element over
+        if (arr[i] != val) wArr[i] = arr[i];
+        // if deletion value, set the flag and stop the current loop
+        else {
+            found = true;    
+            break;
+        }
     }
 
-    // iterate from element after deletion index to end
-    for (let i = delIdx+1; i < arr.length; i++) {
-        workingArr[i-1] = arr[i];
+    // copy elements into working array starting from after element to be deleted
+    ++i;
+    for (; i < arr.length; i++) {
+        wArr[i-1] = arr[i];
     }
-    
-    return workingArr;
+
+    // if element was not found
+    if (!found) wArr.pop();
+
+    return wArr;
 }
 
 // -----------------------------------------------------------------------------------------------------------
